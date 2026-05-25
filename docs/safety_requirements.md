@@ -35,6 +35,8 @@ Each UAV state sample contains:
 | Mission timeout | Mission lasts longer than `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` |
 | State timeout | Simulated state-update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` |
 
+The expected result for each scenario is encoded in `src/scenario_catalog.py` and checked by `analysis/validate_scenarios.py`.
+
 ## Event Logging
 
 The monitor writes continuous state logs and separate event logs. Event logs record transitions such as `ENTERED_WARNING`, `ENTERED_VIOLATION`, `CHANGED_STATUS`, and `CLEARED_EVENT`. This keeps flight-test-style analysis concise while preserving the full state history.
@@ -42,4 +44,3 @@ The monitor writes continuous state logs and separate event logs. Event logs rec
 ## Notes
 
 The first version is a deterministic simulation. Future versions can extend this with ROS2 state messages, PX4 SITL data, Gazebo simulation, sensor dropouts, and trajectory deviation checks.
-

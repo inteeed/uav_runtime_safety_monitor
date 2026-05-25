@@ -37,12 +37,17 @@ Deliverables:
 
 - mission summary script
 - event-transition summary
+- scenario catalog with expected monitor outcomes
+- reusable simulation runner
+- mission phase planner
+- basic fault injector for missing state updates
+- automated scenario validation command
 - trajectory plot with geofence boundary
 - altitude plot
 - battery plot
 - safety-status plot
 
-Status: complete for Python logs, expandable for ROS2/PX4 logs later.
+Status: complete for Python logs and reusable simulation components, expandable for ROS2/PX4 logs later.
 
 ## Phase 4: Documentation
 
@@ -68,4 +73,3 @@ Deliverables:
 - future PX4/Gazebo integration notes
 
 Status: planned.
-

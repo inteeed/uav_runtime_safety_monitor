@@ -9,20 +9,22 @@ from matplotlib.patches import FancyBboxPatch
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = PROJECT_ROOT / "docs" / "architecture.png"
+BOX_W = 2.45
+BOX_H = 0.8
 
 
 def add_box(ax, x, y, label, color):
     box = FancyBboxPatch(
         (x, y),
-        3.0,
-        0.8,
+        BOX_W,
+        BOX_H,
         boxstyle="round,pad=0.08,rounding_size=0.04",
         linewidth=1.6,
         edgecolor="#111827",
         facecolor=color,
     )
     ax.add_patch(box)
-    ax.text(x + 1.5, y + 0.4, label, ha="center", va="center", fontsize=10)
+    ax.text(x + BOX_W / 2, y + BOX_H / 2, label, ha="center", va="center", fontsize=9)
 
 
 def add_arrow(ax, x1, y1, x2, y2):
@@ -36,26 +38,39 @@ def add_arrow(ax, x1, y1, x2, y2):
 
 def main() -> None:
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    fig, ax = plt.subplots(figsize=(8.5, 5.2))
-    ax.set_xlim(0, 9)
-    ax.set_ylim(0, 6)
+    fig, ax = plt.subplots(figsize=(11.2, 6.2))
+    ax.set_xlim(0, 11.5)
+    ax.set_ylim(0, 7)
     ax.axis("off")
 
-    add_box(ax, 0.6, 4.4, "Mission\nSimulator", "#dbeafe")
-    add_box(ax, 4.9, 4.4, "UAV State\nData", "#e0f2fe")
-    add_box(ax, 2.75, 2.75, "Runtime Safety\nMonitor", "#dcfce7")
-    add_box(ax, 0.6, 1.1, "Safety Status +\nRecommended Action", "#fef3c7")
-    add_box(ax, 4.9, 1.1, "CSV Logs +\nAnalysis Plots", "#fee2e2")
+    add_box(ax, 0.5, 5.0, "Scenario\nCatalog", "#dbeafe")
+    add_box(ax, 3.25, 5.0, "Mission Phase\nPlanner", "#e0f2fe")
+    add_box(ax, 6.0, 5.0, "Mission\nSimulator", "#ccfbf1")
+    add_box(ax, 8.75, 5.0, "Fault\nInjection", "#ffedd5")
 
-    add_arrow(ax, 3.65, 4.8, 4.9, 4.8)
-    add_arrow(ax, 6.4, 4.4, 4.25, 3.55)
-    add_arrow(ax, 2.75, 3.15, 2.1, 1.9)
-    add_arrow(ax, 3.75, 2.75, 5.2, 1.9)
+    add_box(ax, 1.8, 3.25, "UAV State\nData", "#ecfeff")
+    add_box(ax, 4.55, 3.25, "Runtime Safety\nMonitor", "#dcfce7")
+    add_box(ax, 7.3, 3.25, "Simulation\nRunner", "#fef3c7")
+
+    add_box(ax, 1.15, 1.35, "State + Event\nCSV Logs", "#fee2e2")
+    add_box(ax, 4.55, 1.35, "Scenario\nValidation", "#ede9fe")
+    add_box(ax, 7.95, 1.35, "Analysis\nPlots", "#fce7f3")
+
+    add_arrow(ax, 2.95, 5.4, 3.25, 5.4)
+    add_arrow(ax, 5.7, 5.4, 6.0, 5.4)
+    add_arrow(ax, 8.45, 5.4, 8.75, 5.4)
+    add_arrow(ax, 7.2, 5.0, 3.0, 4.05)
+    add_arrow(ax, 10.0, 5.0, 3.1, 4.05)
+    add_arrow(ax, 4.25, 3.65, 4.55, 3.65)
+    add_arrow(ax, 7.0, 3.65, 7.3, 3.65)
+    add_arrow(ax, 8.5, 3.25, 2.35, 2.15)
+    add_arrow(ax, 8.5, 3.25, 5.78, 2.15)
+    add_arrow(ax, 8.5, 3.25, 9.18, 2.15)
 
     ax.text(
-        4.5,
-        5.55,
-        "Runtime Safety Monitoring for Autonomous UAV Missions",
+        5.75,
+        6.45,
+        "Simulation-Based Runtime Safety Monitoring for Autonomous UAV Missions",
         ha="center",
         va="center",
         fontsize=13,
@@ -69,4 +84,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

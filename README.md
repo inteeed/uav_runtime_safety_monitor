@@ -15,7 +15,10 @@ Autonomous UAVs need supervisory onboard software that can detect unsafe mission
 ![System architecture](docs/architecture.png)
 
 ```text
-Mission Simulator
+Scenario Catalog
+        |
+        v
+Mission Phase Planner
         |
         v
 UAV State Data
@@ -27,7 +30,10 @@ Runtime Safety Monitor
 Safety Status / Severity / Recommended Action
         |
         v
-State Log + Event Log
+Simulation Runner
+        |
+        v
+State Log + Event Log + Scenario Validation
         |
         v
 Python Analysis and Plots
@@ -52,12 +58,18 @@ The current safety limits are stored in [config/safety_limits.json](config/safet
 The current version is intentionally lightweight and does not require PX4, Gazebo, or ROS2. It contains:
 
 - [src/mission_simulator.py](src/mission_simulator.py): generates simulated UAV state samples for multiple validation scenarios.
+- [src/scenario_catalog.py](src/scenario_catalog.py): defines scenarios, expected outcomes, and log names.
+- [src/simulation_components.py](src/simulation_components.py): contains mission-phase planning and fault-injection components.
+- [src/simulation_runner.py](src/simulation_runner.py): connects simulation, monitoring, state logs, and event logs.
 - [src/safety_monitor.py](src/safety_monitor.py): evaluates safety rules, warning margins, stale updates, and priority between simultaneous conditions.
 - [src/logger.py](src/logger.py): writes continuous state logs and event-transition logs.
 - [src/main.py](src/main.py): runs all validation scenarios.
 - [analysis/analyze_logs.py](analysis/analyze_logs.py): summarizes mission logs and event transitions.
 - [analysis/plot_mission.py](analysis/plot_mission.py): creates validation plots.
+- [analysis/validate_scenarios.py](analysis/validate_scenarios.py): checks each scenario against the expected monitor result.
 - [tests/test_safety_monitor.py](tests/test_safety_monitor.py): unit tests for the monitor logic.
+
+More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
 
 ## Validation Scenarios
 
@@ -93,6 +105,7 @@ From the repository root:
 
 ```bash
 python3 src/main.py
+python3 analysis/validate_scenarios.py
 python3 analysis/analyze_logs.py
 python3 analysis/plot_mission.py
 python3 analysis/create_architecture_diagram.py
@@ -144,6 +157,7 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - safety-status, severity, and recommended-action generation,
 - event-based logging for log-data analysis,
 - simulation-based validation scenarios,
+- reusable simulation components with expected scenario outcomes,
 - a path toward ROS2/PX4/Gazebo integration.
 
 ## Future Work
@@ -153,4 +167,3 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - Add PX4 or ArduPilot SITL integration.
 - Add Gazebo-based validation scenarios.
 - Add position-deviation, velocity-limit, GPS-loss, and sensor-fault checks.
-
