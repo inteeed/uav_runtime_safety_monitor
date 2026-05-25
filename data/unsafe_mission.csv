@@ -1,0 +1,57 @@
+time_s,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,recommended_action,detail
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,SAFE,CONTINUE,All monitored constraints satisfied
+1.0,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+2.0,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+3.0,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+4.0,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+5.0,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+6.0,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+7.0,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+8.0,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+9.0,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+10.0,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,SAFE,CONTINUE,All monitored constraints satisfied
+11.0,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,SAFE,CONTINUE,All monitored constraints satisfied
+12.0,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,SAFE,CONTINUE,All monitored constraints satisfied
+13.0,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,SAFE,CONTINUE,All monitored constraints satisfied
+14.0,20.0,0.0,20.0,5.0,0.0,0.0,98.75,WAYPOINT_1,SAFE,CONTINUE,All monitored constraints satisfied
+14.92,24.44,1.11,20.0,4.85,1.21,0.0,98.64,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+15.83,28.89,2.22,20.0,4.85,1.21,0.0,98.54,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+16.75,33.33,3.33,20.0,4.85,1.21,0.0,98.43,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+17.66,37.78,4.44,20.0,4.85,1.21,0.0,98.33,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+18.58,42.22,5.56,20.0,4.85,1.21,0.0,98.22,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+19.5,46.67,6.67,20.0,4.85,1.21,0.0,98.12,WAYPOINT_2,SAFE,CONTINUE,All monitored constraints satisfied
+20.41,51.11,7.78,20.0,4.85,1.21,0.0,98.01,WAYPOINT_2,GEOFENCE_VIOLATION,RETURN_TO_HOME,"Position (51.1, 7.8) outside geofence"
+21.33,55.56,8.89,20.0,4.85,1.21,0.0,97.91,WAYPOINT_2,GEOFENCE_VIOLATION,RETURN_TO_HOME,"Position (55.6, 8.9) outside geofence"
+22.25,60.0,10.0,20.0,4.85,1.21,0.0,97.8,WAYPOINT_2,GEOFENCE_VIOLATION,RETURN_TO_HOME,"Position (60.0, 10.0) outside geofence"
+23.18,55.77,11.92,19.85,-4.55,2.07,-0.17,97.69,WAYPOINT_3,GEOFENCE_VIOLATION,RETURN_TO_HOME,"Position (55.8, 11.9) outside geofence"
+24.11,51.54,13.85,19.69,-4.55,2.07,-0.17,97.59,WAYPOINT_3,GEOFENCE_VIOLATION,RETURN_TO_HOME,"Position (51.5, 13.8) outside geofence"
+25.04,47.31,15.77,19.54,-4.55,2.07,-0.17,97.48,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+25.97,43.08,17.69,19.38,-4.55,2.07,-0.17,97.37,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+26.9,38.85,19.62,19.23,-4.55,2.07,-0.17,97.27,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+27.83,34.62,21.54,19.08,-4.55,2.07,-0.17,97.16,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+28.76,30.38,23.46,18.92,-4.55,2.07,-0.17,97.05,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+29.69,26.15,25.38,18.77,-4.55,2.07,-0.17,96.94,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+30.62,21.92,27.31,18.62,-4.55,2.07,-0.17,96.84,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+31.55,17.69,29.23,18.46,-4.55,2.07,-0.17,96.73,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+32.48,13.46,31.15,18.31,-4.55,2.07,-0.17,96.62,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+33.41,9.23,33.08,18.15,-4.55,2.07,-0.17,96.52,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+34.34,5.0,35.0,18.0,-4.55,2.07,-0.17,96.41,WAYPOINT_3,SAFE,CONTINUE,All monitored constraints satisfied
+35.23,4.38,30.62,18.25,-0.71,-4.94,0.28,96.31,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+36.11,3.75,26.25,18.5,-0.71,-4.94,0.28,96.21,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+37.0,3.12,21.88,18.75,-0.71,-4.94,0.28,96.1,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+37.88,2.5,17.5,19.0,-0.71,-4.94,0.28,96.0,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+38.77,1.88,13.12,19.25,-0.71,-4.94,0.28,95.9,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+39.65,1.25,8.75,19.5,-0.71,-4.94,0.28,95.8,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+40.54,0.62,4.38,19.75,-0.71,-4.94,0.28,95.7,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+41.42,0.0,0.0,20.0,-0.71,-4.94,0.28,95.6,RETURN_HOME,SAFE,CONTINUE,All monitored constraints satisfied
+42.42,0.0,0.0,18.0,0.0,0.0,-2.0,95.52,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+43.42,0.0,0.0,16.0,0.0,0.0,-2.0,95.44,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+44.42,0.0,0.0,14.0,0.0,0.0,-2.0,95.36,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+45.42,0.0,0.0,12.0,0.0,0.0,-2.0,95.28,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+46.42,0.0,0.0,10.0,0.0,0.0,-2.0,95.21,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+47.42,0.0,0.0,8.0,0.0,0.0,-2.0,95.13,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+48.42,0.0,0.0,6.0,0.0,0.0,-2.0,95.05,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+49.42,0.0,0.0,4.0,0.0,0.0,-2.0,94.97,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+50.42,0.0,0.0,2.0,0.0,0.0,-2.0,94.89,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+51.42,0.0,0.0,0.0,0.0,0.0,-2.0,94.81,LANDING,SAFE,CONTINUE,All monitored constraints satisfied
+52.42,0.0,0.0,0.0,0.0,0.0,0.0,94.81,MISSION_COMPLETE,SAFE,CONTINUE,All monitored constraints satisfied

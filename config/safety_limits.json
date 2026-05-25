@@ -1,0 +1,12 @@
+{
+  "max_altitude_m": 30.0,
+  "min_battery_percent": 20.0,
+  "max_mission_time_s": 120.0,
+  "geofence": {
+    "x_min_m": -50.0,
+    "x_max_m": 50.0,
+    "y_min_m": -50.0,
+    "y_max_m": 50.0
+  }
+}
+
