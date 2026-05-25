@@ -1,8 +1,10 @@
-# ROS2 Extension Plan
+# ROS2 Extension
 
-The current project is a pure Python prototype. The planned ROS2 extension will keep the same safety-monitoring logic and wrap it as an onboard software component.
+The current project is a pure Python prototype with a lightweight ROS2 mapping. The ROS2 extension keeps the same safety-monitoring and supervisor logic and wraps it as onboard-style ROS2 components.
 
-## Planned Nodes
+The first ROS2 version uses `std_msgs/String` with JSON payloads. This avoids custom message-generation setup while still showing the node/topic architecture. A later version can replace these JSON strings with custom UAV state and safety-status messages.
+
+## Nodes
 
 ```text
 uav_state_publisher_node
@@ -17,7 +19,14 @@ mission_supervisor_node
 safety_status_logger_node
 ```
 
-## Planned Topics
+Implemented scripts:
+
+- `uav_state_publisher_node.py`
+- `safety_monitor_node.py`
+- `mission_supervisor_node.py`
+- `ros2_json.py`
+
+## Topics
 
 ```text
 /uav/state
@@ -27,7 +36,7 @@ safety_status_logger_node
 /uav/supervisor_mode
 ```
 
-## Planned State Message Fields
+## State JSON Fields
 
 ```text
 time_s
@@ -42,7 +51,7 @@ battery_percent
 mission_state
 ```
 
-## Planned Safety Status Fields
+## Safety Status JSON Fields
 
 ```text
 safety_status
@@ -51,7 +60,7 @@ recommended_action
 detail
 ```
 
-## Planned Supervisor Fields
+## Supervisor JSON Fields
 
 ```text
 supervisor_mode
@@ -59,6 +68,41 @@ active_response
 response_reason
 ```
 
-## Next Step
+## How to Run
 
-Create a minimal `rclpy` safety-monitor node and a small mission-supervisor node. The monitor publishes safety status, severity, and recommended action; the supervisor consumes those outputs and publishes a high-level response mode such as `RETURNING_HOME` or `LANDING`. After that, connect the same interface to PX4 SITL or Gazebo-generated state data.
+Use a terminal with ROS2 sourced. For Foxy:
+
+```bash
+source /opt/ros/foxy/setup.bash
+cd /home/inteed/projects/uav-runtime-safety-monitor
+```
+
+Terminal 1:
+
+```bash
+python3 ros2_extension/safety_monitor_node.py
+```
+
+Terminal 2:
+
+```bash
+python3 ros2_extension/mission_supervisor_node.py
+```
+
+Terminal 3:
+
+```bash
+python3 ros2_extension/uav_state_publisher_node.py
+```
+
+Optional topic inspection:
+
+```bash
+ros2 topic echo /uav/state
+ros2 topic echo /uav/safety_status
+ros2 topic echo /uav/supervisor_mode
+```
+
+## Limitations
+
+This is not a full ROS2 package yet. It is a script-based extension that demonstrates how the Python safety monitor maps to ROS2 publishers and subscribers. The next step would be a proper `ament_python` package with launch files and custom messages.
