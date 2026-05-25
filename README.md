@@ -76,11 +76,13 @@ Core Python components:
 - [analysis/analyze_logs.py](analysis/analyze_logs.py): summarizes mission logs and event transitions.
 - [analysis/plot_mission.py](analysis/plot_mission.py): creates validation plots.
 - [analysis/validate_scenarios.py](analysis/validate_scenarios.py): checks each scenario against the expected monitor result.
+- [analysis/validate_gazebo_logs.py](analysis/validate_gazebo_logs.py): checks Gazebo/ROS2 demo logs against expected monitor and supervisor behavior.
 - [tests/test_safety_monitor.py](tests/test_safety_monitor.py): unit tests for the monitor logic.
 - [ros2_extension](ros2_extension): script-based ROS2 nodes for `/uav/state`, `/uav/safety_status`, `/uav/recommended_action`, and `/uav/supervisor_mode`.
 - [gazebo_extension](gazebo_extension): Gazebo Classic world, UAV model, and ROS2 bridge nodes for Gazebo-originated state data and supervisor response feedback.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
+The Gazebo integration check is described in [docs/gazebo_validation.md](docs/gazebo_validation.md).
 
 ## Validation Scenarios
 
@@ -140,6 +142,7 @@ The quickest non-GUI smoke test is:
 ```
 
 It runs a Gazebo world, bridges `/model_states` into `/uav/state`, monitors the UAV state, and sends a return-home or landing response back to the Gazebo commander.
+The headless script also validates the generated logs and fails if the expected monitor/supervisor response is missing.
 
 Expected generated files include:
 
@@ -188,6 +191,7 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - mission-supervisor response simulation,
 - event-based logging for log-data analysis,
 - simulation-based validation scenarios,
+- automated Gazebo integration validation,
 - reusable simulation components with expected scenario outcomes,
 - Gazebo Classic integration using Gazebo model state as UAV state input,
 - a path toward ROS2/PX4/Gazebo integration.

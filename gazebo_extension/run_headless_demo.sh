@@ -67,6 +67,7 @@ mkdir -p "$LOG_DIR"
 cd "$PROJECT_ROOT"
 
 export GAZEBO_MODEL_PATH="$PROJECT_ROOT/gazebo_extension/models:${GAZEBO_MODEL_PATH:-}"
+export GAZEBO_MASTER_URI="${GAZEBO_MASTER_URI:-http://127.0.0.1:$((12000 + RANDOM % 1000))}"
 export PYTHONUNBUFFERED=1
 
 pids=()
@@ -81,6 +82,7 @@ trap cleanup EXIT INT TERM
 echo "Gazebo headless demo"
 echo "  scenario: $SCENARIO"
 echo "  logs: $LOG_DIR"
+echo "  gazebo master: $GAZEBO_MASTER_URI"
 
 timeout "${GAZEBO_RUNTIME_S}s" gzserver --verbose \
   gazebo_extension/worlds/uav_safety_demo.world \
@@ -137,6 +139,9 @@ fi
 if grep -q "Can't open display" "$LOG_DIR/gzserver.log"; then
   echo "Display warning detected. This is expected for a headless gzserver run."
 fi
+
+echo
+python3 analysis/validate_gazebo_logs.py "$LOG_DIR" --scenario "$SCENARIO"
 
 echo
 echo "Demo complete. Full logs are in $LOG_DIR"

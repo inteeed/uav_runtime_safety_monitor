@@ -69,6 +69,7 @@ mkdir -p "$LOG_DIR"
 cd "$PROJECT_ROOT"
 
 export GAZEBO_MODEL_PATH="$PROJECT_ROOT/gazebo_extension/models:${GAZEBO_MODEL_PATH:-}"
+export GAZEBO_MASTER_URI="${GAZEBO_MASTER_URI:-http://127.0.0.1:$((12000 + RANDOM % 1000))}"
 export PYTHONUNBUFFERED=1
 
 pids=()
@@ -83,6 +84,7 @@ trap cleanup EXIT INT TERM
 echo "Gazebo GUI demo"
 echo "  scenario: $SCENARIO"
 echo "  logs: $LOG_DIR"
+echo "  gazebo master: $GAZEBO_MASTER_URI"
 echo
 echo "Opening Gazebo Classic GUI..."
 
@@ -141,6 +143,9 @@ if grep -E "Failed to load plugin|incorrect plugin" "$LOG_DIR/gazebo.log"; then
 else
   echo "No Gazebo ROS plugin loading errors found."
 fi
+
+echo
+python3 analysis/validate_gazebo_logs.py "$LOG_DIR" --scenario "$SCENARIO"
 
 echo
 echo "Gazebo should remain visible. Press Ctrl+C here to stop Gazebo and ROS2 nodes."

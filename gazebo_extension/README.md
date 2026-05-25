@@ -49,6 +49,8 @@ The default scenario is `geofence_violation`. You can run another scenario like 
 ```
 
 The script writes logs under `results/gazebo_demo_logs/` and prints a short summary showing the monitor status, supervisor mode, and inserted response commands.
+It also calls `analysis/validate_gazebo_logs.py` and exits with a failure if the expected safety-monitor/supervisor response is missing.
+Each run uses a unique `GAZEBO_MASTER_URI` so it does not attach to an unrelated Gazebo session already running on the default port.
 
 ## Manual GUI Run
 
@@ -117,6 +119,20 @@ ros2 topic echo /model_states
 ros2 topic echo /uav/state
 ros2 topic echo /uav/safety_status
 ros2 topic echo /uav/supervisor_mode
+```
+
+## Validate Existing Logs
+
+After a demo run, validate its log directory directly:
+
+```bash
+python3 analysis/validate_gazebo_logs.py results/gazebo_demo_logs/<run_id> --scenario geofence_violation
+```
+
+A passing validation prints:
+
+```text
+Gazebo integration validation: PASS
 ```
 
 ## Other Scenarios
