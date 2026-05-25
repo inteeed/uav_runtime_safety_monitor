@@ -14,13 +14,22 @@ This is not PX4 SITL yet. It is a Gazebo-based integration step that demonstrate
 | Component | File | Purpose |
 | --- | --- | --- |
 | Gazebo world | `worlds/uav_safety_demo.world` | Loads the UAV model, geofence marker, Gazebo ROS state plugin, ground plane, and sun. |
-| UAV model | `models/safety_uav/model.sdf` | Simple visual marker for the simulated UAV. |
+| UAV model | `models/safety_uav/model.sdf` | Lightweight quadrotor-style UAV with arms, rotors, landing skids, sensor payload, and navigation markers. |
 | Gazebo state bridge | `gazebo_state_bridge_node.py` | Subscribes to `/model_states` and publishes `/uav/state`. |
 | Gazebo mission commander | `gazebo_mission_commander_node.py` | Moves the UAV model through a scenario and reacts to `/uav/supervisor_mode`. |
 | Headless demo runner | `run_headless_demo.sh` | Starts Gazebo server and all ROS2 bridge/monitor/supervisor/commander scripts for one smoke test. |
 | GUI demo runner | `run_gui_demo.sh` | Starts the visible Gazebo GUI and runs the same ROS2 bridge/monitor/supervisor/commander pipeline. |
 
 ## Visible Gazebo Demo
+
+Recommended ROS2 package launch:
+
+```bash
+source /opt/ros/foxy/setup.bash
+colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+source install/setup.bash
+ros2 launch uav_runtime_safety_monitor gazebo_safety_demo.launch.py
+```
 
 Use this when you want to see the Gazebo window:
 
@@ -34,6 +43,12 @@ The default scenario is `geofence_violation`. The UAV marker should move toward 
 Important: run this from a clean terminal. Do not source ROS Noetic first. The script sources ROS2 Foxy itself.
 
 ## One-Command Headless Test
+
+Recommended ROS2 package launch:
+
+```bash
+ros2 launch uav_runtime_safety_monitor gazebo_headless_safety_demo.launch.py
+```
 
 Use this first if you only want to verify that Gazebo and ROS2 are connected:
 

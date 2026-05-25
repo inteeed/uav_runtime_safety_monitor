@@ -5,5 +5,8 @@ venv/
 .pytest_cache/
 .mypy_cache/
 .DS_Store
+build/
+install/
+log/
 results/gazebo_demo_logs/
 results/gazebo_gui_logs/

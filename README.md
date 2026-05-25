@@ -80,8 +80,11 @@ Core Python components:
 - [tests/test_safety_monitor.py](tests/test_safety_monitor.py): unit tests for the monitor logic.
 - [ros2_extension](ros2_extension): script-based ROS2 nodes for `/uav/state`, `/uav/safety_status`, `/uav/recommended_action`, and `/uav/supervisor_mode`.
 - [gazebo_extension](gazebo_extension): Gazebo Classic world, UAV model, and ROS2 bridge nodes for Gazebo-originated state data and supervisor response feedback.
+- [uav_runtime_safety_monitor](uav_runtime_safety_monitor): `ament_python` ROS2 package entry points used by the launch files.
+- [launch](launch): ROS2 launch files for visible and headless Gazebo safety demos.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
+The ROS2 package workflow is described in [docs/ros2_package.md](docs/ros2_package.md).
 The Gazebo integration check is described in [docs/gazebo_validation.md](docs/gazebo_validation.md).
 
 ## Validation Scenarios
@@ -118,6 +121,21 @@ Generated figures:
 
 ## How to Run
 
+Build and launch the ROS2/Gazebo package:
+
+```bash
+source /opt/ros/foxy/setup.bash
+colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+source install/setup.bash
+ros2 launch uav_runtime_safety_monitor gazebo_safety_demo.launch.py
+```
+
+For a headless launch:
+
+```bash
+ros2 launch uav_runtime_safety_monitor gazebo_headless_safety_demo.launch.py
+```
+
 From the repository root:
 
 ```bash
@@ -129,7 +147,7 @@ python3 analysis/create_architecture_diagram.py
 python3 -m unittest discover
 ```
 
-For the visible ROS2/Gazebo demonstration, see [gazebo_extension/README.md](gazebo_extension/README.md). The Gazebo GUI demo is:
+For script-based validation demos, see [gazebo_extension/README.md](gazebo_extension/README.md). The Gazebo GUI script is:
 
 ```bash
 ./gazebo_extension/run_gui_demo.sh
@@ -193,6 +211,7 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - simulation-based validation scenarios,
 - automated Gazebo integration validation,
 - reusable simulation components with expected scenario outcomes,
+- ROS2 `ament_python` package and launch-file based demo startup,
 - Gazebo Classic integration using Gazebo model state as UAV state input,
 - a path toward ROS2/PX4/Gazebo integration.
 
@@ -200,5 +219,5 @@ This project is designed as a small onboard autonomy component, not as a full dr
 
 - Add PX4 or ArduPilot SITL integration.
 - Convert the Gazebo extension from kinematic model-state commands to autopilot-driven simulation.
-- Package the ROS2 scripts as a proper `ament_python` package with launch files and custom messages.
+- Replace JSON string topics with custom ROS2 messages.
 - Add position-deviation, velocity-limit, GPS-loss, and sensor-fault checks.

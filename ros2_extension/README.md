@@ -1,6 +1,8 @@
 # ROS2 Extension
 
-The current project is a pure Python prototype with a lightweight ROS2 mapping. The ROS2 extension keeps the same safety-monitoring and supervisor logic and wraps it as onboard-style ROS2 components.
+This folder keeps the original script-based ROS2 mapping. The recommended ROS2 interface is now the `ament_python` package in the repository root; see [docs/ros2_package.md](../docs/ros2_package.md).
+
+The script extension remains useful as a simple fallback and for inspecting the node logic without building the package.
 
 The first ROS2 version uses `std_msgs/String` with JSON payloads. This avoids custom message-generation setup while still showing the node/topic architecture. A later version can replace these JSON strings with custom UAV state and safety-status messages.
 
@@ -67,6 +69,17 @@ response_started
 
 ## How to Run
 
+Recommended package launch:
+
+```bash
+source /opt/ros/foxy/setup.bash
+colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+source install/setup.bash
+ros2 launch uav_runtime_safety_monitor gazebo_safety_demo.launch.py
+```
+
+Script fallback:
+
 Use a terminal with ROS2 sourced. For Foxy:
 
 ```bash
@@ -104,4 +117,4 @@ ros2 topic echo /uav/supervisor_mode
 
 ## Limitations
 
-This is not a full ROS2 package yet. It is a script-based extension that demonstrates how the Python safety monitor maps to ROS2 publishers and subscribers. The next step would be a proper `ament_python` package with launch files and custom messages.
+The script-based version uses JSON over `std_msgs/String`. A later package version can replace these payloads with custom ROS2 messages.

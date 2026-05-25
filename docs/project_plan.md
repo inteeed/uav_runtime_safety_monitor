@@ -71,17 +71,54 @@ Deliverables:
 - results images
 - validation matrix
 
-Status: in progress.
+Status: complete.
 
-## Phase 6: ROS2/PX4 Extension
+## Phase 6: ROS2 and Gazebo Script Extension
 
 Deliverables:
 
-- ROS2 node skeleton
-- `/uav/state` subscriber
-- `/uav/safety_status` publisher
-- `/uav/recommended_action` publisher
-- `/uav/safety_events` publisher
-- future PX4/Gazebo integration notes
+- script-based ROS2 state publisher
+- script-based safety monitor node
+- script-based mission supervisor node
+- Gazebo Classic world
+- Gazebo UAV model
+- Gazebo model-state bridge
+- Gazebo mission commander
+- headless and GUI demo scripts
+
+Status: complete.
+
+## Phase 7: Gazebo Integration Validation
+
+Deliverables:
+
+- automated Gazebo demo log validation
+- expected monitor/supervisor response checks
+- unique Gazebo master URI per demo run
+- tests for log-validation behavior
+
+Status: complete.
+
+## Phase 8: ROS2 Package and Launch Files
+
+Deliverables:
+
+- `ament_python` package metadata
+- ROS2 console entry points
+- visible Gazebo launch file
+- headless Gazebo launch file
+- installed Gazebo model, world, and safety config
+- reduced ROS2 log noise
+- more detailed quadrotor-style Gazebo UAV model
+
+Status: complete.
+
+## Phase 9: PX4 SITL Extension
+
+Deliverables:
+
+- PX4 integration plan
+- state-bridge design from PX4 telemetry to `/uav/state`
+- optional PX4 SITL smoke test if the local setup is available
 
 Status: planned.

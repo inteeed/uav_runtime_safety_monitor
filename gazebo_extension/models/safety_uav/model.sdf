@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <model name="safety_uav">
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0.55 0 0 0</pose>
     <static>false</static>
     <link name="base_link">
       <gravity>false</gravity>
@@ -16,37 +16,410 @@
           <iyz>0.0</iyz>
         </inertia>
       </inertial>
-      <visual name="body_visual">
+
+      <visual name="central_avionics_body">
         <geometry>
           <box>
-            <size>1.0 1.0 0.25</size>
+            <size>0.85 0.58 0.22</size>
           </box>
         </geometry>
         <material>
-          <ambient>0.05 0.25 0.9 1.0</ambient>
-          <diffuse>0.05 0.25 0.9 1.0</diffuse>
+          <ambient>0.04 0.08 0.12 1.0</ambient>
+          <diffuse>0.05 0.12 0.18 1.0</diffuse>
+          <specular>0.25 0.32 0.36 1.0</specular>
         </material>
       </visual>
-      <visual name="front_marker">
-        <pose>0.65 0 0 0 0 0</pose>
+
+      <visual name="upper_sensor_plate">
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.62 0.38 0.06</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.12 0.18 0.22 1.0</ambient>
+          <diffuse>0.18 0.25 0.30 1.0</diffuse>
+          <specular>0.35 0.40 0.42 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="front_payload_camera">
+        <pose>0.50 0 -0.01 0 1.5708 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.11</radius>
+            <length>0.22</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1.0</ambient>
+          <diffuse>0.03 0.03 0.04 1.0</diffuse>
+          <specular>0.5 0.5 0.5 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="camera_lens">
+        <pose>0.63 0 -0.01 0 0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.18</radius>
+            <radius>0.065</radius>
           </sphere>
         </geometry>
         <material>
-          <ambient>1.0 0.2 0.05 1.0</ambient>
-          <diffuse>1.0 0.2 0.05 1.0</diffuse>
+          <ambient>0.0 0.08 0.16 1.0</ambient>
+          <diffuse>0.0 0.16 0.32 1.0</diffuse>
+          <specular>0.8 0.9 1.0 1.0</specular>
         </material>
       </visual>
-      <collision name="body_collision">
+
+      <visual name="front_direction_marker">
+        <pose>0.39 0 0.18 0 0 0</pose>
         <geometry>
           <box>
-            <size>1.0 1.0 0.25</size>
+            <size>0.18 0.08 0.04</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1.0 0.35 0.05 1.0</ambient>
+          <diffuse>1.0 0.35 0.05 1.0</diffuse>
+          <emissive>0.7 0.18 0.02 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="antenna_mast">
+        <pose>-0.18 0 0.33 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.025</radius>
+            <length>0.32</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1.0</ambient>
+          <diffuse>0.03 0.03 0.03 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="antenna_tip">
+        <pose>-0.18 0 0.51 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.055</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.02 0.55 1.0 1.0</ambient>
+          <diffuse>0.02 0.55 1.0 1.0</diffuse>
+          <emissive>0.01 0.25 0.45 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="front_left_rear_right_arm">
+        <pose>0 0 0.02 0 0 0.7854</pose>
+        <geometry>
+          <box>
+            <size>3.0 0.08 0.08</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.10 0.12 0.13 1.0</ambient>
+          <diffuse>0.14 0.16 0.17 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="front_right_rear_left_arm">
+        <pose>0 0 0.02 0 0 -0.7854</pose>
+        <geometry>
+          <box>
+            <size>3.0 0.08 0.08</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.10 0.12 0.13 1.0</ambient>
+          <diffuse>0.14 0.16 0.17 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="front_left_motor">
+        <pose>1.05 1.05 0.06 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.14</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.04 0.04 0.045 1.0</ambient>
+          <diffuse>0.08 0.08 0.09 1.0</diffuse>
+          <specular>0.35 0.35 0.35 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="front_right_motor">
+        <pose>1.05 -1.05 0.06 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.14</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.04 0.04 0.045 1.0</ambient>
+          <diffuse>0.08 0.08 0.09 1.0</diffuse>
+          <specular>0.35 0.35 0.35 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="rear_left_motor">
+        <pose>-1.05 1.05 0.06 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.14</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.04 0.04 0.045 1.0</ambient>
+          <diffuse>0.08 0.08 0.09 1.0</diffuse>
+          <specular>0.35 0.35 0.35 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="rear_right_motor">
+        <pose>-1.05 -1.05 0.06 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.14</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.04 0.04 0.045 1.0</ambient>
+          <diffuse>0.08 0.08 0.09 1.0</diffuse>
+          <specular>0.35 0.35 0.35 1.0</specular>
+        </material>
+      </visual>
+
+      <visual name="front_left_propeller_x">
+        <pose>1.05 1.05 0.18 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="front_left_propeller_y">
+        <pose>1.05 1.05 0.18 0 0 1.5708</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="front_right_propeller_x">
+        <pose>1.05 -1.05 0.18 0 0 0.7854</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="front_right_propeller_y">
+        <pose>1.05 -1.05 0.18 0 0 2.3562</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="rear_left_propeller_x">
+        <pose>-1.05 1.05 0.18 0 0 0.7854</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="rear_left_propeller_y">
+        <pose>-1.05 1.05 0.18 0 0 2.3562</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="rear_right_propeller_x">
+        <pose>-1.05 -1.05 0.18 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="rear_right_propeller_y">
+        <pose>-1.05 -1.05 0.18 0 0 1.5708</pose>
+        <geometry>
+          <box>
+            <size>0.88 0.06 0.018</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.78 0.86 0.90 1.0</ambient>
+          <diffuse>0.78 0.86 0.90 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="left_nav_light">
+        <pose>1.05 1.05 0.27 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.07</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>1.0 0.02 0.02 1.0</ambient>
+          <diffuse>1.0 0.02 0.02 1.0</diffuse>
+          <emissive>0.75 0.0 0.0 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="right_nav_light">
+        <pose>1.05 -1.05 0.27 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.07</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.0 0.9 0.18 1.0</ambient>
+          <diffuse>0.0 0.9 0.18 1.0</diffuse>
+          <emissive>0.0 0.5 0.08 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="rear_beacon_left">
+        <pose>-1.05 1.05 0.27 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.06</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.05 0.35 1.0 1.0</ambient>
+          <diffuse>0.05 0.35 1.0 1.0</diffuse>
+          <emissive>0.02 0.18 0.5 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="rear_beacon_right">
+        <pose>-1.05 -1.05 0.27 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.06</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.05 0.35 1.0 1.0</ambient>
+          <diffuse>0.05 0.35 1.0 1.0</diffuse>
+          <emissive>0.02 0.18 0.5 1.0</emissive>
+        </material>
+      </visual>
+
+      <visual name="front_landing_leg">
+        <pose>0.35 0 -0.32 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.08 0.75 0.55</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1.0</ambient>
+          <diffuse>0.04 0.04 0.05 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="rear_landing_leg">
+        <pose>-0.35 0 -0.32 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.08 0.75 0.55</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1.0</ambient>
+          <diffuse>0.04 0.04 0.05 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="left_landing_skid">
+        <pose>0 0.42 -0.62 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.25 0.07 0.07</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1.0</ambient>
+          <diffuse>0.04 0.04 0.05 1.0</diffuse>
+        </material>
+      </visual>
+
+      <visual name="right_landing_skid">
+        <pose>0 -0.42 -0.62 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.25 0.07 0.07</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.025 1.0</ambient>
+          <diffuse>0.04 0.04 0.05 1.0</diffuse>
+        </material>
+      </visual>
+
+      <collision name="uav_collision_envelope">
+        <geometry>
+          <box>
+            <size>2.55 2.55 0.75</size>
           </box>
         </geometry>
       </collision>
     </link>
   </model>
 </sdf>
-
