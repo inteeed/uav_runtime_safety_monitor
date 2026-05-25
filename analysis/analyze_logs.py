@@ -6,10 +6,7 @@ from typing import Dict, Iterable, List
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_LOGS = [
-    PROJECT_ROOT / "data" / "normal_mission.csv",
-    PROJECT_ROOT / "data" / "unsafe_mission.csv",
-]
+DATA_DIR = PROJECT_ROOT / "data"
 
 
 def read_log(path: Path) -> List[Dict[str, str]]:
@@ -25,29 +22,52 @@ def summarize_log(path: Path) -> None:
 
     duration_s = float(rows[-1]["time_s"])
     violations = [row for row in rows if row["safety_status"] != "SAFE"]
+    critical = [row for row in rows if row.get("severity") == "CRITICAL"]
     status_counts = Counter(row["safety_status"] for row in rows)
+    severity_counts = Counter(row.get("severity", "UNKNOWN") for row in rows)
+    event_path = path.with_name(path.name.replace("_mission.csv", "_events.csv"))
+    events = read_log(event_path) if event_path.exists() else []
 
     print("\n{}".format(path))
     print("  samples: {}".format(len(rows)))
     print("  mission duration: {:.1f} s".format(duration_s))
-    print("  safety violations: {}".format(len(violations)))
+    print("  non-safe samples: {}".format(len(violations)))
     print("  status counts: {}".format(dict(status_counts)))
+    print("  severity counts: {}".format(dict(severity_counts)))
+    print("  event transitions: {}".format(len(events)))
 
     if violations:
         first = violations[0]
         print(
-            "  first violation: {} at t={:.1f} s".format(
+            "  first non-safe status: {} at t={:.1f} s".format(
                 first["safety_status"], float(first["time_s"])
             )
         )
+        print("  severity: {}".format(first.get("severity", "UNKNOWN")))
         print("  recommended action: {}".format(first["recommended_action"]))
         print("  detail: {}".format(first["detail"]))
+        if critical:
+            first_critical = critical[0]
+            print(
+                "  first critical status: {} at t={:.1f} s".format(
+                    first_critical["safety_status"], float(first_critical["time_s"])
+                )
+            )
+            print(
+                "  critical action: {}".format(
+                    first_critical["recommended_action"]
+                )
+            )
     else:
         print("  result: SAFE")
 
 
 def existing_logs(paths: Iterable[Path]) -> List[Path]:
     return [path for path in paths if path.exists()]
+
+
+def default_logs() -> List[Path]:
+    return sorted(DATA_DIR.glob("*_mission.csv"))
 
 
 def main() -> None:
@@ -60,7 +80,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    logs = args.logs or existing_logs(DEFAULT_LOGS)
+    logs = args.logs or existing_logs(default_logs())
     if not logs:
         raise SystemExit("No logs found. Run `python3 src/main.py` first.")
 
@@ -70,4 +90,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

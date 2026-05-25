@@ -20,12 +20,14 @@ safety_status_logger_node
 /uav/state
 /uav/safety_status
 /uav/recommended_action
+/uav/safety_events
 ```
 
 ## Planned State Message Fields
 
 ```text
 time_s
+frame_id
 x_m
 y_m
 z_m
@@ -36,7 +38,15 @@ battery_percent
 mission_state
 ```
 
+## Planned Safety Status Fields
+
+```text
+safety_status
+severity
+recommended_action
+detail
+```
+
 ## Next Step
 
-Create a minimal `rclpy` node that subscribes to simulated UAV state data and publishes a safety status string plus recommended action. After that, connect the same interface to PX4 SITL or Gazebo-generated state data.
-
+Create a minimal `rclpy` node that subscribes to simulated UAV state data and publishes a safety status string, severity, recommended action, and event transitions. After that, connect the same interface to PX4 SITL or Gazebo-generated state data.

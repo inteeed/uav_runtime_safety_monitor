@@ -15,10 +15,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = PROJECT_ROOT / "config" / "safety_limits.json"
 DATA_DIR = PROJECT_ROOT / "data"
 RESULTS_DIR = PROJECT_ROOT / "results"
-DEFAULT_LOGS = [
-    (DATA_DIR / "normal_mission.csv", "normal"),
-    (DATA_DIR / "unsafe_mission.csv", "unsafe"),
-]
 
 
 def read_log(path: Path) -> List[Dict[str, str]]:
@@ -35,8 +31,10 @@ def values(rows: Iterable[Dict[str, str]], key: str) -> List[float]:
     return [float(row[key]) for row in rows]
 
 
-def violation_rows(rows: Iterable[Dict[str, str]]) -> List[Dict[str, str]]:
-    return [row for row in rows if row["safety_status"] != "SAFE"]
+def rows_by_severity(
+    rows: Iterable[Dict[str, str]], severity: str
+) -> List[Dict[str, str]]:
+    return [row for row in rows if row.get("severity") == severity]
 
 
 def plot_trajectory(
@@ -50,7 +48,8 @@ def plot_trajectory(
 
     x = values(rows, "x_m")
     y = values(rows, "y_m")
-    violations = violation_rows(rows)
+    warnings = rows_by_severity(rows, "WARNING")
+    critical = rows_by_severity(rows, "CRITICAL")
 
     fig, ax = plt.subplots(figsize=(7.5, 6.0))
     ax.add_patch(
@@ -69,15 +68,26 @@ def plot_trajectory(
     ax.scatter([x[0]], [y[0]], marker="o", color="#0f766e", s=50, label="Start")
     ax.scatter([x[-1]], [y[-1]], marker="D", color="#4b5563", s=50, label="End")
 
-    if violations:
+    if warnings:
         ax.scatter(
-            values(violations, "x_m"),
-            values(violations, "y_m"),
+            values(warnings, "x_m"),
+            values(warnings, "y_m"),
+            marker="^",
+            color="#f59e0b",
+            s=70,
+            linewidth=1.5,
+            label="Warning",
+        )
+
+    if critical:
+        ax.scatter(
+            values(critical, "x_m"),
+            values(critical, "y_m"),
             marker="x",
             color="#dc2626",
             s=90,
             linewidth=2.0,
-            label="Violation",
+            label="Critical event",
         )
 
     ax.set_title("UAV Mission Trajectory with Geofence")
@@ -148,10 +158,13 @@ def plot_safety_status(rows: List[Dict[str, str]], output_path: Path) -> None:
     time_s = values(rows, "time_s")
     preferred_order = [
         "SAFE",
+        "GEOFENCE_WARNING",
+        "ALTITUDE_WARNING",
         "GEOFENCE_VIOLATION",
         "ALTITUDE_LIMIT_VIOLATION",
         "LOW_BATTERY",
         "MISSION_TIMEOUT",
+        "STATE_TIMEOUT",
     ]
     statuses = [row["safety_status"] for row in rows]
     ordered_statuses = [
@@ -194,8 +207,12 @@ def plot_log(input_path: Path, prefix: str, output_dir: Path) -> List[Path]:
     return outputs
 
 
-def existing_logs(logs: Iterable[Tuple[Path, str]]) -> List[Tuple[Path, str]]:
-    return [(path, prefix) for path, prefix in logs if path.exists()]
+def default_logs() -> List[Tuple[Path, str]]:
+    logs: List[Tuple[Path, str]] = []
+    for path in sorted(DATA_DIR.glob("*_mission.csv")):
+        prefix = path.stem.replace("_mission", "")
+        logs.append((path, prefix))
+    return logs
 
 
 def main() -> None:
@@ -210,7 +227,7 @@ def main() -> None:
     if args.input:
         logs = [(args.input, args.prefix)]
     else:
-        logs = existing_logs(DEFAULT_LOGS)
+        logs = default_logs()
         if not logs:
             raise SystemExit("No logs found. Run `python3 src/main.py` first.")
 
@@ -223,4 +240,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

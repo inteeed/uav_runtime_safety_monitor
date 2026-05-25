@@ -1,0 +1,5 @@
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,detail
+19.5,ENTERED_WARNING,local_enu,46.67,6.67,20.0,98.12,WAYPOINT_2,GEOFENCE_WARNING,WARNING,WARNING,"Position (46.7, 6.7) is within 5.0 m of geofence"
+20.41,CHANGED_STATUS,local_enu,51.11,7.78,20.0,98.01,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (51.1, 7.8) outside geofence"
+25.04,CHANGED_STATUS,local_enu,47.31,15.77,19.54,97.48,WAYPOINT_3,GEOFENCE_WARNING,WARNING,WARNING,"Position (47.3, 15.8) is within 5.0 m of geofence"
+25.97,CLEARED_EVENT,local_enu,43.08,17.69,19.38,97.37,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied

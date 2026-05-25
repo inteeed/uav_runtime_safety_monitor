@@ -1,0 +1,389 @@
+time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,severity,recommended_action,detail
+0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+11.0,local_enu,1.0,0.0,20.0,1.0,0.0,0.0,99.14,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+12.0,local_enu,2.0,0.0,20.0,1.0,0.0,0.0,99.08,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+13.0,local_enu,3.0,0.0,20.0,1.0,0.0,0.0,99.01,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+14.0,local_enu,4.0,0.0,20.0,1.0,0.0,0.0,98.94,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+15.0,local_enu,5.0,0.0,20.0,1.0,0.0,0.0,98.88,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+16.0,local_enu,6.0,0.0,20.0,1.0,0.0,0.0,98.81,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+17.0,local_enu,7.0,0.0,20.0,1.0,0.0,0.0,98.74,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+18.0,local_enu,8.0,0.0,20.0,1.0,0.0,0.0,98.67,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+19.0,local_enu,9.0,0.0,20.0,1.0,0.0,0.0,98.61,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+20.0,local_enu,10.0,0.0,20.0,1.0,0.0,0.0,98.54,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+21.0,local_enu,11.0,0.0,20.0,1.0,0.0,0.0,98.47,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+22.0,local_enu,12.0,0.0,20.0,1.0,0.0,0.0,98.41,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+23.0,local_enu,13.0,0.0,20.0,1.0,0.0,0.0,98.34,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+24.0,local_enu,14.0,0.0,20.0,1.0,0.0,0.0,98.27,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+25.0,local_enu,15.0,0.0,20.0,1.0,0.0,0.0,98.21,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+26.0,local_enu,16.0,0.0,20.0,1.0,0.0,0.0,98.14,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+27.0,local_enu,17.0,0.0,20.0,1.0,0.0,0.0,98.07,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+28.0,local_enu,18.0,0.0,20.0,1.0,0.0,0.0,98.0,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+29.0,local_enu,19.0,0.0,20.0,1.0,0.0,0.0,97.94,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+30.0,local_enu,20.0,0.0,20.0,1.0,0.0,0.0,97.87,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+31.0,local_enu,21.0,0.0,20.0,1.0,0.0,0.0,97.8,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+32.0,local_enu,22.0,0.0,20.0,1.0,0.0,0.0,97.74,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+33.0,local_enu,23.0,0.0,20.0,1.0,0.0,0.0,97.67,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+34.0,local_enu,24.0,0.0,20.0,1.0,0.0,0.0,97.6,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+35.0,local_enu,25.0,0.0,20.0,1.0,0.0,0.0,97.54,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+36.0,local_enu,26.0,0.0,20.0,1.0,0.0,0.0,97.47,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+37.0,local_enu,27.0,0.0,20.0,1.0,0.0,0.0,97.4,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+38.0,local_enu,28.0,0.0,20.0,1.0,0.0,0.0,97.33,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+39.0,local_enu,29.0,0.0,20.0,1.0,0.0,0.0,97.27,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+40.0,local_enu,30.0,0.0,20.0,1.0,0.0,0.0,97.2,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+41.0,local_enu,31.0,0.0,20.0,1.0,0.0,0.0,97.13,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+42.0,local_enu,32.0,0.0,20.0,1.0,0.0,0.0,97.07,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+43.0,local_enu,33.0,0.0,20.0,1.0,0.0,0.0,97.0,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+44.0,local_enu,34.0,0.0,20.0,1.0,0.0,0.0,96.93,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+45.0,local_enu,35.0,0.0,20.0,1.0,0.0,0.0,96.87,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+46.0,local_enu,36.0,0.0,20.0,1.0,0.0,0.0,96.8,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+47.0,local_enu,37.0,0.0,20.0,1.0,0.0,0.0,96.73,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+48.0,local_enu,38.0,0.0,20.0,1.0,0.0,0.0,96.66,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+49.0,local_enu,39.0,0.0,20.0,1.0,0.0,0.0,96.6,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+50.0,local_enu,40.0,0.0,20.0,1.0,0.0,0.0,96.53,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+51.0,local_enu,40.0,1.0,20.0,0.0,1.0,0.0,96.46,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+52.0,local_enu,40.0,2.0,20.0,0.0,1.0,0.0,96.4,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+53.0,local_enu,40.0,3.0,20.0,0.0,1.0,0.0,96.33,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+54.0,local_enu,40.0,4.0,20.0,0.0,1.0,0.0,96.26,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+55.0,local_enu,40.0,5.0,20.0,0.0,1.0,0.0,96.2,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+56.0,local_enu,40.0,6.0,20.0,0.0,1.0,0.0,96.13,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+57.0,local_enu,40.0,7.0,20.0,0.0,1.0,0.0,96.06,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+58.0,local_enu,40.0,8.0,20.0,0.0,1.0,0.0,95.99,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+59.0,local_enu,40.0,9.0,20.0,0.0,1.0,0.0,95.93,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+60.0,local_enu,40.0,10.0,20.0,0.0,1.0,0.0,95.86,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+61.0,local_enu,40.0,11.0,20.0,0.0,1.0,0.0,95.79,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+62.0,local_enu,40.0,12.0,20.0,0.0,1.0,0.0,95.73,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+63.0,local_enu,40.0,13.0,20.0,0.0,1.0,0.0,95.66,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+64.0,local_enu,40.0,14.0,20.0,0.0,1.0,0.0,95.59,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+65.0,local_enu,40.0,15.0,20.0,0.0,1.0,0.0,95.53,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+66.0,local_enu,40.0,16.0,20.0,0.0,1.0,0.0,95.46,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+67.0,local_enu,40.0,17.0,20.0,0.0,1.0,0.0,95.39,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+68.0,local_enu,40.0,18.0,20.0,0.0,1.0,0.0,95.32,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+69.0,local_enu,40.0,19.0,20.0,0.0,1.0,0.0,95.26,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+70.0,local_enu,40.0,20.0,20.0,0.0,1.0,0.0,95.19,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+71.0,local_enu,40.0,21.0,20.0,0.0,1.0,0.0,95.12,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+72.0,local_enu,40.0,22.0,20.0,0.0,1.0,0.0,95.06,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+73.0,local_enu,40.0,23.0,20.0,0.0,1.0,0.0,94.99,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+74.0,local_enu,40.0,24.0,20.0,0.0,1.0,0.0,94.92,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+75.0,local_enu,40.0,25.0,20.0,0.0,1.0,0.0,94.86,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+76.0,local_enu,40.0,26.0,20.0,0.0,1.0,0.0,94.79,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+77.0,local_enu,40.0,27.0,20.0,0.0,1.0,0.0,94.72,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+78.0,local_enu,40.0,28.0,20.0,0.0,1.0,0.0,94.65,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+79.0,local_enu,40.0,29.0,20.0,0.0,1.0,0.0,94.59,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+80.0,local_enu,40.0,30.0,20.0,0.0,1.0,0.0,94.52,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+81.0,local_enu,40.0,31.0,20.0,0.0,1.0,0.0,94.45,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+82.0,local_enu,40.0,32.0,20.0,0.0,1.0,0.0,94.39,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+83.0,local_enu,40.0,33.0,20.0,0.0,1.0,0.0,94.32,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+84.0,local_enu,40.0,34.0,20.0,0.0,1.0,0.0,94.25,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+85.0,local_enu,40.0,35.0,20.0,0.0,1.0,0.0,94.19,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+86.0,local_enu,40.0,36.0,20.0,0.0,1.0,0.0,94.12,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+87.0,local_enu,40.0,37.0,20.0,0.0,1.0,0.0,94.05,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+88.0,local_enu,40.0,38.0,20.0,0.0,1.0,0.0,93.98,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+89.0,local_enu,40.0,39.0,20.0,0.0,1.0,0.0,93.92,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+90.0,local_enu,40.0,40.0,20.0,0.0,1.0,0.0,93.85,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+91.0,local_enu,39.0,40.0,20.0,-1.0,0.0,0.0,93.78,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+92.0,local_enu,38.0,40.0,20.0,-1.0,0.0,0.0,93.72,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+93.0,local_enu,37.0,40.0,20.0,-1.0,0.0,0.0,93.65,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+94.0,local_enu,36.0,40.0,20.0,-1.0,0.0,0.0,93.58,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+95.0,local_enu,35.0,40.0,20.0,-1.0,0.0,0.0,93.52,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+96.0,local_enu,34.0,40.0,20.0,-1.0,0.0,0.0,93.45,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+97.0,local_enu,33.0,40.0,20.0,-1.0,0.0,0.0,93.38,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+98.0,local_enu,32.0,40.0,20.0,-1.0,0.0,0.0,93.31,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+99.0,local_enu,31.0,40.0,20.0,-1.0,0.0,0.0,93.25,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+100.0,local_enu,30.0,40.0,20.0,-1.0,0.0,0.0,93.18,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+101.0,local_enu,29.0,40.0,20.0,-1.0,0.0,0.0,93.11,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+102.0,local_enu,28.0,40.0,20.0,-1.0,0.0,0.0,93.05,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+103.0,local_enu,27.0,40.0,20.0,-1.0,0.0,0.0,92.98,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+104.0,local_enu,26.0,40.0,20.0,-1.0,0.0,0.0,92.91,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+105.0,local_enu,25.0,40.0,20.0,-1.0,0.0,0.0,92.85,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+106.0,local_enu,24.0,40.0,20.0,-1.0,0.0,0.0,92.78,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+107.0,local_enu,23.0,40.0,20.0,-1.0,0.0,0.0,92.71,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+108.0,local_enu,22.0,40.0,20.0,-1.0,0.0,0.0,92.64,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+109.0,local_enu,21.0,40.0,20.0,-1.0,0.0,0.0,92.58,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+110.0,local_enu,20.0,40.0,20.0,-1.0,0.0,0.0,92.51,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+111.0,local_enu,19.0,40.0,20.0,-1.0,0.0,0.0,92.44,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+112.0,local_enu,18.0,40.0,20.0,-1.0,0.0,0.0,92.38,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+113.0,local_enu,17.0,40.0,20.0,-1.0,0.0,0.0,92.31,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+114.0,local_enu,16.0,40.0,20.0,-1.0,0.0,0.0,92.24,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+115.0,local_enu,15.0,40.0,20.0,-1.0,0.0,0.0,92.18,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+116.0,local_enu,14.0,40.0,20.0,-1.0,0.0,0.0,92.11,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+117.0,local_enu,13.0,40.0,20.0,-1.0,0.0,0.0,92.04,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+118.0,local_enu,12.0,40.0,20.0,-1.0,0.0,0.0,91.97,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+119.0,local_enu,11.0,40.0,20.0,-1.0,0.0,0.0,91.91,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+120.0,local_enu,10.0,40.0,20.0,-1.0,0.0,0.0,91.84,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+121.0,local_enu,9.0,40.0,20.0,-1.0,0.0,0.0,91.77,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 121.0 s exceeds 120.0 s
+122.0,local_enu,8.0,40.0,20.0,-1.0,0.0,0.0,91.71,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 122.0 s exceeds 120.0 s
+123.0,local_enu,7.0,40.0,20.0,-1.0,0.0,0.0,91.64,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 123.0 s exceeds 120.0 s
+124.0,local_enu,6.0,40.0,20.0,-1.0,0.0,0.0,91.57,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 124.0 s exceeds 120.0 s
+125.0,local_enu,5.0,40.0,20.0,-1.0,0.0,0.0,91.51,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 125.0 s exceeds 120.0 s
+126.0,local_enu,4.0,40.0,20.0,-1.0,0.0,0.0,91.44,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 126.0 s exceeds 120.0 s
+127.0,local_enu,3.0,40.0,20.0,-1.0,0.0,0.0,91.37,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 127.0 s exceeds 120.0 s
+128.0,local_enu,2.0,40.0,20.0,-1.0,0.0,0.0,91.3,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 128.0 s exceeds 120.0 s
+129.0,local_enu,1.0,40.0,20.0,-1.0,0.0,0.0,91.24,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 129.0 s exceeds 120.0 s
+130.0,local_enu,0.0,40.0,20.0,-1.0,0.0,0.0,91.17,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 130.0 s exceeds 120.0 s
+131.0,local_enu,-1.0,40.0,20.0,-1.0,0.0,0.0,91.1,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 131.0 s exceeds 120.0 s
+132.0,local_enu,-2.0,40.0,20.0,-1.0,0.0,0.0,91.04,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 132.0 s exceeds 120.0 s
+133.0,local_enu,-3.0,40.0,20.0,-1.0,0.0,0.0,90.97,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 133.0 s exceeds 120.0 s
+134.0,local_enu,-4.0,40.0,20.0,-1.0,0.0,0.0,90.9,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 134.0 s exceeds 120.0 s
+135.0,local_enu,-5.0,40.0,20.0,-1.0,0.0,0.0,90.84,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 135.0 s exceeds 120.0 s
+136.0,local_enu,-6.0,40.0,20.0,-1.0,0.0,0.0,90.77,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 136.0 s exceeds 120.0 s
+137.0,local_enu,-7.0,40.0,20.0,-1.0,0.0,0.0,90.7,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 137.0 s exceeds 120.0 s
+138.0,local_enu,-8.0,40.0,20.0,-1.0,0.0,0.0,90.63,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 138.0 s exceeds 120.0 s
+139.0,local_enu,-9.0,40.0,20.0,-1.0,0.0,0.0,90.57,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 139.0 s exceeds 120.0 s
+140.0,local_enu,-10.0,40.0,20.0,-1.0,0.0,0.0,90.5,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 140.0 s exceeds 120.0 s
+141.0,local_enu,-11.0,40.0,20.0,-1.0,0.0,0.0,90.43,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 141.0 s exceeds 120.0 s
+142.0,local_enu,-12.0,40.0,20.0,-1.0,0.0,0.0,90.37,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 142.0 s exceeds 120.0 s
+143.0,local_enu,-13.0,40.0,20.0,-1.0,0.0,0.0,90.3,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 143.0 s exceeds 120.0 s
+144.0,local_enu,-14.0,40.0,20.0,-1.0,0.0,0.0,90.23,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 144.0 s exceeds 120.0 s
+145.0,local_enu,-15.0,40.0,20.0,-1.0,0.0,0.0,90.17,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 145.0 s exceeds 120.0 s
+146.0,local_enu,-16.0,40.0,20.0,-1.0,0.0,0.0,90.1,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 146.0 s exceeds 120.0 s
+147.0,local_enu,-17.0,40.0,20.0,-1.0,0.0,0.0,90.03,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 147.0 s exceeds 120.0 s
+148.0,local_enu,-18.0,40.0,20.0,-1.0,0.0,0.0,89.96,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 148.0 s exceeds 120.0 s
+149.0,local_enu,-19.0,40.0,20.0,-1.0,0.0,0.0,89.9,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 149.0 s exceeds 120.0 s
+150.0,local_enu,-20.0,40.0,20.0,-1.0,0.0,0.0,89.83,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 150.0 s exceeds 120.0 s
+151.0,local_enu,-21.0,40.0,20.0,-1.0,0.0,0.0,89.76,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 151.0 s exceeds 120.0 s
+152.0,local_enu,-22.0,40.0,20.0,-1.0,0.0,0.0,89.7,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 152.0 s exceeds 120.0 s
+153.0,local_enu,-23.0,40.0,20.0,-1.0,0.0,0.0,89.63,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 153.0 s exceeds 120.0 s
+154.0,local_enu,-24.0,40.0,20.0,-1.0,0.0,0.0,89.56,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 154.0 s exceeds 120.0 s
+155.0,local_enu,-25.0,40.0,20.0,-1.0,0.0,0.0,89.5,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 155.0 s exceeds 120.0 s
+156.0,local_enu,-26.0,40.0,20.0,-1.0,0.0,0.0,89.43,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 156.0 s exceeds 120.0 s
+157.0,local_enu,-27.0,40.0,20.0,-1.0,0.0,0.0,89.36,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 157.0 s exceeds 120.0 s
+158.0,local_enu,-28.0,40.0,20.0,-1.0,0.0,0.0,89.29,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 158.0 s exceeds 120.0 s
+159.0,local_enu,-29.0,40.0,20.0,-1.0,0.0,0.0,89.23,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 159.0 s exceeds 120.0 s
+160.0,local_enu,-30.0,40.0,20.0,-1.0,0.0,0.0,89.16,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 160.0 s exceeds 120.0 s
+161.0,local_enu,-31.0,40.0,20.0,-1.0,0.0,0.0,89.09,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 161.0 s exceeds 120.0 s
+162.0,local_enu,-32.0,40.0,20.0,-1.0,0.0,0.0,89.03,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 162.0 s exceeds 120.0 s
+163.0,local_enu,-33.0,40.0,20.0,-1.0,0.0,0.0,88.96,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 163.0 s exceeds 120.0 s
+164.0,local_enu,-34.0,40.0,20.0,-1.0,0.0,0.0,88.89,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 164.0 s exceeds 120.0 s
+165.0,local_enu,-35.0,40.0,20.0,-1.0,0.0,0.0,88.83,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 165.0 s exceeds 120.0 s
+166.0,local_enu,-36.0,40.0,20.0,-1.0,0.0,0.0,88.76,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 166.0 s exceeds 120.0 s
+167.0,local_enu,-37.0,40.0,20.0,-1.0,0.0,0.0,88.69,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 167.0 s exceeds 120.0 s
+168.0,local_enu,-38.0,40.0,20.0,-1.0,0.0,0.0,88.62,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 168.0 s exceeds 120.0 s
+169.0,local_enu,-39.0,40.0,20.0,-1.0,0.0,0.0,88.56,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 169.0 s exceeds 120.0 s
+170.0,local_enu,-40.0,40.0,20.0,-1.0,0.0,0.0,88.49,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 170.0 s exceeds 120.0 s
+171.0,local_enu,-40.0,39.0,20.0,0.0,-1.0,0.0,88.42,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 171.0 s exceeds 120.0 s
+172.0,local_enu,-40.0,38.0,20.0,0.0,-1.0,0.0,88.36,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 172.0 s exceeds 120.0 s
+173.0,local_enu,-40.0,37.0,20.0,0.0,-1.0,0.0,88.29,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 173.0 s exceeds 120.0 s
+174.0,local_enu,-40.0,36.0,20.0,0.0,-1.0,0.0,88.22,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 174.0 s exceeds 120.0 s
+175.0,local_enu,-40.0,35.0,20.0,0.0,-1.0,0.0,88.16,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 175.0 s exceeds 120.0 s
+176.0,local_enu,-40.0,34.0,20.0,0.0,-1.0,0.0,88.09,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 176.0 s exceeds 120.0 s
+177.0,local_enu,-40.0,33.0,20.0,0.0,-1.0,0.0,88.02,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 177.0 s exceeds 120.0 s
+178.0,local_enu,-40.0,32.0,20.0,0.0,-1.0,0.0,87.95,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 178.0 s exceeds 120.0 s
+179.0,local_enu,-40.0,31.0,20.0,0.0,-1.0,0.0,87.89,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 179.0 s exceeds 120.0 s
+180.0,local_enu,-40.0,30.0,20.0,0.0,-1.0,0.0,87.82,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 180.0 s exceeds 120.0 s
+181.0,local_enu,-40.0,29.0,20.0,0.0,-1.0,0.0,87.75,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 181.0 s exceeds 120.0 s
+182.0,local_enu,-40.0,28.0,20.0,0.0,-1.0,0.0,87.69,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 182.0 s exceeds 120.0 s
+183.0,local_enu,-40.0,27.0,20.0,0.0,-1.0,0.0,87.62,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 183.0 s exceeds 120.0 s
+184.0,local_enu,-40.0,26.0,20.0,0.0,-1.0,0.0,87.55,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 184.0 s exceeds 120.0 s
+185.0,local_enu,-40.0,25.0,20.0,0.0,-1.0,0.0,87.49,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 185.0 s exceeds 120.0 s
+186.0,local_enu,-40.0,24.0,20.0,0.0,-1.0,0.0,87.42,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 186.0 s exceeds 120.0 s
+187.0,local_enu,-40.0,23.0,20.0,0.0,-1.0,0.0,87.35,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 187.0 s exceeds 120.0 s
+188.0,local_enu,-40.0,22.0,20.0,0.0,-1.0,0.0,87.28,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 188.0 s exceeds 120.0 s
+189.0,local_enu,-40.0,21.0,20.0,0.0,-1.0,0.0,87.22,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 189.0 s exceeds 120.0 s
+190.0,local_enu,-40.0,20.0,20.0,0.0,-1.0,0.0,87.15,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 190.0 s exceeds 120.0 s
+191.0,local_enu,-40.0,19.0,20.0,0.0,-1.0,0.0,87.08,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 191.0 s exceeds 120.0 s
+192.0,local_enu,-40.0,18.0,20.0,0.0,-1.0,0.0,87.02,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 192.0 s exceeds 120.0 s
+193.0,local_enu,-40.0,17.0,20.0,0.0,-1.0,0.0,86.95,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 193.0 s exceeds 120.0 s
+194.0,local_enu,-40.0,16.0,20.0,0.0,-1.0,0.0,86.88,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 194.0 s exceeds 120.0 s
+195.0,local_enu,-40.0,15.0,20.0,0.0,-1.0,0.0,86.82,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 195.0 s exceeds 120.0 s
+196.0,local_enu,-40.0,14.0,20.0,0.0,-1.0,0.0,86.75,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 196.0 s exceeds 120.0 s
+197.0,local_enu,-40.0,13.0,20.0,0.0,-1.0,0.0,86.68,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 197.0 s exceeds 120.0 s
+198.0,local_enu,-40.0,12.0,20.0,0.0,-1.0,0.0,86.61,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 198.0 s exceeds 120.0 s
+199.0,local_enu,-40.0,11.0,20.0,0.0,-1.0,0.0,86.55,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 199.0 s exceeds 120.0 s
+200.0,local_enu,-40.0,10.0,20.0,0.0,-1.0,0.0,86.48,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 200.0 s exceeds 120.0 s
+201.0,local_enu,-40.0,9.0,20.0,0.0,-1.0,0.0,86.41,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 201.0 s exceeds 120.0 s
+202.0,local_enu,-40.0,8.0,20.0,0.0,-1.0,0.0,86.35,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 202.0 s exceeds 120.0 s
+203.0,local_enu,-40.0,7.0,20.0,0.0,-1.0,0.0,86.28,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 203.0 s exceeds 120.0 s
+204.0,local_enu,-40.0,6.0,20.0,0.0,-1.0,0.0,86.21,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 204.0 s exceeds 120.0 s
+205.0,local_enu,-40.0,5.0,20.0,0.0,-1.0,0.0,86.15,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 205.0 s exceeds 120.0 s
+206.0,local_enu,-40.0,4.0,20.0,0.0,-1.0,0.0,86.08,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 206.0 s exceeds 120.0 s
+207.0,local_enu,-40.0,3.0,20.0,0.0,-1.0,0.0,86.01,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 207.0 s exceeds 120.0 s
+208.0,local_enu,-40.0,2.0,20.0,0.0,-1.0,0.0,85.94,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 208.0 s exceeds 120.0 s
+209.0,local_enu,-40.0,1.0,20.0,0.0,-1.0,0.0,85.88,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 209.0 s exceeds 120.0 s
+210.0,local_enu,-40.0,0.0,20.0,0.0,-1.0,0.0,85.81,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 210.0 s exceeds 120.0 s
+211.0,local_enu,-40.0,-1.0,20.0,0.0,-1.0,0.0,85.74,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 211.0 s exceeds 120.0 s
+212.0,local_enu,-40.0,-2.0,20.0,0.0,-1.0,0.0,85.68,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 212.0 s exceeds 120.0 s
+213.0,local_enu,-40.0,-3.0,20.0,0.0,-1.0,0.0,85.61,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 213.0 s exceeds 120.0 s
+214.0,local_enu,-40.0,-4.0,20.0,0.0,-1.0,0.0,85.54,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 214.0 s exceeds 120.0 s
+215.0,local_enu,-40.0,-5.0,20.0,0.0,-1.0,0.0,85.48,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 215.0 s exceeds 120.0 s
+216.0,local_enu,-40.0,-6.0,20.0,0.0,-1.0,0.0,85.41,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 216.0 s exceeds 120.0 s
+217.0,local_enu,-40.0,-7.0,20.0,0.0,-1.0,0.0,85.34,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 217.0 s exceeds 120.0 s
+218.0,local_enu,-40.0,-8.0,20.0,0.0,-1.0,0.0,85.27,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 218.0 s exceeds 120.0 s
+219.0,local_enu,-40.0,-9.0,20.0,0.0,-1.0,0.0,85.21,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 219.0 s exceeds 120.0 s
+220.0,local_enu,-40.0,-10.0,20.0,0.0,-1.0,0.0,85.14,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 220.0 s exceeds 120.0 s
+221.0,local_enu,-40.0,-11.0,20.0,0.0,-1.0,0.0,85.07,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 221.0 s exceeds 120.0 s
+222.0,local_enu,-40.0,-12.0,20.0,0.0,-1.0,0.0,85.01,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 222.0 s exceeds 120.0 s
+223.0,local_enu,-40.0,-13.0,20.0,0.0,-1.0,0.0,84.94,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 223.0 s exceeds 120.0 s
+224.0,local_enu,-40.0,-14.0,20.0,0.0,-1.0,0.0,84.87,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 224.0 s exceeds 120.0 s
+225.0,local_enu,-40.0,-15.0,20.0,0.0,-1.0,0.0,84.81,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 225.0 s exceeds 120.0 s
+226.0,local_enu,-40.0,-16.0,20.0,0.0,-1.0,0.0,84.74,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 226.0 s exceeds 120.0 s
+227.0,local_enu,-40.0,-17.0,20.0,0.0,-1.0,0.0,84.67,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 227.0 s exceeds 120.0 s
+228.0,local_enu,-40.0,-18.0,20.0,0.0,-1.0,0.0,84.6,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 228.0 s exceeds 120.0 s
+229.0,local_enu,-40.0,-19.0,20.0,0.0,-1.0,0.0,84.54,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 229.0 s exceeds 120.0 s
+230.0,local_enu,-40.0,-20.0,20.0,0.0,-1.0,0.0,84.47,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 230.0 s exceeds 120.0 s
+231.0,local_enu,-40.0,-21.0,20.0,0.0,-1.0,0.0,84.4,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 231.0 s exceeds 120.0 s
+232.0,local_enu,-40.0,-22.0,20.0,0.0,-1.0,0.0,84.34,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 232.0 s exceeds 120.0 s
+233.0,local_enu,-40.0,-23.0,20.0,0.0,-1.0,0.0,84.27,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 233.0 s exceeds 120.0 s
+234.0,local_enu,-40.0,-24.0,20.0,0.0,-1.0,0.0,84.2,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 234.0 s exceeds 120.0 s
+235.0,local_enu,-40.0,-25.0,20.0,0.0,-1.0,0.0,84.14,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 235.0 s exceeds 120.0 s
+236.0,local_enu,-40.0,-26.0,20.0,0.0,-1.0,0.0,84.07,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 236.0 s exceeds 120.0 s
+237.0,local_enu,-40.0,-27.0,20.0,0.0,-1.0,0.0,84.0,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 237.0 s exceeds 120.0 s
+238.0,local_enu,-40.0,-28.0,20.0,0.0,-1.0,0.0,83.93,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 238.0 s exceeds 120.0 s
+239.0,local_enu,-40.0,-29.0,20.0,0.0,-1.0,0.0,83.87,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 239.0 s exceeds 120.0 s
+240.0,local_enu,-40.0,-30.0,20.0,0.0,-1.0,0.0,83.8,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 240.0 s exceeds 120.0 s
+241.0,local_enu,-40.0,-31.0,20.0,0.0,-1.0,0.0,83.73,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 241.0 s exceeds 120.0 s
+242.0,local_enu,-40.0,-32.0,20.0,0.0,-1.0,0.0,83.67,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 242.0 s exceeds 120.0 s
+243.0,local_enu,-40.0,-33.0,20.0,0.0,-1.0,0.0,83.6,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 243.0 s exceeds 120.0 s
+244.0,local_enu,-40.0,-34.0,20.0,0.0,-1.0,0.0,83.53,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 244.0 s exceeds 120.0 s
+245.0,local_enu,-40.0,-35.0,20.0,0.0,-1.0,0.0,83.47,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 245.0 s exceeds 120.0 s
+246.0,local_enu,-40.0,-36.0,20.0,0.0,-1.0,0.0,83.4,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 246.0 s exceeds 120.0 s
+247.0,local_enu,-40.0,-37.0,20.0,0.0,-1.0,0.0,83.33,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 247.0 s exceeds 120.0 s
+248.0,local_enu,-40.0,-38.0,20.0,0.0,-1.0,0.0,83.26,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 248.0 s exceeds 120.0 s
+249.0,local_enu,-40.0,-39.0,20.0,0.0,-1.0,0.0,83.2,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 249.0 s exceeds 120.0 s
+250.0,local_enu,-40.0,-40.0,20.0,0.0,-1.0,0.0,83.13,WAYPOINT_4,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 250.0 s exceeds 120.0 s
+250.99,local_enu,-39.01,-39.93,20.0,1.0,0.07,0.0,83.06,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 251.0 s exceeds 120.0 s
+251.98,local_enu,-38.03,-39.87,20.0,1.0,0.07,0.0,83.0,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 252.0 s exceeds 120.0 s
+252.97,local_enu,-37.04,-39.8,20.0,1.0,0.07,0.0,82.93,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 253.0 s exceeds 120.0 s
+253.96,local_enu,-36.05,-39.74,20.0,1.0,0.07,0.0,82.86,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 254.0 s exceeds 120.0 s
+254.95,local_enu,-35.07,-39.67,20.0,1.0,0.07,0.0,82.8,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 254.9 s exceeds 120.0 s
+255.93,local_enu,-34.08,-39.61,20.0,1.0,0.07,0.0,82.73,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 255.9 s exceeds 120.0 s
+256.92,local_enu,-33.09,-39.54,20.0,1.0,0.07,0.0,82.67,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 256.9 s exceeds 120.0 s
+257.91,local_enu,-32.11,-39.47,20.0,1.0,0.07,0.0,82.6,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 257.9 s exceeds 120.0 s
+258.9,local_enu,-31.12,-39.41,20.0,1.0,0.07,0.0,82.53,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 258.9 s exceeds 120.0 s
+259.89,local_enu,-30.13,-39.34,20.0,1.0,0.07,0.0,82.47,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 259.9 s exceeds 120.0 s
+260.88,local_enu,-29.14,-39.28,20.0,1.0,0.07,0.0,82.4,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 260.9 s exceeds 120.0 s
+261.87,local_enu,-28.16,-39.21,20.0,1.0,0.07,0.0,82.33,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 261.9 s exceeds 120.0 s
+262.86,local_enu,-27.17,-39.14,20.0,1.0,0.07,0.0,82.27,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 262.9 s exceeds 120.0 s
+263.85,local_enu,-26.18,-39.08,20.0,1.0,0.07,0.0,82.2,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 263.9 s exceeds 120.0 s
+264.84,local_enu,-25.2,-39.01,20.0,1.0,0.07,0.0,82.14,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 264.8 s exceeds 120.0 s
+265.82,local_enu,-24.21,-38.95,20.0,1.0,0.07,0.0,82.07,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 265.8 s exceeds 120.0 s
+266.81,local_enu,-23.22,-38.88,20.0,1.0,0.07,0.0,82.0,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 266.8 s exceeds 120.0 s
+267.8,local_enu,-22.24,-38.82,20.0,1.0,0.07,0.0,81.94,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 267.8 s exceeds 120.0 s
+268.79,local_enu,-21.25,-38.75,20.0,1.0,0.07,0.0,81.87,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 268.8 s exceeds 120.0 s
+269.78,local_enu,-20.26,-38.68,20.0,1.0,0.07,0.0,81.8,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 269.8 s exceeds 120.0 s
+270.77,local_enu,-19.28,-38.62,20.0,1.0,0.07,0.0,81.74,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 270.8 s exceeds 120.0 s
+271.76,local_enu,-18.29,-38.55,20.0,1.0,0.07,0.0,81.67,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 271.8 s exceeds 120.0 s
+272.75,local_enu,-17.3,-38.49,20.0,1.0,0.07,0.0,81.61,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 272.8 s exceeds 120.0 s
+273.74,local_enu,-16.32,-38.42,20.0,1.0,0.07,0.0,81.54,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 273.7 s exceeds 120.0 s
+274.73,local_enu,-15.33,-38.36,20.0,1.0,0.07,0.0,81.47,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 274.7 s exceeds 120.0 s
+275.71,local_enu,-14.34,-38.29,20.0,1.0,0.07,0.0,81.41,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 275.7 s exceeds 120.0 s
+276.7,local_enu,-13.36,-38.22,20.0,1.0,0.07,0.0,81.34,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 276.7 s exceeds 120.0 s
+277.69,local_enu,-12.37,-38.16,20.0,1.0,0.07,0.0,81.27,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 277.7 s exceeds 120.0 s
+278.68,local_enu,-11.38,-38.09,20.0,1.0,0.07,0.0,81.21,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 278.7 s exceeds 120.0 s
+279.67,local_enu,-10.39,-38.03,20.0,1.0,0.07,0.0,81.14,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 279.7 s exceeds 120.0 s
+280.66,local_enu,-9.41,-37.96,20.0,1.0,0.07,0.0,81.08,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 280.7 s exceeds 120.0 s
+281.65,local_enu,-8.42,-37.89,20.0,1.0,0.07,0.0,81.01,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 281.6 s exceeds 120.0 s
+282.64,local_enu,-7.43,-37.83,20.0,1.0,0.07,0.0,80.94,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 282.6 s exceeds 120.0 s
+283.63,local_enu,-6.45,-37.76,20.0,1.0,0.07,0.0,80.88,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 283.6 s exceeds 120.0 s
+284.62,local_enu,-5.46,-37.7,20.0,1.0,0.07,0.0,80.81,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 284.6 s exceeds 120.0 s
+285.61,local_enu,-4.47,-37.63,20.0,1.0,0.07,0.0,80.74,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 285.6 s exceeds 120.0 s
+286.59,local_enu,-3.49,-37.57,20.0,1.0,0.07,0.0,80.68,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 286.6 s exceeds 120.0 s
+287.58,local_enu,-2.5,-37.5,20.0,1.0,0.07,0.0,80.61,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 287.6 s exceeds 120.0 s
+288.57,local_enu,-1.51,-37.43,20.0,1.0,0.07,0.0,80.55,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 288.6 s exceeds 120.0 s
+289.56,local_enu,-0.53,-37.37,20.0,1.0,0.07,0.0,80.48,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 289.6 s exceeds 120.0 s
+290.55,local_enu,0.46,-37.3,20.0,1.0,0.07,0.0,80.41,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 290.6 s exceeds 120.0 s
+291.54,local_enu,1.45,-37.24,20.0,1.0,0.07,0.0,80.35,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 291.5 s exceeds 120.0 s
+292.53,local_enu,2.43,-37.17,20.0,1.0,0.07,0.0,80.28,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 292.5 s exceeds 120.0 s
+293.52,local_enu,3.42,-37.11,20.0,1.0,0.07,0.0,80.21,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 293.5 s exceeds 120.0 s
+294.51,local_enu,4.41,-37.04,20.0,1.0,0.07,0.0,80.15,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 294.5 s exceeds 120.0 s
+295.5,local_enu,5.39,-36.97,20.0,1.0,0.07,0.0,80.08,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 295.5 s exceeds 120.0 s
+296.48,local_enu,6.38,-36.91,20.0,1.0,0.07,0.0,80.02,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 296.5 s exceeds 120.0 s
+297.47,local_enu,7.37,-36.84,20.0,1.0,0.07,0.0,79.95,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 297.5 s exceeds 120.0 s
+298.46,local_enu,8.36,-36.78,20.0,1.0,0.07,0.0,79.88,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 298.5 s exceeds 120.0 s
+299.45,local_enu,9.34,-36.71,20.0,1.0,0.07,0.0,79.82,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 299.4 s exceeds 120.0 s
+300.44,local_enu,10.33,-36.64,20.0,1.0,0.07,0.0,79.75,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 300.4 s exceeds 120.0 s
+301.43,local_enu,11.32,-36.58,20.0,1.0,0.07,0.0,79.68,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 301.4 s exceeds 120.0 s
+302.42,local_enu,12.3,-36.51,20.0,1.0,0.07,0.0,79.62,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 302.4 s exceeds 120.0 s
+303.41,local_enu,13.29,-36.45,20.0,1.0,0.07,0.0,79.55,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 303.4 s exceeds 120.0 s
+304.4,local_enu,14.28,-36.38,20.0,1.0,0.07,0.0,79.49,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 304.4 s exceeds 120.0 s
+305.39,local_enu,15.26,-36.32,20.0,1.0,0.07,0.0,79.42,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 305.4 s exceeds 120.0 s
+306.37,local_enu,16.25,-36.25,20.0,1.0,0.07,0.0,79.35,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 306.4 s exceeds 120.0 s
+307.36,local_enu,17.24,-36.18,20.0,1.0,0.07,0.0,79.29,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 307.4 s exceeds 120.0 s
+308.35,local_enu,18.22,-36.12,20.0,1.0,0.07,0.0,79.22,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 308.4 s exceeds 120.0 s
+309.34,local_enu,19.21,-36.05,20.0,1.0,0.07,0.0,79.15,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 309.3 s exceeds 120.0 s
+310.33,local_enu,20.2,-35.99,20.0,1.0,0.07,0.0,79.09,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 310.3 s exceeds 120.0 s
+311.32,local_enu,21.18,-35.92,20.0,1.0,0.07,0.0,79.02,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 311.3 s exceeds 120.0 s
+312.31,local_enu,22.17,-35.86,20.0,1.0,0.07,0.0,78.96,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 312.3 s exceeds 120.0 s
+313.3,local_enu,23.16,-35.79,20.0,1.0,0.07,0.0,78.89,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 313.3 s exceeds 120.0 s
+314.29,local_enu,24.14,-35.72,20.0,1.0,0.07,0.0,78.82,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 314.3 s exceeds 120.0 s
+315.28,local_enu,25.13,-35.66,20.0,1.0,0.07,0.0,78.76,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 315.3 s exceeds 120.0 s
+316.27,local_enu,26.12,-35.59,20.0,1.0,0.07,0.0,78.69,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 316.3 s exceeds 120.0 s
+317.25,local_enu,27.11,-35.53,20.0,1.0,0.07,0.0,78.62,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 317.2 s exceeds 120.0 s
+318.24,local_enu,28.09,-35.46,20.0,1.0,0.07,0.0,78.56,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 318.2 s exceeds 120.0 s
+319.23,local_enu,29.08,-35.39,20.0,1.0,0.07,0.0,78.49,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 319.2 s exceeds 120.0 s
+320.22,local_enu,30.07,-35.33,20.0,1.0,0.07,0.0,78.43,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 320.2 s exceeds 120.0 s
+321.21,local_enu,31.05,-35.26,20.0,1.0,0.07,0.0,78.36,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 321.2 s exceeds 120.0 s
+322.2,local_enu,32.04,-35.2,20.0,1.0,0.07,0.0,78.29,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 322.2 s exceeds 120.0 s
+323.19,local_enu,33.03,-35.13,20.0,1.0,0.07,0.0,78.23,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 323.2 s exceeds 120.0 s
+324.18,local_enu,34.01,-35.07,20.0,1.0,0.07,0.0,78.16,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 324.2 s exceeds 120.0 s
+325.17,local_enu,35.0,-35.0,20.0,1.0,0.07,0.0,78.09,WAYPOINT_5,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 325.2 s exceeds 120.0 s
+326.16,local_enu,34.3,-34.3,20.0,-0.71,0.71,0.0,78.02,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 326.2 s exceeds 120.0 s
+327.15,local_enu,33.6,-33.6,20.0,-0.71,0.71,0.0,77.96,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 327.1 s exceeds 120.0 s
+328.14,local_enu,32.9,-32.9,20.0,-0.71,0.71,0.0,77.89,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 328.1 s exceeds 120.0 s
+329.13,local_enu,32.2,-32.2,20.0,-0.71,0.71,0.0,77.82,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 329.1 s exceeds 120.0 s
+330.12,local_enu,31.5,-31.5,20.0,-0.71,0.71,0.0,77.76,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 330.1 s exceeds 120.0 s
+331.11,local_enu,30.8,-30.8,20.0,-0.71,0.71,0.0,77.69,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 331.1 s exceeds 120.0 s
+332.1,local_enu,30.1,-30.1,20.0,-0.71,0.71,0.0,77.63,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 332.1 s exceeds 120.0 s
+333.09,local_enu,29.4,-29.4,20.0,-0.71,0.71,0.0,77.56,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 333.1 s exceeds 120.0 s
+334.08,local_enu,28.7,-28.7,20.0,-0.71,0.71,0.0,77.49,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 334.1 s exceeds 120.0 s
+335.07,local_enu,28.0,-28.0,20.0,-0.71,0.71,0.0,77.43,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 335.1 s exceeds 120.0 s
+336.06,local_enu,27.3,-27.3,20.0,-0.71,0.71,0.0,77.36,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 336.1 s exceeds 120.0 s
+337.05,local_enu,26.6,-26.6,20.0,-0.71,0.71,0.0,77.29,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 337.1 s exceeds 120.0 s
+338.04,local_enu,25.9,-25.9,20.0,-0.71,0.71,0.0,77.23,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 338.0 s exceeds 120.0 s
+339.03,local_enu,25.2,-25.2,20.0,-0.71,0.71,0.0,77.16,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 339.0 s exceeds 120.0 s
+340.02,local_enu,24.5,-24.5,20.0,-0.71,0.71,0.0,77.1,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 340.0 s exceeds 120.0 s
+341.01,local_enu,23.8,-23.8,20.0,-0.71,0.71,0.0,77.03,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 341.0 s exceeds 120.0 s
+342.0,local_enu,23.1,-23.1,20.0,-0.71,0.71,0.0,76.96,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 342.0 s exceeds 120.0 s
+342.99,local_enu,22.4,-22.4,20.0,-0.71,0.71,0.0,76.9,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 343.0 s exceeds 120.0 s
+343.98,local_enu,21.7,-21.7,20.0,-0.71,0.71,0.0,76.83,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 344.0 s exceeds 120.0 s
+344.97,local_enu,21.0,-21.0,20.0,-0.71,0.71,0.0,76.76,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 345.0 s exceeds 120.0 s
+345.96,local_enu,20.3,-20.3,20.0,-0.71,0.71,0.0,76.7,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 346.0 s exceeds 120.0 s
+346.95,local_enu,19.6,-19.6,20.0,-0.71,0.71,0.0,76.63,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 346.9 s exceeds 120.0 s
+347.94,local_enu,18.9,-18.9,20.0,-0.71,0.71,0.0,76.56,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 347.9 s exceeds 120.0 s
+348.93,local_enu,18.2,-18.2,20.0,-0.71,0.71,0.0,76.5,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 348.9 s exceeds 120.0 s
+349.92,local_enu,17.5,-17.5,20.0,-0.71,0.71,0.0,76.43,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 349.9 s exceeds 120.0 s
+350.91,local_enu,16.8,-16.8,20.0,-0.71,0.71,0.0,76.37,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 350.9 s exceeds 120.0 s
+351.9,local_enu,16.1,-16.1,20.0,-0.71,0.71,0.0,76.3,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 351.9 s exceeds 120.0 s
+352.89,local_enu,15.4,-15.4,20.0,-0.71,0.71,0.0,76.23,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 352.9 s exceeds 120.0 s
+353.88,local_enu,14.7,-14.7,20.0,-0.71,0.71,0.0,76.17,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 353.9 s exceeds 120.0 s
+354.87,local_enu,14.0,-14.0,20.0,-0.71,0.71,0.0,76.1,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 354.9 s exceeds 120.0 s
+355.86,local_enu,13.3,-13.3,20.0,-0.71,0.71,0.0,76.03,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 355.9 s exceeds 120.0 s
+356.85,local_enu,12.6,-12.6,20.0,-0.71,0.71,0.0,75.97,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 356.9 s exceeds 120.0 s
+357.84,local_enu,11.9,-11.9,20.0,-0.71,0.71,0.0,75.9,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 357.8 s exceeds 120.0 s
+358.83,local_enu,11.2,-11.2,20.0,-0.71,0.71,0.0,75.83,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 358.8 s exceeds 120.0 s
+359.82,local_enu,10.5,-10.5,20.0,-0.71,0.71,0.0,75.77,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 359.8 s exceeds 120.0 s
+360.81,local_enu,9.8,-9.8,20.0,-0.71,0.71,0.0,75.7,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 360.8 s exceeds 120.0 s
+361.8,local_enu,9.1,-9.1,20.0,-0.71,0.71,0.0,75.64,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 361.8 s exceeds 120.0 s
+362.79,local_enu,8.4,-8.4,20.0,-0.71,0.71,0.0,75.57,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 362.8 s exceeds 120.0 s
+363.78,local_enu,7.7,-7.7,20.0,-0.71,0.71,0.0,75.5,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 363.8 s exceeds 120.0 s
+364.77,local_enu,7.0,-7.0,20.0,-0.71,0.71,0.0,75.44,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 364.8 s exceeds 120.0 s
+365.76,local_enu,6.3,-6.3,20.0,-0.71,0.71,0.0,75.37,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 365.8 s exceeds 120.0 s
+366.75,local_enu,5.6,-5.6,20.0,-0.71,0.71,0.0,75.3,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 366.8 s exceeds 120.0 s
+367.74,local_enu,4.9,-4.9,20.0,-0.71,0.71,0.0,75.24,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 367.7 s exceeds 120.0 s
+368.73,local_enu,4.2,-4.2,20.0,-0.71,0.71,0.0,75.17,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 368.7 s exceeds 120.0 s
+369.72,local_enu,3.5,-3.5,20.0,-0.71,0.71,0.0,75.11,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 369.7 s exceeds 120.0 s
+370.71,local_enu,2.8,-2.8,20.0,-0.71,0.71,0.0,75.04,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 370.7 s exceeds 120.0 s
+371.7,local_enu,2.1,-2.1,20.0,-0.71,0.71,0.0,74.97,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 371.7 s exceeds 120.0 s
+372.69,local_enu,1.4,-1.4,20.0,-0.71,0.71,0.0,74.91,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 372.7 s exceeds 120.0 s
+373.68,local_enu,0.7,-0.7,20.0,-0.71,0.71,0.0,74.84,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 373.7 s exceeds 120.0 s
+374.67,local_enu,0.0,0.0,20.0,-0.71,0.71,0.0,74.77,RETURN_HOME,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 374.7 s exceeds 120.0 s
+375.67,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,74.69,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 375.7 s exceeds 120.0 s
+376.67,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,74.61,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 376.7 s exceeds 120.0 s
+377.67,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,74.53,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 377.7 s exceeds 120.0 s
+378.67,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,74.45,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 378.7 s exceeds 120.0 s
+379.67,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,74.38,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 379.7 s exceeds 120.0 s
+380.67,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,74.3,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 380.7 s exceeds 120.0 s
+381.67,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,74.22,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 381.7 s exceeds 120.0 s
+382.67,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,74.14,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 382.7 s exceeds 120.0 s
+383.67,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,74.06,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 383.7 s exceeds 120.0 s
+384.67,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,73.98,LANDING,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 384.7 s exceeds 120.0 s
+385.67,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,73.98,MISSION_COMPLETE,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 385.7 s exceeds 120.0 s

@@ -1,0 +1,2 @@
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,detail
+121.0,ENTERED_VIOLATION,local_enu,9.0,40.0,20.0,91.77,WAYPOINT_3,MISSION_TIMEOUT,CRITICAL,RETURN_TO_HOME,Mission time 121.0 s exceeds 120.0 s
