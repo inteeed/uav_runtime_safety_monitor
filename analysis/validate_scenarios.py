@@ -30,14 +30,20 @@ def validate_result(result: SimulationRunResult) -> bool:
 
     _state, safety_result = selected
     scenario = result.scenario
+    selected_index = result.records.index(selected)
+    supervisor_decision = result.supervisor_decisions[selected_index]
 
     if scenario.expected_status == "SAFE":
-        return not result.non_safe_records
+        return (
+            not result.non_safe_records
+            and supervisor_decision.supervisor_mode == scenario.expected_supervisor_mode
+        )
 
     return (
         safety_result.safety_status == scenario.expected_status
         and safety_result.recommended_action == scenario.expected_action
         and safety_result.severity == scenario.expected_severity
+        and supervisor_decision.supervisor_mode == scenario.expected_supervisor_mode
     )
 
 
@@ -48,20 +54,25 @@ def print_validation_line(scenario: ScenarioRun, result: SimulationRunResult) ->
         observed_status = "MISSING"
         observed_action = "MISSING"
         observed_severity = "MISSING"
+        observed_supervisor = "MISSING"
     else:
         _state, safety_result = selected
+        selected_index = result.records.index(selected)
+        supervisor_decision = result.supervisor_decisions[selected_index]
         observed_status = safety_result.safety_status
         observed_action = safety_result.recommended_action
         observed_severity = safety_result.severity
+        observed_supervisor = supervisor_decision.supervisor_mode
 
     print(
-        "{:<24} {:<5} expected={:<28} observed={:<28} action={:<14} severity={}".format(
+        "{:<24} {:<5} expected={:<28} observed={:<28} action={:<14} severity={:<8} response={}".format(
             scenario.scenario_name,
             "PASS" if passed else "FAIL",
             scenario.expected_status,
             observed_status,
             observed_action,
             observed_severity,
+            observed_supervisor,
         )
     )
     return passed
@@ -88,4 +99,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

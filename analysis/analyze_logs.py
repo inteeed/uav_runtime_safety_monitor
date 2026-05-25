@@ -25,8 +25,16 @@ def summarize_log(path: Path) -> None:
     critical = [row for row in rows if row.get("severity") == "CRITICAL"]
     status_counts = Counter(row["safety_status"] for row in rows)
     severity_counts = Counter(row.get("severity", "UNKNOWN") for row in rows)
+    supervisor_counts = Counter(
+        row.get("supervisor_mode", "UNKNOWN") for row in rows
+    )
     event_path = path.with_name(path.name.replace("_mission.csv", "_events.csv"))
     events = read_log(event_path) if event_path.exists() else []
+    responses = [
+        row
+        for row in rows
+        if row.get("active_response", "NONE") not in ("", "NONE", "MONITOR")
+    ]
 
     print("\n{}".format(path))
     print("  samples: {}".format(len(rows)))
@@ -34,6 +42,7 @@ def summarize_log(path: Path) -> None:
     print("  non-safe samples: {}".format(len(violations)))
     print("  status counts: {}".format(dict(status_counts)))
     print("  severity counts: {}".format(dict(severity_counts)))
+    print("  supervisor counts: {}".format(dict(supervisor_counts)))
     print("  event transitions: {}".format(len(events)))
 
     if violations:
@@ -56,6 +65,19 @@ def summarize_log(path: Path) -> None:
             print(
                 "  critical action: {}".format(
                     first_critical["recommended_action"]
+                )
+            )
+        if responses:
+            first_response = responses[0]
+            print(
+                "  first supervisor response: {} at t={:.1f} s".format(
+                    first_response.get("supervisor_mode", "UNKNOWN"),
+                    float(first_response["time_s"]),
+                )
+            )
+            print(
+                "  response reason: {}".format(
+                    first_response.get("response_reason", "UNKNOWN")
                 )
             )
     else:

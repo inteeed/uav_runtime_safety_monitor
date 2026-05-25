@@ -11,6 +11,9 @@ uav_state_publisher_node
 safety_monitor_node
         |
         v
+mission_supervisor_node
+        |
+        v
 safety_status_logger_node
 ```
 
@@ -21,6 +24,7 @@ safety_status_logger_node
 /uav/safety_status
 /uav/recommended_action
 /uav/safety_events
+/uav/supervisor_mode
 ```
 
 ## Planned State Message Fields
@@ -47,6 +51,14 @@ recommended_action
 detail
 ```
 
+## Planned Supervisor Fields
+
+```text
+supervisor_mode
+active_response
+response_reason
+```
+
 ## Next Step
 
-Create a minimal `rclpy` node that subscribes to simulated UAV state data and publishes a safety status string, severity, recommended action, and event transitions. After that, connect the same interface to PX4 SITL or Gazebo-generated state data.
+Create a minimal `rclpy` safety-monitor node and a small mission-supervisor node. The monitor publishes safety status, severity, and recommended action; the supervisor consumes those outputs and publishes a high-level response mode such as `RETURNING_HOME` or `LANDING`. After that, connect the same interface to PX4 SITL or Gazebo-generated state data.

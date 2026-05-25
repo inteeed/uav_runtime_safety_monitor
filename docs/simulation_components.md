@@ -11,7 +11,8 @@ The Python simulation is organized as a small test harness rather than one monol
 | Mission simulator | `src/mission_simulator.py` | Generates timestamped UAV state samples from mission segments. |
 | Fault injector | `src/simulation_components.py` | Injects a state-update gap to emulate missing UAV state data. |
 | Runtime safety monitor | `src/safety_monitor.py` | Checks state samples against safety limits. |
-| Simulation runner | `src/simulation_runner.py` | Connects simulator, monitor, state logging, and event logging. |
+| Mission supervisor | `src/mission_supervisor.py` | Converts monitor outputs into response modes such as warning, return-home, and landing. |
+| Simulation runner | `src/simulation_runner.py` | Connects simulator, monitor, supervisor, state logging, and event logging. |
 | Scenario validator | `analysis/validate_scenarios.py` | Runs every scenario and checks observed monitor output against expected results. |
 
 ## Why This Matters
@@ -20,10 +21,10 @@ This structure separates the simulation environment from the safety-monitoring l
 
 ```text
 Current version:
-Scenario Catalog -> Mission Simulator -> Runtime Safety Monitor -> Logs/Plots
+Scenario Catalog -> Mission Simulator -> Runtime Safety Monitor -> Mission Supervisor -> Logs/Plots
 
 Future ROS2/PX4 version:
-PX4/Gazebo State Topic -> Runtime Safety Monitor Node -> Safety Status Topic
+PX4/Gazebo State Topic -> Runtime Safety Monitor Node -> Mission Supervisor Node -> Safety Action Topic
 ```
 
 ## Validation Command
@@ -40,3 +41,4 @@ Expected result:
 8 / 8 scenarios passed
 ```
 
+The validator checks both the monitor output and the supervisor response mode.

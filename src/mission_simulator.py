@@ -5,6 +5,7 @@ from typing import Iterable, List
 from scenario_catalog import SCENARIOS
 from simulation_components import MissionPhasePlanner, StateGapInjector
 
+
 @dataclass(frozen=True)
 class UAVState:
     time_s: float

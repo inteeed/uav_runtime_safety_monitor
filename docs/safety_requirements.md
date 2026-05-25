@@ -2,7 +2,7 @@
 
 ## Monitored State
 
-Each UAV state sample contains:
+Each UAV state log sample contains:
 
 - mission time in seconds
 - frame ID, currently `local_enu`
@@ -10,6 +10,8 @@ Each UAV state sample contains:
 - velocity `vx`, `vy`, `vz` in meters per second
 - battery percentage
 - mission state
+- safety status, severity, and recommended action
+- supervisor mode and active response
 
 ## Safety Limits
 
@@ -25,21 +27,21 @@ Each UAV state sample contains:
 
 ## Validation Scenarios
 
-| Scenario | Injected condition | Expected status | Expected action |
-| --- | --- | --- | --- |
-| Normal mission | None | `SAFE` | `CONTINUE` |
-| Geofence warning | UAV approaches geofence boundary | `GEOFENCE_WARNING` | `WARNING` |
-| Geofence violation | UAV crosses `x = 50 m` boundary | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` |
-| Altitude violation | UAV climbs above `30 m` | `ALTITUDE_LIMIT_VIOLATION` | `LAND` |
-| Low battery | Battery drops below `20%` | `LOW_BATTERY` | `LAND` |
-| Mission timeout | Mission lasts longer than `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` |
-| State timeout | Simulated state-update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` |
+| Scenario | Injected condition | Expected status | Expected action | Expected supervisor mode |
+| --- | --- | --- | --- | --- |
+| Normal mission | None | `SAFE` | `CONTINUE` | `CONTINUE_MISSION` |
+| Geofence warning | UAV approaches geofence boundary | `GEOFENCE_WARNING` | `WARNING` | `WARNING_ACTIVE` |
+| Geofence violation | UAV crosses `x = 50 m` boundary | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| Altitude violation | UAV climbs above `30 m` | `ALTITUDE_LIMIT_VIOLATION` | `LAND` | `LANDING` |
+| Low battery | Battery drops below `20%` | `LOW_BATTERY` | `LAND` | `LANDING` |
+| Mission timeout | Mission lasts longer than `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| State timeout | Simulated state-update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
 
 The expected result for each scenario is encoded in `src/scenario_catalog.py` and checked by `analysis/validate_scenarios.py`.
 
 ## Event Logging
 
-The monitor writes continuous state logs and separate event logs. Event logs record transitions such as `ENTERED_WARNING`, `ENTERED_VIOLATION`, `CHANGED_STATUS`, and `CLEARED_EVENT`. This keeps flight-test-style analysis concise while preserving the full state history.
+The monitor writes continuous state logs and separate event logs. Event logs record transitions such as `ENTERED_WARNING`, `ENTERED_VIOLATION`, `CHANGED_STATUS`, and `CLEARED_EVENT`. State logs also include supervisor fields such as `supervisor_mode`, `active_response`, and `response_reason`. This keeps flight-test-style analysis concise while preserving the full state and response history.
 
 ## Notes
 

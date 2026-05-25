@@ -186,6 +186,39 @@ def plot_safety_status(rows: List[Dict[str, str]], output_path: Path) -> None:
     plt.close(fig)
 
 
+def plot_supervisor_mode(rows: List[Dict[str, str]], output_path: Path) -> None:
+    if "supervisor_mode" not in rows[0]:
+        return
+
+    time_s = values(rows, "time_s")
+    preferred_order = [
+        "CONTINUE_MISSION",
+        "WARNING_ACTIVE",
+        "RETURNING_HOME",
+        "LANDING",
+        "MISSION_ABORTED",
+        "RESPONSE_COMPLETE",
+    ]
+    modes = [row["supervisor_mode"] for row in rows]
+    ordered_modes = [
+        mode for mode in preferred_order if mode in set(modes)
+    ] + sorted(set(modes) - set(preferred_order))
+    mode_to_value = {mode: index for index, mode in enumerate(ordered_modes)}
+    mode_values = [mode_to_value[mode] for mode in modes]
+
+    fig, ax = plt.subplots(figsize=(7.5, 4.5))
+    ax.step(time_s, mode_values, where="post", color="#0f766e", linewidth=2.0)
+    ax.set_title("Supervisor Response Mode over Time")
+    ax.set_xlabel("time [s]")
+    ax.set_yticks(list(mode_to_value.values()))
+    ax.set_yticklabels(list(mode_to_value.keys()))
+    ax.grid(True, axis="x", alpha=0.3)
+    ax.set_ylim(-0.5, max(mode_to_value.values()) + 0.5)
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=160)
+    plt.close(fig)
+
+
 def plot_log(input_path: Path, prefix: str, output_dir: Path) -> List[Path]:
     rows = read_log(input_path)
     if not rows:
@@ -198,12 +231,14 @@ def plot_log(input_path: Path, prefix: str, output_dir: Path) -> List[Path]:
         output_dir / "{}_altitude_plot.png".format(prefix),
         output_dir / "{}_battery_plot.png".format(prefix),
         output_dir / "{}_safety_events_plot.png".format(prefix),
+        output_dir / "{}_supervisor_response_plot.png".format(prefix),
     ]
 
     plot_trajectory(rows, limits, outputs[0])
     plot_altitude(rows, limits, outputs[1])
     plot_battery(rows, limits, outputs[2])
     plot_safety_status(rows, outputs[3])
+    plot_supervisor_mode(rows, outputs[4])
     return outputs
 
 

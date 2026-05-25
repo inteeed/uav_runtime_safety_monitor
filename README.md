@@ -30,6 +30,12 @@ Runtime Safety Monitor
 Safety Status / Severity / Recommended Action
         |
         v
+Mission Supervisor
+        |
+        v
+Response Mode / Active Response
+        |
+        v
 Simulation Runner
         |
         v
@@ -62,6 +68,7 @@ The current version is intentionally lightweight and does not require PX4, Gazeb
 - [src/simulation_components.py](src/simulation_components.py): contains mission-phase planning and fault-injection components.
 - [src/simulation_runner.py](src/simulation_runner.py): connects simulation, monitoring, state logs, and event logs.
 - [src/safety_monitor.py](src/safety_monitor.py): evaluates safety rules, warning margins, stale updates, and priority between simultaneous conditions.
+- [src/mission_supervisor.py](src/mission_supervisor.py): turns monitor actions into response modes such as return-home and landing.
 - [src/logger.py](src/logger.py): writes continuous state logs and event-transition logs.
 - [src/main.py](src/main.py): runs all validation scenarios.
 - [analysis/analyze_logs.py](analysis/analyze_logs.py): summarizes mission logs and event transitions.
@@ -73,21 +80,23 @@ More detail is available in [docs/simulation_components.md](docs/simulation_comp
 
 ## Validation Scenarios
 
-| Scenario | Injected condition | Expected status | Expected action |
-| --- | --- | --- | --- |
-| Normal mission | None | `SAFE` | `CONTINUE` |
-| Geofence warning | UAV approaches boundary but remains inside | `GEOFENCE_WARNING` | `WARNING` |
-| Geofence violation | UAV crosses `x = 50 m` boundary | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` |
-| Altitude violation | UAV climbs above `30 m` | `ALTITUDE_LIMIT_VIOLATION` | `LAND` |
-| Low battery | Battery drops below `20%` | `LOW_BATTERY` | `LAND` |
-| Mission timeout | Mission time exceeds `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` |
-| State timeout | State update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` |
+| Scenario | Injected condition | Expected status | Expected action | Supervisor response |
+| --- | --- | --- | --- | --- |
+| Normal mission | None | `SAFE` | `CONTINUE` | `CONTINUE_MISSION` |
+| Geofence warning | UAV approaches boundary but remains inside | `GEOFENCE_WARNING` | `WARNING` | `WARNING_ACTIVE` |
+| Geofence violation | UAV crosses `x = 50 m` boundary | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| Altitude violation | UAV climbs above `30 m` | `ALTITUDE_LIMIT_VIOLATION` | `LAND` | `LANDING` |
+| Low battery | Battery drops below `20%` | `LOW_BATTERY` | `LAND` | `LANDING` |
+| Mission timeout | Mission time exceeds `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| State timeout | State update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
 
 ## Results
 
 The normal mission remains inside the geofence and below the altitude limit, so all samples are `SAFE`.
 
 The geofence-violation mission first generates a warning near the boundary and then detects a critical `GEOFENCE_VIOLATION`, recommending `RETURN_TO_HOME`.
+
+The mission supervisor then interrupts the original waypoint mission and simulates a return-home-and-land response. For altitude and low-battery violations, it switches to a landing response.
 
 Generated figures:
 
@@ -98,6 +107,8 @@ Generated figures:
 ![Geofence violation battery plot](results/geofence_violation_battery_plot.png)
 
 ![Geofence violation safety events plot](results/geofence_violation_safety_events_plot.png)
+
+![Geofence violation supervisor response plot](results/geofence_violation_supervisor_response_plot.png)
 
 ## How to Run
 
@@ -129,6 +140,7 @@ results/geofence_violation_trajectory_plot.png
 results/geofence_violation_altitude_plot.png
 results/geofence_violation_battery_plot.png
 results/geofence_violation_safety_events_plot.png
+results/geofence_violation_supervisor_response_plot.png
 docs/architecture.png
 ```
 
@@ -155,6 +167,7 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - warning margins before critical violations,
 - stale state-update detection,
 - safety-status, severity, and recommended-action generation,
+- mission-supervisor response simulation,
 - event-based logging for log-data analysis,
 - simulation-based validation scenarios,
 - reusable simulation components with expected scenario outcomes,
@@ -162,8 +175,8 @@ This project is designed as a small onboard autonomy component, not as a full dr
 
 ## Future Work
 
-- Convert the safety monitor into a ROS2 `rclpy` node.
-- Subscribe to `/uav/state` and publish `/uav/safety_status`, `/uav/recommended_action`, and `/uav/safety_events`.
+- Convert the safety monitor and mission supervisor into ROS2 `rclpy` nodes.
+- Subscribe to `/uav/state` and publish `/uav/safety_status`, `/uav/recommended_action`, `/uav/safety_events`, and `/uav/supervisor_mode`.
 - Add PX4 or ArduPilot SITL integration.
 - Add Gazebo-based validation scenarios.
 - Add position-deviation, velocity-limit, GPS-loss, and sensor-fault checks.

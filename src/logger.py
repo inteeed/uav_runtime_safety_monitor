@@ -1,8 +1,9 @@
 import csv
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable, List, Tuple
 
+from mission_supervisor import SupervisorDecision, default_supervisor_decision
 from mission_simulator import UAVState
 from safety_monitor import SafetyResult
 
@@ -21,6 +22,9 @@ STATE_FIELDNAMES = [
     "safety_status",
     "severity",
     "recommended_action",
+    "supervisor_mode",
+    "active_response",
+    "response_reason",
     "detail",
 ]
 
@@ -36,6 +40,9 @@ EVENT_FIELDNAMES = [
     "safety_status",
     "severity",
     "recommended_action",
+    "supervisor_mode",
+    "active_response",
+    "response_reason",
     "detail",
 ]
 
@@ -45,16 +52,28 @@ class SafetyEvent:
     state: UAVState
     result: SafetyResult
     event_type: str
+    supervisor_decision: SupervisorDecision = field(
+        default_factory=default_supervisor_decision
+    )
 
 
 def write_mission_log(
-    path: Path, records: Iterable[Tuple[UAVState, SafetyResult]]
+    path: Path,
+    records: Iterable[Tuple[UAVState, SafetyResult]],
+    supervisor_decisions: Iterable[SupervisorDecision] = None,
 ) -> None:
+    record_list = list(records)
+    decision_list = (
+        list(supervisor_decisions)
+        if supervisor_decisions is not None
+        else [default_supervisor_decision()] * len(record_list)
+    )
+
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=STATE_FIELDNAMES)
         writer.writeheader()
-        for state, result in records:
+        for (state, result), decision in zip(record_list, decision_list):
             writer.writerow(
                 {
                     "time_s": state.time_s,
@@ -70,20 +89,30 @@ def write_mission_log(
                     "safety_status": result.safety_status,
                     "severity": result.severity,
                     "recommended_action": result.recommended_action,
+                    "supervisor_mode": decision.supervisor_mode,
+                    "active_response": decision.active_response,
+                    "response_reason": decision.response_reason,
                     "detail": result.detail,
                 }
             )
 
 
 def extract_safety_events(
-    records: Iterable[Tuple[UAVState, SafetyResult]]
+    records: Iterable[Tuple[UAVState, SafetyResult]],
+    supervisor_decisions: Iterable[SupervisorDecision] = None,
 ) -> List[SafetyEvent]:
     events: List[SafetyEvent] = []
     previous_result: SafetyResult = SafetyResult(
         "SAFE", "CONTINUE", "INFO", "Initial monitor state"
     )
+    record_list = list(records)
+    decision_list = (
+        list(supervisor_decisions)
+        if supervisor_decisions is not None
+        else [default_supervisor_decision()] * len(record_list)
+    )
 
-    for state, result in records:
+    for (state, result), decision in zip(record_list, decision_list):
         if result.safety_status == previous_result.safety_status:
             previous_result = result
             continue
@@ -98,7 +127,14 @@ def extract_safety_events(
         else:
             event_type = "CHANGED_STATUS"
 
-        events.append(SafetyEvent(state=state, result=result, event_type=event_type))
+        events.append(
+            SafetyEvent(
+                state=state,
+                result=result,
+                event_type=event_type,
+                supervisor_decision=decision,
+            )
+        )
         previous_result = result
 
     return events
@@ -112,6 +148,7 @@ def write_event_log(path: Path, events: Iterable[SafetyEvent]) -> None:
         for event in events:
             state = event.state
             result = event.result
+            decision = event.supervisor_decision
             writer.writerow(
                 {
                     "time_s": state.time_s,
@@ -125,7 +162,9 @@ def write_event_log(path: Path, events: Iterable[SafetyEvent]) -> None:
                     "safety_status": result.safety_status,
                     "severity": result.severity,
                     "recommended_action": result.recommended_action,
+                    "supervisor_mode": decision.supervisor_mode,
+                    "active_response": decision.active_response,
+                    "response_reason": decision.response_reason,
                     "detail": result.detail,
                 }
             )
-

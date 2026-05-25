@@ -29,7 +29,7 @@ Deliverables:
 - event-transition logs
 - unit tests
 
-Status: in progress.
+Status: complete.
 
 ## Phase 3: Log Analysis
 
@@ -49,7 +49,19 @@ Deliverables:
 
 Status: complete for Python logs and reusable simulation components, expandable for ROS2/PX4 logs later.
 
-## Phase 4: Documentation
+## Phase 4: Safety Supervisor Response Simulation
+
+Deliverables:
+
+- mission supervisor component
+- warning, return-home, and landing response modes
+- response-aware CSV logs
+- supervisor-response plots
+- scenario validation of monitor output and supervisor response
+
+Status: complete.
+
+## Phase 5: Documentation and Application Polish
 
 Deliverables:
 
@@ -61,7 +73,7 @@ Deliverables:
 
 Status: in progress.
 
-## Phase 5: ROS2/PX4 Extension
+## Phase 6: ROS2/PX4 Extension
 
 Deliverables:
 

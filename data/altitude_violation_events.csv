@@ -1,5 +1,5 @@
-time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,detail
-14.94,ENTERED_WARNING,local_enu,20.0,6.67,25.0,98.65,WAYPOINT_2,ALTITUDE_WARNING,WARNING,WARNING,Altitude 25.0 m is within 5.0 m of limit
-17.86,CHANGED_STATUS,local_enu,27.5,16.67,32.5,98.31,WAYPOINT_2,ALTITUDE_LIMIT_VIOLATION,CRITICAL,LAND,Altitude 32.5 m exceeds 30.0 m
-21.72,CHANGED_STATUS,local_enu,19.29,26.43,27.71,97.87,WAYPOINT_3,ALTITUDE_WARNING,WARNING,WARNING,Altitude 27.7 m is within 5.0 m of limit
-23.65,CLEARED_EVENT,local_enu,12.14,30.71,22.86,97.65,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+14.94,ENTERED_WARNING,local_enu,20.0,6.67,25.0,98.65,WAYPOINT_2,ALTITUDE_WARNING,WARNING,WARNING,WARNING_ACTIVE,MONITOR,ALTITUDE_WARNING,Altitude 25.0 m is within 5.0 m of limit
+17.86,CHANGED_STATUS,local_enu,27.5,16.67,32.5,98.31,WAYPOINT_2,ALTITUDE_LIMIT_VIOLATION,CRITICAL,LAND,LANDING,LAND,ALTITUDE_LIMIT_VIOLATION,Altitude 32.5 m exceeds 30.0 m
+19.77,CHANGED_STATUS,local_enu,27.5,16.67,28.68,98.16,RESPONSE_LANDING,ALTITUDE_WARNING,WARNING,WARNING,LANDING,LAND,ALTITUDE_LIMIT_VIOLATION,Altitude 28.7 m is within 5.0 m of limit
+21.68,CLEARED_EVENT,local_enu,27.5,16.67,24.85,98.01,RESPONSE_LANDING,SAFE,INFO,CONTINUE,LANDING,LAND,ALTITUDE_LIMIT_VIOLATION,All monitored constraints satisfied

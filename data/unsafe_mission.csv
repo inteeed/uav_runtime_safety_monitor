@@ -1,57 +1,45 @@
-time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,severity,recommended_action,detail
-0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-14.0,local_enu,20.0,0.0,20.0,5.0,0.0,0.0,98.75,WAYPOINT_1,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-14.92,local_enu,24.44,1.11,20.0,4.85,1.21,0.0,98.64,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-15.83,local_enu,28.89,2.22,20.0,4.85,1.21,0.0,98.54,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-16.75,local_enu,33.33,3.33,20.0,4.85,1.21,0.0,98.43,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-17.66,local_enu,37.78,4.44,20.0,4.85,1.21,0.0,98.33,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-18.58,local_enu,42.22,5.56,20.0,4.85,1.21,0.0,98.22,WAYPOINT_2,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-19.5,local_enu,46.67,6.67,20.0,4.85,1.21,0.0,98.12,WAYPOINT_2,GEOFENCE_WARNING,WARNING,WARNING,"Position (46.7, 6.7) is within 5.0 m of geofence"
-20.41,local_enu,51.11,7.78,20.0,4.85,1.21,0.0,98.01,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (51.1, 7.8) outside geofence"
-21.33,local_enu,55.56,8.89,20.0,4.85,1.21,0.0,97.91,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (55.6, 8.9) outside geofence"
-22.25,local_enu,60.0,10.0,20.0,4.85,1.21,0.0,97.8,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (60.0, 10.0) outside geofence"
-23.18,local_enu,55.77,11.92,19.85,-4.55,2.07,-0.17,97.69,WAYPOINT_3,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (55.8, 11.9) outside geofence"
-24.11,local_enu,51.54,13.85,19.69,-4.55,2.07,-0.17,97.59,WAYPOINT_3,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,"Position (51.5, 13.8) outside geofence"
-25.04,local_enu,47.31,15.77,19.54,-4.55,2.07,-0.17,97.48,WAYPOINT_3,GEOFENCE_WARNING,WARNING,WARNING,"Position (47.3, 15.8) is within 5.0 m of geofence"
-25.97,local_enu,43.08,17.69,19.38,-4.55,2.07,-0.17,97.37,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-26.9,local_enu,38.85,19.62,19.23,-4.55,2.07,-0.17,97.27,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-27.83,local_enu,34.62,21.54,19.08,-4.55,2.07,-0.17,97.16,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-28.76,local_enu,30.38,23.46,18.92,-4.55,2.07,-0.17,97.05,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-29.69,local_enu,26.15,25.38,18.77,-4.55,2.07,-0.17,96.94,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-30.62,local_enu,21.92,27.31,18.62,-4.55,2.07,-0.17,96.84,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-31.55,local_enu,17.69,29.23,18.46,-4.55,2.07,-0.17,96.73,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-32.48,local_enu,13.46,31.15,18.31,-4.55,2.07,-0.17,96.62,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-33.41,local_enu,9.23,33.08,18.15,-4.55,2.07,-0.17,96.52,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-34.34,local_enu,5.0,35.0,18.0,-4.55,2.07,-0.17,96.41,WAYPOINT_3,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-35.23,local_enu,4.38,30.62,18.25,-0.71,-4.94,0.28,96.31,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-36.11,local_enu,3.75,26.25,18.5,-0.71,-4.94,0.28,96.21,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-37.0,local_enu,3.12,21.88,18.75,-0.71,-4.94,0.28,96.1,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-37.88,local_enu,2.5,17.5,19.0,-0.71,-4.94,0.28,96.0,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-38.77,local_enu,1.88,13.12,19.25,-0.71,-4.94,0.28,95.9,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-39.65,local_enu,1.25,8.75,19.5,-0.71,-4.94,0.28,95.8,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-40.54,local_enu,0.62,4.38,19.75,-0.71,-4.94,0.28,95.7,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-41.42,local_enu,0.0,0.0,20.0,-0.71,-4.94,0.28,95.6,RETURN_HOME,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-42.42,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,95.52,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-43.42,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,95.44,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-44.42,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,95.36,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-45.42,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,95.28,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-46.42,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,95.21,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-47.42,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,95.13,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-48.42,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,95.05,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-49.42,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,94.97,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-50.42,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,94.89,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-51.42,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,94.81,LANDING,SAFE,INFO,CONTINUE,All monitored constraints satisfied
-52.42,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,94.81,MISSION_COMPLETE,SAFE,INFO,CONTINUE,All monitored constraints satisfied
+time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+14.0,local_enu,20.0,0.0,20.0,5.0,0.0,0.0,98.75,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+14.92,local_enu,24.44,1.11,20.0,4.85,1.21,0.0,98.64,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+15.83,local_enu,28.89,2.22,20.0,4.85,1.21,0.0,98.54,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+16.75,local_enu,33.33,3.33,20.0,4.85,1.21,0.0,98.43,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+17.66,local_enu,37.78,4.44,20.0,4.85,1.21,0.0,98.33,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+18.58,local_enu,42.22,5.56,20.0,4.85,1.21,0.0,98.22,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+19.5,local_enu,46.67,6.67,20.0,4.85,1.21,0.0,98.12,WAYPOINT_2,GEOFENCE_WARNING,WARNING,WARNING,WARNING_ACTIVE,MONITOR,GEOFENCE_WARNING,"Position (46.7, 6.7) is within 5.0 m of geofence"
+20.41,local_enu,51.11,7.78,20.0,4.85,1.21,0.0,98.01,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (51.1, 7.8) outside geofence"
+21.35,local_enu,46.46,7.07,20.0,-4.94,-0.75,0.0,97.9,RESPONSE_RETURN_HOME,GEOFENCE_WARNING,WARNING,WARNING,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (46.5, 7.1) is within 5.0 m of geofence"
+22.29,local_enu,41.82,6.37,20.0,-4.94,-0.75,0.0,97.79,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+23.23,local_enu,37.17,5.66,20.0,-4.94,-0.75,0.0,97.69,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+24.17,local_enu,32.52,4.95,20.0,-4.94,-0.75,0.0,97.58,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+25.11,local_enu,27.88,4.24,20.0,-4.94,-0.75,0.0,97.47,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+26.05,local_enu,23.23,3.54,20.0,-4.94,-0.75,0.0,97.36,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+26.99,local_enu,18.59,2.83,20.0,-4.94,-0.75,0.0,97.25,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+27.93,local_enu,13.94,2.12,20.0,-4.94,-0.75,0.0,97.15,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+28.87,local_enu,9.29,1.41,20.0,-4.94,-0.75,0.0,97.04,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+29.81,local_enu,4.65,0.71,20.0,-4.94,-0.75,0.0,96.93,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+30.75,local_enu,0.0,0.0,20.0,-4.94,-0.75,0.0,96.82,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+31.75,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,96.74,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+32.75,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,96.66,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+33.75,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,96.58,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+34.75,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,96.5,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+35.75,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,96.43,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+36.75,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,96.35,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+37.75,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,96.27,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+38.75,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,96.19,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+39.75,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,96.11,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+40.75,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,96.03,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+41.75,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,96.03,RESPONSE_COMPLETE,SAFE,INFO,CONTINUE,RESPONSE_COMPLETE,NONE,Supervisor response completed,All monitored constraints satisfied

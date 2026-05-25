@@ -16,11 +16,13 @@ def print_scenario_summary(result: SimulationRunResult) -> None:
     print("  samples: {}".format(len(result.records)))
     print("  duration: {:.1f} s".format(result.duration_s))
     print("  events: {}".format(len(result.events)))
+    print("  supervisor mode: {}".format(result.selected_decision().supervisor_mode))
     if not result.non_safe_records:
         print("  result: SAFE")
         return
 
     report_state, report_result = result.selected_result()
+    report_decision = result.selected_decision()
     first_state, first_result = result.non_safe_records[0]
     print("  result: {}".format(report_result.safety_status))
     print("  severity: {}".format(report_result.severity))
@@ -28,6 +30,7 @@ def print_scenario_summary(result: SimulationRunResult) -> None:
     if result.critical_records:
         print("  first critical state at t={:.1f} s".format(report_state.time_s))
     print("  action: {}".format(report_result.recommended_action))
+    print("  response: {}".format(report_decision.supervisor_mode))
     print("  detail: {}".format(report_result.detail))
 
 

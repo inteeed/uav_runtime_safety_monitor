@@ -24,6 +24,7 @@ class ScenarioRun:
     expected_status: str
     expected_action: str
     expected_severity: str
+    expected_supervisor_mode: str
 
     @property
     def event_log_name(self) -> str:
@@ -104,6 +105,7 @@ SCENARIO_RUNS = [
         "SAFE",
         "CONTINUE",
         "INFO",
+        "CONTINUE_MISSION",
     ),
     ScenarioRun(
         "Geofence warning",
@@ -112,6 +114,7 @@ SCENARIO_RUNS = [
         "GEOFENCE_WARNING",
         "WARNING",
         "WARNING",
+        "WARNING_ACTIVE",
     ),
     ScenarioRun(
         "Geofence violation",
@@ -120,6 +123,7 @@ SCENARIO_RUNS = [
         "GEOFENCE_VIOLATION",
         "RETURN_TO_HOME",
         "CRITICAL",
+        "RETURNING_HOME",
     ),
     ScenarioRun(
         "Unsafe geofence alias",
@@ -128,6 +132,7 @@ SCENARIO_RUNS = [
         "GEOFENCE_VIOLATION",
         "RETURN_TO_HOME",
         "CRITICAL",
+        "RETURNING_HOME",
     ),
     ScenarioRun(
         "Altitude violation",
@@ -136,6 +141,7 @@ SCENARIO_RUNS = [
         "ALTITUDE_LIMIT_VIOLATION",
         "LAND",
         "CRITICAL",
+        "LANDING",
     ),
     ScenarioRun(
         "Low battery",
@@ -144,6 +150,7 @@ SCENARIO_RUNS = [
         "LOW_BATTERY",
         "LAND",
         "CRITICAL",
+        "LANDING",
     ),
     ScenarioRun(
         "Mission timeout",
@@ -152,6 +159,7 @@ SCENARIO_RUNS = [
         "MISSION_TIMEOUT",
         "RETURN_TO_HOME",
         "CRITICAL",
+        "RETURNING_HOME",
     ),
     ScenarioRun(
         "State timeout",
@@ -160,6 +168,6 @@ SCENARIO_RUNS = [
         "STATE_TIMEOUT",
         "RETURN_TO_HOME",
         "CRITICAL",
+        "RETURNING_HOME",
     ),
 ]
-
