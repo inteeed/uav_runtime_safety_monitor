@@ -14,9 +14,6 @@ safety_monitor_node
         |
         v
 mission_supervisor_node
-        |
-        v
-safety_status_logger_node
 ```
 
 Implemented scripts:
@@ -32,7 +29,6 @@ Implemented scripts:
 /uav/state
 /uav/safety_status
 /uav/recommended_action
-/uav/safety_events
 /uav/supervisor_mode
 ```
 
@@ -66,6 +62,7 @@ detail
 supervisor_mode
 active_response
 response_reason
+response_started
 ```
 
 ## How to Run
@@ -76,6 +73,8 @@ Use a terminal with ROS2 sourced. For Foxy:
 source /opt/ros/foxy/setup.bash
 cd /home/inteed/projects/uav-runtime-safety-monitor
 ```
+
+Use a clean terminal for ROS2. Do not source ROS Noetic and ROS2 Foxy in the same shell.
 
 Terminal 1:
 

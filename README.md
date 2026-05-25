@@ -61,7 +61,9 @@ The current safety limits are stored in [config/safety_limits.json](config/safet
 
 ## Implementation
 
-The current version is intentionally lightweight and does not require PX4, Gazebo, or ROS2. It contains:
+The core validation path is intentionally lightweight and does not require PX4, Gazebo, or ROS2. Optional ROS2 and Gazebo extensions reuse the same safety-monitoring logic instead of duplicating it.
+
+Core Python components:
 
 - [src/mission_simulator.py](src/mission_simulator.py): generates simulated UAV state samples for multiple validation scenarios.
 - [src/scenario_catalog.py](src/scenario_catalog.py): defines scenarios, expected outcomes, and log names.
@@ -75,6 +77,8 @@ The current version is intentionally lightweight and does not require PX4, Gazeb
 - [analysis/plot_mission.py](analysis/plot_mission.py): creates validation plots.
 - [analysis/validate_scenarios.py](analysis/validate_scenarios.py): checks each scenario against the expected monitor result.
 - [tests/test_safety_monitor.py](tests/test_safety_monitor.py): unit tests for the monitor logic.
+- [ros2_extension](ros2_extension): script-based ROS2 nodes for `/uav/state`, `/uav/safety_status`, `/uav/recommended_action`, and `/uav/supervisor_mode`.
+- [gazebo_extension](gazebo_extension): Gazebo Classic world, UAV model, and ROS2 bridge nodes for Gazebo-originated state data and supervisor response feedback.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
 
@@ -122,6 +126,20 @@ python3 analysis/plot_mission.py
 python3 analysis/create_architecture_diagram.py
 python3 -m unittest discover
 ```
+
+For the visible ROS2/Gazebo demonstration, see [gazebo_extension/README.md](gazebo_extension/README.md). The Gazebo GUI demo is:
+
+```bash
+./gazebo_extension/run_gui_demo.sh
+```
+
+The quickest non-GUI smoke test is:
+
+```bash
+./gazebo_extension/run_headless_demo.sh
+```
+
+It runs a Gazebo world, bridges `/model_states` into `/uav/state`, monitors the UAV state, and sends a return-home or landing response back to the Gazebo commander.
 
 Expected generated files include:
 
@@ -171,12 +189,12 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - event-based logging for log-data analysis,
 - simulation-based validation scenarios,
 - reusable simulation components with expected scenario outcomes,
+- Gazebo Classic integration using Gazebo model state as UAV state input,
 - a path toward ROS2/PX4/Gazebo integration.
 
 ## Future Work
 
-- Convert the safety monitor and mission supervisor into ROS2 `rclpy` nodes.
-- Subscribe to `/uav/state` and publish `/uav/safety_status`, `/uav/recommended_action`, `/uav/safety_events`, and `/uav/supervisor_mode`.
 - Add PX4 or ArduPilot SITL integration.
-- Add Gazebo-based validation scenarios.
+- Convert the Gazebo extension from kinematic model-state commands to autopilot-driven simulation.
+- Package the ROS2 scripts as a proper `ament_python` package with launch files and custom messages.
 - Add position-deviation, velocity-limit, GPS-loss, and sensor-fault checks.

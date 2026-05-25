@@ -1,0 +1,135 @@
+# Gazebo Simulation Extension
+
+This extension runs the runtime safety monitor against a Gazebo Classic simulation. It uses a simple kinematic UAV marker model in Gazebo and bridges Gazebo model state into the existing `/uav/state` ROS2 topic.
+
+This is not PX4 SITL yet. It is a Gazebo-based integration step that demonstrates:
+
+- a real Gazebo world and UAV model,
+- Gazebo model state converted into the project's UAV state interface,
+- runtime safety monitoring from Gazebo state,
+- mission-supervisor response feedback into the Gazebo commander.
+
+## Components
+
+| Component | File | Purpose |
+| --- | --- | --- |
+| Gazebo world | `worlds/uav_safety_demo.world` | Loads the UAV model, geofence marker, Gazebo ROS state plugin, ground plane, and sun. |
+| UAV model | `models/safety_uav/model.sdf` | Simple visual marker for the simulated UAV. |
+| Gazebo state bridge | `gazebo_state_bridge_node.py` | Subscribes to `/model_states` and publishes `/uav/state`. |
+| Gazebo mission commander | `gazebo_mission_commander_node.py` | Moves the UAV model through a scenario and reacts to `/uav/supervisor_mode`. |
+| Headless demo runner | `run_headless_demo.sh` | Starts Gazebo server and all ROS2 bridge/monitor/supervisor/commander scripts for one smoke test. |
+| GUI demo runner | `run_gui_demo.sh` | Starts the visible Gazebo GUI and runs the same ROS2 bridge/monitor/supervisor/commander pipeline. |
+
+## Visible Gazebo Demo
+
+Use this when you want to see the Gazebo window:
+
+```bash
+cd /home/inteed/projects/uav-runtime-safety-monitor
+./gazebo_extension/run_gui_demo.sh
+```
+
+The default scenario is `geofence_violation`. The UAV marker should move toward the geofence, cross the boundary, then return home and land after the supervisor response is triggered.
+
+Important: run this from a clean terminal. Do not source ROS Noetic first. The script sources ROS2 Foxy itself.
+
+## One-Command Headless Test
+
+Use this first if you only want to verify that Gazebo and ROS2 are connected:
+
+```bash
+cd /home/inteed/projects/uav-runtime-safety-monitor
+./gazebo_extension/run_headless_demo.sh
+```
+
+The default scenario is `geofence_violation`. You can run another scenario like this:
+
+```bash
+./gazebo_extension/run_headless_demo.sh altitude_violation
+```
+
+The script writes logs under `results/gazebo_demo_logs/` and prints a short summary showing the monitor status, supervisor mode, and inserted response commands.
+
+## Manual GUI Run
+
+Use clean terminals with ROS2 Foxy sourced. Do not source Noetic and Foxy in the same terminal.
+
+In every terminal:
+
+```bash
+source /opt/ros/foxy/setup.bash
+cd /home/inteed/projects/uav-runtime-safety-monitor
+export GAZEBO_MODEL_PATH=$PWD/gazebo_extension/models:$GAZEBO_MODEL_PATH
+```
+
+Terminal 1, start Gazebo:
+
+```bash
+gazebo --verbose gazebo_extension/worlds/uav_safety_demo.world
+```
+
+If Gazebo GUI is not available, use the headless server instead:
+
+```bash
+gzserver --verbose gazebo_extension/worlds/uav_safety_demo.world
+```
+
+Terminal 2, bridge Gazebo model state to `/uav/state`:
+
+```bash
+python3 gazebo_extension/gazebo_state_bridge_node.py
+```
+
+Terminal 3, run the safety monitor:
+
+```bash
+python3 ros2_extension/safety_monitor_node.py
+```
+
+Terminal 4, run the mission supervisor:
+
+```bash
+python3 ros2_extension/mission_supervisor_node.py
+```
+
+Terminal 5, command the Gazebo UAV through an unsafe mission:
+
+```bash
+python3 gazebo_extension/gazebo_mission_commander_node.py
+```
+
+Expected behavior:
+
+```text
+GEOFENCE_WARNING
+GEOFENCE_VIOLATION
+RETURN_TO_HOME
+RETURNING_HOME
+```
+
+The Gazebo commander inserts a return-home response after the supervisor publishes `RETURNING_HOME`.
+
+## Useful Topic Checks
+
+```bash
+ros2 topic list
+ros2 topic echo /model_states
+ros2 topic echo /uav/state
+ros2 topic echo /uav/safety_status
+ros2 topic echo /uav/supervisor_mode
+```
+
+## Other Scenarios
+
+```bash
+python3 gazebo_extension/gazebo_mission_commander_node.py --ros-args -p scenario:=altitude_violation
+python3 gazebo_extension/gazebo_mission_commander_node.py --ros-args -p scenario:=low_battery
+python3 gazebo_extension/gazebo_mission_commander_node.py --ros-args -p scenario:=mission_timeout
+```
+
+## Limitations
+
+- This is a kinematic Gazebo simulation: the commander sets model state directly through Gazebo's `/set_entity_state` service.
+- It does not use PX4, ArduPilot, or motor/flight dynamics yet.
+- The purpose is to validate the runtime safety-monitoring pipeline against Gazebo-originated state data before moving to PX4/Gazebo SITL.
+- Gazebo Classic is used for compatibility with the available ROS2 Foxy/Gazebo setup. A later version can migrate the world to modern Gazebo.

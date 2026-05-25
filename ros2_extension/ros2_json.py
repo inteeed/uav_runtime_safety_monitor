@@ -80,3 +80,12 @@ def supervisor_decision_to_json(decision: SupervisorDecision) -> str:
         sort_keys=True,
     )
 
+
+def supervisor_decision_from_json(payload: str) -> SupervisorDecision:
+    data = json.loads(payload)
+    return SupervisorDecision(
+        supervisor_mode=str(data["supervisor_mode"]),
+        active_response=str(data["active_response"]),
+        response_reason=str(data["response_reason"]),
+        response_started=bool(data.get("response_started", False)),
+    )

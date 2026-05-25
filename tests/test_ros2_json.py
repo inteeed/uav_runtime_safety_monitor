@@ -15,6 +15,7 @@ from ros2_json import (
     safety_result_to_json,
     state_from_json,
     state_to_json,
+    supervisor_decision_from_json,
     supervisor_decision_to_json,
 )
 
@@ -64,11 +65,13 @@ class Ros2JsonTest(unittest.TestCase):
         )
 
         payload = supervisor_decision_to_json(decision)
+        decoded = supervisor_decision_from_json(payload)
 
         self.assertIn("RETURNING_HOME", payload)
         self.assertIn("GEOFENCE_VIOLATION", payload)
+        self.assertEqual(decoded.supervisor_mode, decision.supervisor_mode)
+        self.assertEqual(decoded.active_response, decision.active_response)
 
 
 if __name__ == "__main__":
     unittest.main()
-
