@@ -1,13 +1,17 @@
 import os
+from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 from uav_runtime_safety_monitor.px4_environment_check import (
+    CommandResult,
     FAIL,
     INFO,
     OK,
     WARN,
     contains_noetic_path,
     evaluate_current_shell,
+    evaluate_ros_topics,
     parse_lines,
 )
 
@@ -44,7 +48,47 @@ class PX4EnvironmentCheckTest(unittest.TestCase):
         self.assertEqual(result.status, INFO)
 
     def test_parse_lines_ignores_blank_lines(self) -> None:
-        self.assertEqual(parse_lines("\npx4_msgs\n\nstd_msgs\n"), ["px4_msgs", "std_msgs"])
+        self.assertEqual(
+            parse_lines("\npx4_msgs\n\nstd_msgs\n"),
+            ["px4_msgs", "std_msgs"],
+        )
+
+    def test_topic_check_accepts_sih_without_battery_topic(self) -> None:
+        output = "/fmu/out/vehicle_local_position\n/fmu/out/vehicle_status\n"
+
+        with patch(
+            "uav_runtime_safety_monitor.px4_environment_check.source_and_run",
+            return_value=CommandResult(0, output, ""),
+        ):
+            result = evaluate_ros_topics([Path("/")])
+
+        self.assertEqual(result.status, WARN)
+        self.assertIn("/fmu/out/battery_status", result.detail)
+
+    def test_topic_check_can_require_battery_topic(self) -> None:
+        output = "/fmu/out/vehicle_local_position\n/fmu/out/vehicle_status\n"
+
+        with patch(
+            "uav_runtime_safety_monitor.px4_environment_check.source_and_run",
+            return_value=CommandResult(0, output, ""),
+        ):
+            result = evaluate_ros_topics(
+                [Path("/")],
+                require_optional_topics=True,
+            )
+
+        self.assertEqual(result.status, FAIL)
+
+    def test_topic_check_fails_without_local_position(self) -> None:
+        output = "/fmu/out/vehicle_status\n/fmu/out/battery_status\n"
+
+        with patch(
+            "uav_runtime_safety_monitor.px4_environment_check.source_and_run",
+            return_value=CommandResult(0, output, ""),
+        ):
+            result = evaluate_ros_topics([Path("/")])
+
+        self.assertEqual(result.status, FAIL)
 
 
 if __name__ == "__main__":

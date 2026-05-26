@@ -47,11 +47,11 @@ Implemented in the ROS2 package:
 - `px4_safety_monitor.launch.py`,
 - PX4 local-position to monitor-state conversion helpers,
 - PX4 readiness checks for mixed ROS environments and required ROS2 packages,
+- helper scripts for starting the Micro XRCE-DDS Agent and PX4 SIH SITL,
 - tests for the NED-to-positive-altitude mapping.
 
 Not implemented yet:
 
-- PX4 SITL startup inside this repository,
 - command feedback from `/uav/supervisor_mode` into PX4 failsafe commands,
 - flight-mode switching,
 - offboard trajectory control.
@@ -63,7 +63,11 @@ The bridge expects these PX4 ROS2 topics:
 | PX4 topic | PX4 message | Used for |
 | --- | --- | --- |
 | `/fmu/out/vehicle_local_position` | `px4_msgs/msg/VehicleLocalPosition` | local position and velocity |
-| `/fmu/out/battery_status` | `px4_msgs/msg/BatteryStatus` | battery percentage |
+| `/fmu/out/battery_status` | `px4_msgs/msg/BatteryStatus` | optional battery percentage |
+
+PX4 SIH SITL may omit `/fmu/out/battery_status`. In that case the bridge keeps
+using its configured fallback battery value so local-position validation can
+still run.
 
 The bridge publishes:
 
@@ -126,20 +130,29 @@ export PX4_ROS2_WS_SETUP=<px4_ros2_ws>/install/setup.bash
 ./px4_extension/run_px4_monitor_stack.sh
 ```
 
+For the tested PX4 SIH workflow, start these in separate terminals before the
+monitor stack:
+
+```bash
+./px4_extension/run_micro_xrce_agent.sh
+./px4_extension/run_px4_sih_sitl.sh
+```
+
 Use the live topic check only after PX4 SITL and the Micro XRCE-DDS Agent are running:
 
 ```bash
 python3 px4_extension/check_px4_environment.py --extra-setup <px4_ros2_ws>/install/setup.bash --check-topics --strict
 ```
 
-In another terminal, PX4 SITL and the ROS2/DDS bridge must be running according to the PX4 ROS2 documentation.
+Add `--require-battery-topic` if the validation specifically needs live PX4
+battery telemetry instead of the bridge fallback.
 
 ## Validation Checklist
 
 Before claiming PX4 integration is working, verify:
 
 - `ros2 topic list` shows `/fmu/out/vehicle_local_position`,
-- `ros2 topic list` shows `/fmu/out/battery_status`,
+- `/fmu/out/battery_status` is visible or the bridge fallback battery value is acceptable,
 - `ros2 topic echo /uav/state` shows JSON state messages,
 - `ros2 topic echo /uav/safety_status` shows monitor output,
 - a controlled geofence or altitude violation produces the expected supervisor response.

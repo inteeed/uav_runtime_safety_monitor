@@ -51,6 +51,7 @@ class PX4StateBridgeNode(Node):
         self.declare_parameter("publish_topic", "/uav/state")
         self.declare_parameter("fallback_battery_percent", 100.0)
         self.declare_parameter("mission_state", "PX4_TELEMETRY")
+        self.declare_parameter("publish_period_s", 0.1)
 
         local_position_topic = str(self.get_parameter("local_position_topic").value)
         battery_status_topic = str(self.get_parameter("battery_status_topic").value)
@@ -59,7 +60,11 @@ class PX4StateBridgeNode(Node):
             self.get_parameter("fallback_battery_percent").value
         )
         self._mission_state = str(self.get_parameter("mission_state").value)
+        self._publish_period_s = max(
+            0.0, float(self.get_parameter("publish_period_s").value)
+        )
         self._start_time = self.get_clock().now()
+        self._last_publish_elapsed_s = None
 
         qos_profile = _px4_qos_profile()
         self._state_publisher = self.create_publisher(String, publish_topic, 10)
@@ -76,10 +81,11 @@ class PX4StateBridgeNode(Node):
             qos_profile,
         )
         self.get_logger().info(
-            "PX4 bridge ready: {} + {} -> {}".format(
+            "PX4 bridge ready: {} + {} -> {} at up to {:.1f} Hz".format(
                 local_position_topic,
                 battery_status_topic,
                 publish_topic,
+                self._publish_rate_hz(),
             )
         )
 
@@ -91,6 +97,9 @@ class PX4StateBridgeNode(Node):
     def _on_local_position(self, message) -> None:
         now = self.get_clock().now()
         elapsed_s = (now - self._start_time).nanoseconds / 1e9
+        if not self._should_publish(elapsed_s):
+            return
+
         state = local_position_to_uav_state(
             message,
             time_s=elapsed_s,
@@ -101,6 +110,22 @@ class PX4StateBridgeNode(Node):
         output = String()
         output.data = state_to_json(state)
         self._state_publisher.publish(output)
+
+    def _should_publish(self, elapsed_s: float) -> bool:
+        if self._last_publish_elapsed_s is None:
+            self._last_publish_elapsed_s = elapsed_s
+            return True
+
+        if elapsed_s - self._last_publish_elapsed_s < self._publish_period_s:
+            return False
+
+        self._last_publish_elapsed_s = elapsed_s
+        return True
+
+    def _publish_rate_hz(self) -> float:
+        if self._publish_period_s <= 0.0:
+            return float("inf")
+        return 1.0 / self._publish_period_s
 
 
 def main() -> int:

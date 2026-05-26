@@ -18,6 +18,19 @@ Official references:
 - PX4 Gazebo simulation: `https://docs.px4.io/main/en/sim_gazebo_gz/`
 - PX4 Ubuntu development environment: `https://docs.px4.io/main/en/dev_setup/dev_env_linux_ubuntu.html`
 
+## Validated Local SITL Path
+
+For Ubuntu 20.04 with ROS2 Foxy, the tested path is:
+
+- PX4-Autopilot `v1.14.4`
+- `px4_msgs` branch `release/1.14`
+- Micro XRCE-DDS Agent `v2.4.3`
+- PX4 SIH quadrotor target: `make px4_sitl sihsim_quadx`
+
+The SIH target is useful for validating the ROS2 telemetry bridge because it
+does not require Gazebo plugins. It still publishes PX4 DDS topics such as
+`/fmu/out/vehicle_local_position` through the Micro XRCE-DDS Agent.
+
 ## Compatibility Rule
 
 Do not mix ROS1 Noetic and ROS2 Foxy in the same terminal. If you previously
@@ -60,6 +73,14 @@ export PX4_ROS2_WS_SETUP=/path/to/px4_ros2_ws/install/setup.bash
 python3 px4_extension/check_px4_environment.py --extra-setup "$PX4_ROS2_WS_SETUP" --check-topics --strict
 ```
 
+PX4 SIH SITL may not publish `/fmu/out/battery_status`. The checker treats
+battery telemetry as optional by default because the bridge can use a fallback
+battery value. To require live battery telemetry, add:
+
+```bash
+python3 px4_extension/check_px4_environment.py --extra-setup "$PX4_ROS2_WS_SETUP" --check-topics --require-battery-topic --strict
+```
+
 ## Runtime Stack
 
 When the PX4 ROS2 workspace exists, run the monitor stack with:
@@ -79,13 +100,23 @@ The helper script:
 5. builds this ROS2 package,
 6. launches `px4_safety_monitor.launch.py`.
 
+The local helper scripts can start the two external PX4 processes in separate
+terminals when the dependencies are installed in the default project paths:
+
+```bash
+./px4_extension/run_micro_xrce_agent.sh
+./px4_extension/run_px4_sih_sitl.sh
+```
+
+Set `MICRO_XRCE_AGENT_PREFIX`, `PX4_AUTOPILOT_DIR`, or `PX4_TOOLS_DIR` if your
+PX4 workspace uses different paths.
+
 ## PX4 Telemetry Acceptance Criteria
 
 Before claiming live PX4 integration, verify:
 
 ```bash
 ros2 topic list | grep /fmu/out/vehicle_local_position
-ros2 topic list | grep /fmu/out/battery_status
 ros2 topic echo /uav/state
 ros2 topic echo /uav/safety_status
 ros2 topic echo /uav/supervisor_mode
@@ -93,7 +124,9 @@ ros2 topic echo /uav/supervisor_mode
 
 The minimum successful result is:
 
-- PX4 publishes local position and battery telemetry.
+- PX4 publishes local position telemetry.
+- Battery telemetry is either live on `/fmu/out/battery_status` or handled by
+  the bridge fallback value.
 - `px4_state_bridge` republishes that telemetry as `/uav/state`.
 - `safety_monitor` publishes `/uav/safety_status`.
 - `mission_supervisor` publishes `/uav/supervisor_mode`.

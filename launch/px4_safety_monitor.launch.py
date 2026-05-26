@@ -15,6 +15,8 @@ def generate_launch_description() -> LaunchDescription:
     safety_limits_path = os.path.join(package_share, "config", "safety_limits.json")
     local_position_topic = LaunchConfiguration("local_position_topic")
     battery_status_topic = LaunchConfiguration("battery_status_topic")
+    publish_period_s = LaunchConfiguration("publish_period_s")
+    safety_limits_path_arg = LaunchConfiguration("safety_limits_path")
 
     return LaunchDescription(
         [
@@ -28,6 +30,16 @@ def generate_launch_description() -> LaunchDescription:
                 default_value="/fmu/out/battery_status",
                 description="PX4 battery status output topic.",
             ),
+            DeclareLaunchArgument(
+                "publish_period_s",
+                default_value="0.1",
+                description="Minimum interval between published /uav/state samples.",
+            ),
+            DeclareLaunchArgument(
+                "safety_limits_path",
+                default_value=safety_limits_path,
+                description="Safety limits JSON used by the monitor.",
+            ),
             SetEnvironmentVariable("UAV_RUNTIME_MONITOR_ROOT", package_share),
             Node(
                 package=PACKAGE_NAME,
@@ -38,6 +50,7 @@ def generate_launch_description() -> LaunchDescription:
                     {
                         "local_position_topic": local_position_topic,
                         "battery_status_topic": battery_status_topic,
+                        "publish_period_s": publish_period_s,
                     }
                 ],
             ),
@@ -46,7 +59,7 @@ def generate_launch_description() -> LaunchDescription:
                 executable="safety_monitor",
                 name="safety_monitor_node",
                 output="screen",
-                parameters=[{"safety_limits_path": safety_limits_path}],
+                parameters=[{"safety_limits_path": safety_limits_path_arg}],
             ),
             Node(
                 package=PACKAGE_NAME,

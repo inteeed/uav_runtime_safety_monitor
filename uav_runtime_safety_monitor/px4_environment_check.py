@@ -14,8 +14,10 @@ INFO = "INFO"
 
 DEFAULT_ROS_SETUP = "/opt/ros/foxy/setup.bash"
 PX4_ROS2_PACKAGES = ("px4_msgs",)
-PX4_TELEMETRY_TOPICS = (
+PX4_REQUIRED_TELEMETRY_TOPICS = (
     "/fmu/out/vehicle_local_position",
+)
+PX4_OPTIONAL_TELEMETRY_TOPICS = (
     "/fmu/out/battery_status",
 )
 
@@ -199,7 +201,9 @@ def evaluate_ros_packages(
 
 def evaluate_ros_topics(
     setup_files: Sequence[Path],
-    required_topics: Sequence[str] = PX4_TELEMETRY_TOPICS,
+    required_topics: Sequence[str] = PX4_REQUIRED_TELEMETRY_TOPICS,
+    optional_topics: Sequence[str] = PX4_OPTIONAL_TELEMETRY_TOPICS,
+    require_optional_topics: bool = False,
 ) -> CheckResult:
     missing_setups = [str(path) for path in setup_files if not path.exists()]
     if missing_setups:
@@ -228,10 +232,34 @@ def evaluate_ros_topics(
             "Start PX4 SITL and the Micro XRCE-DDS Agent, then rerun with --check-topics.",
         )
 
+    missing_optional = [topic for topic in optional_topics if topic not in available]
+    if missing_optional and require_optional_topics:
+        return CheckResult(
+            "px4_topics",
+            FAIL,
+            "Missing optional PX4 telemetry topic(s) required by this run: {}".format(
+                ", ".join(missing_optional)
+            ),
+            "Use a PX4 SITL setup that publishes these topics, or omit --require-battery-topic.",
+        )
+
+    if missing_optional:
+        return CheckResult(
+            "px4_topics",
+            WARN,
+            "Found required PX4 telemetry topic(s): {}. Optional topic(s) not visible: {}".format(
+                ", ".join(required_topics),
+                ", ".join(missing_optional),
+            ),
+            "The PX4 state bridge will use fallback values for missing optional telemetry.",
+        )
+
     return CheckResult(
         "px4_topics",
         OK,
-        "Found required PX4 telemetry topic(s): {}".format(", ".join(required_topics)),
+        "Found PX4 telemetry topic(s): {}".format(
+            ", ".join([*required_topics, *optional_topics])
+        ),
     )
 
 
@@ -240,6 +268,7 @@ def collect_checks(
     ros_setup: Path,
     extra_setups: Sequence[Path] = (),
     check_topics: bool = False,
+    require_battery_topic: bool = False,
 ) -> List[CheckResult]:
     setup_files = [ros_setup, *extra_setups]
     checks = [
@@ -251,7 +280,12 @@ def collect_checks(
     ]
 
     if check_topics:
-        checks.append(evaluate_ros_topics(setup_files))
+        checks.append(
+            evaluate_ros_topics(
+                setup_files,
+                require_optional_topics=require_battery_topic,
+            )
+        )
     else:
         checks.append(
             CheckResult(
@@ -295,6 +329,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Also require live PX4 telemetry topics to be visible.",
     )
     parser.add_argument(
+        "--require-battery-topic",
+        action="store_true",
+        help=(
+            "Fail the live topic check if /fmu/out/battery_status is missing. "
+            "By default this topic is optional because PX4 SIH SITL may omit it."
+        ),
+    )
+    parser.add_argument(
         "--extra-setup",
         action="append",
         default=[],
@@ -323,6 +365,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         Path(args.ros_setup).expanduser(),
         extra_setups=extra_setups,
         check_topics=args.check_topics,
+        require_battery_topic=args.require_battery_topic,
     )
     print_results(results)
 
