@@ -82,12 +82,13 @@ Core Python components:
 - [gazebo_extension](gazebo_extension): Gazebo Classic world, UAV model, and ROS2 bridge nodes for Gazebo-originated state data and supervisor response feedback.
 - [uav_runtime_safety_monitor](uav_runtime_safety_monitor): `ament_python` ROS2 package entry points used by the launch files.
 - [launch](launch): ROS2 launch files for visible and headless Gazebo safety demos.
-- [px4_extension](px4_extension): experimental PX4 SITL integration plan and telemetry bridge notes.
+- [px4_extension](px4_extension): experimental PX4 SITL integration plan, readiness checks, and telemetry bridge notes.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
 The ROS2 package workflow is described in [docs/ros2_package.md](docs/ros2_package.md).
 The Gazebo integration check is described in [docs/gazebo_validation.md](docs/gazebo_validation.md).
 The PX4 integration path is described in [docs/px4_integration_plan.md](docs/px4_integration_plan.md).
+PX4 SITL setup notes are described in [docs/px4_sitl_setup.md](docs/px4_sitl_setup.md).
 
 ## Validation Scenarios
 
@@ -141,7 +142,15 @@ ros2 launch uav_runtime_safety_monitor gazebo_headless_safety_demo.launch.py
 The optional PX4 monitor launch is available after a PX4 ROS2 workspace with `px4_msgs` has been built and sourced:
 
 ```bash
+python3 px4_extension/check_px4_environment.py
 ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
+```
+
+The PX4 helper refuses to run from a mixed Noetic/Foxy shell and checks that `px4_msgs` is available before launching:
+
+```bash
+export PX4_ROS2_WS_SETUP=/path/to/px4_ros2_ws/install/setup.bash
+./px4_extension/run_px4_monitor_stack.sh
 ```
 
 From the repository root:
@@ -222,11 +231,12 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - ROS2 `ament_python` package and launch-file based demo startup,
 - Gazebo Classic integration using Gazebo model state as UAV state input,
 - optional PX4 telemetry bridge design that preserves the same `/uav/state` monitor interface,
+- PX4 readiness checks for ROS2 environment, `px4_msgs`, DDS tools, and telemetry topics,
 - a path toward ROS2/PX4/Gazebo integration.
 
 ## Future Work
 
-- Validate the optional PX4 telemetry bridge against PX4 SITL.
+- Install/build a compatible PX4 SITL workspace and validate live PX4 telemetry through `px4_state_bridge`.
 - Add a guarded PX4 command bridge for return-to-home and land actions after telemetry validation.
 - Convert the Gazebo extension from kinematic model-state commands to autopilot-driven simulation.
 - Replace JSON string topics with custom ROS2 messages.

@@ -30,6 +30,25 @@ It publishes:
 
 The bridge is optional because it requires `px4_msgs`, which is provided by a PX4 ROS2 workspace rather than this repository.
 
+## Readiness Gate
+
+Before running the bridge against PX4 SITL, use:
+
+```bash
+python3 px4_extension/check_px4_environment.py --strict
+```
+
+After PX4 SITL and the Micro XRCE-DDS Agent are running, add the topic check:
+
+```bash
+python3 px4_extension/check_px4_environment.py --check-topics --strict
+```
+
+This gate is intentionally separate from the safety monitor. It catches setup
+problems such as mixed ROS1/ROS2 shells, missing `px4_msgs`, missing DDS agent
+tools, or absent PX4 telemetry topics before the monitor is blamed for an
+environment issue.
+
 ## Supervisor Action Mapping
 
 Current supervisor actions:

@@ -43,8 +43,10 @@ The safety monitor remains independent from PX4. Only the state source changes.
 Implemented in the ROS2 package:
 
 - `px4_state_bridge` console entry point,
+- `px4_environment_check` console entry point,
 - `px4_safety_monitor.launch.py`,
 - PX4 local-position to monitor-state conversion helpers,
+- PX4 readiness checks for mixed ROS environments and required ROS2 packages,
 - tests for the NED-to-positive-altitude mapping.
 
 Not implemented yet:
@@ -111,9 +113,23 @@ https://docs.px4.io/main/en/sim_gazebo_gz/
 source /opt/ros/foxy/setup.bash
 source <px4_ros2_ws>/install/setup.bash
 cd /home/inteed/projects/uav-runtime-safety-monitor
+python3 px4_extension/check_px4_environment.py --extra-setup <px4_ros2_ws>/install/setup.bash --strict
 colcon build --symlink-install --packages-select uav_runtime_safety_monitor
 source install/setup.bash
 ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
+```
+
+The helper script combines those project-side steps:
+
+```bash
+export PX4_ROS2_WS_SETUP=<px4_ros2_ws>/install/setup.bash
+./px4_extension/run_px4_monitor_stack.sh
+```
+
+Use the live topic check only after PX4 SITL and the Micro XRCE-DDS Agent are running:
+
+```bash
+python3 px4_extension/check_px4_environment.py --extra-setup <px4_ros2_ws>/install/setup.bash --check-topics --strict
 ```
 
 In another terminal, PX4 SITL and the ROS2/DDS bridge must be running according to the PX4 ROS2 documentation.

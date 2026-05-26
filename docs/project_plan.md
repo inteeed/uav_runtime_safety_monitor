@@ -125,3 +125,17 @@ Deliverables:
 - optional PX4 SITL smoke test if the local setup is available
 
 Status: integration plan and bridge scaffold complete; live PX4 SITL validation still planned.
+
+## Phase 10: PX4 Readiness Workflow
+
+Deliverables:
+
+- preflight checker for ROS2/PX4 environment readiness
+- mixed Noetic/Foxy shell detection
+- `px4_msgs` availability check
+- Micro XRCE-DDS Agent availability check
+- optional live PX4 telemetry topic check
+- helper script for launching the monitor stack after PX4 workspace setup
+- PX4 SITL setup notes and acceptance criteria
+
+Status: complete for project-side readiness checks; live PX4 SITL installation and telemetry validation still planned.
