@@ -36,14 +36,21 @@ if [[ ! -f "${ROS_SETUP}" ]]; then
   exit 2
 fi
 
-source "${ROS_SETUP}"
+source_setup() {
+  local setup_file="$1"
+  set +u
+  source "${setup_file}"
+  set -u
+}
+
+source_setup "${ROS_SETUP}"
 
 if [[ -n "${PX4_ROS2_WS_SETUP}" ]]; then
   if [[ ! -f "${PX4_ROS2_WS_SETUP}" ]]; then
     echo "PX4_ROS2_WS_SETUP does not exist: ${PX4_ROS2_WS_SETUP}"
     exit 2
   fi
-  source "${PX4_ROS2_WS_SETUP}"
+  source_setup "${PX4_ROS2_WS_SETUP}"
 fi
 
 cd "${REPO_ROOT}"
@@ -56,6 +63,6 @@ fi
 python3 px4_extension/check_px4_environment.py "${CHECK_ARGS[@]}"
 
 colcon build --symlink-install --packages-select uav_runtime_safety_monitor
-source install/setup.bash
+source_setup install/setup.bash
 
 ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py

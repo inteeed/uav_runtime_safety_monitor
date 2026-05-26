@@ -49,6 +49,7 @@ setup(
             "gazebo_mission_commander = uav_runtime_safety_monitor.gazebo_mission_commander_node:main",
             "px4_state_bridge = uav_runtime_safety_monitor.px4_state_bridge_node:main",
             "px4_environment_check = uav_runtime_safety_monitor.px4_environment_check:main",
+            "safety_console = uav_runtime_safety_monitor.safety_console_node:main",
         ],
     },
 )

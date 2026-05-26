@@ -67,5 +67,12 @@ def generate_launch_description() -> LaunchDescription:
                 name="mission_supervisor_node",
                 output="screen",
             ),
+            Node(
+                package=PACKAGE_NAME,
+                executable="safety_console",
+                name="safety_console_node",
+                output="screen",
+                parameters=[{"print_period_s": 1.0}],
+            ),
         ]
     )
