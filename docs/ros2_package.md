@@ -9,6 +9,7 @@ The package provides ROS2 entry points for:
 - `uav_state_publisher`
 - `gazebo_state_bridge`
 - `gazebo_mission_commander`
+- `px4_state_bridge` experimental, requires `px4_msgs`
 
 It also installs Gazebo models, Gazebo worlds, safety configuration, and launch files.
 
@@ -61,6 +62,16 @@ ros2 topic echo /uav/state
 ros2 topic echo /uav/safety_status
 ros2 topic echo /uav/supervisor_mode
 ```
+
+## Optional PX4 Monitor Launch
+
+After sourcing a PX4 ROS2 workspace that provides `px4_msgs`:
+
+```bash
+ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
+```
+
+This starts the PX4 telemetry bridge, safety monitor, and mission supervisor. It does not start PX4 SITL by itself.
 
 ## Notes
 

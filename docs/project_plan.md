@@ -119,6 +119,9 @@ Deliverables:
 
 - PX4 integration plan
 - state-bridge design from PX4 telemetry to `/uav/state`
+- optional `px4_state_bridge` ROS2 node
+- `px4_safety_monitor.launch.py`
+- tests for PX4 NED-to-monitor-state mapping
 - optional PX4 SITL smoke test if the local setup is available
 
-Status: planned.
+Status: integration plan and bridge scaffold complete; live PX4 SITL validation still planned.

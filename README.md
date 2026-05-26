@@ -82,10 +82,12 @@ Core Python components:
 - [gazebo_extension](gazebo_extension): Gazebo Classic world, UAV model, and ROS2 bridge nodes for Gazebo-originated state data and supervisor response feedback.
 - [uav_runtime_safety_monitor](uav_runtime_safety_monitor): `ament_python` ROS2 package entry points used by the launch files.
 - [launch](launch): ROS2 launch files for visible and headless Gazebo safety demos.
+- [px4_extension](px4_extension): experimental PX4 SITL integration plan and telemetry bridge notes.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
 The ROS2 package workflow is described in [docs/ros2_package.md](docs/ros2_package.md).
 The Gazebo integration check is described in [docs/gazebo_validation.md](docs/gazebo_validation.md).
+The PX4 integration path is described in [docs/px4_integration_plan.md](docs/px4_integration_plan.md).
 
 ## Validation Scenarios
 
@@ -134,6 +136,12 @@ For a headless launch:
 
 ```bash
 ros2 launch uav_runtime_safety_monitor gazebo_headless_safety_demo.launch.py
+```
+
+The optional PX4 monitor launch is available after a PX4 ROS2 workspace with `px4_msgs` has been built and sourced:
+
+```bash
+ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
 ```
 
 From the repository root:
@@ -213,11 +221,13 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - reusable simulation components with expected scenario outcomes,
 - ROS2 `ament_python` package and launch-file based demo startup,
 - Gazebo Classic integration using Gazebo model state as UAV state input,
+- optional PX4 telemetry bridge design that preserves the same `/uav/state` monitor interface,
 - a path toward ROS2/PX4/Gazebo integration.
 
 ## Future Work
 
-- Add PX4 or ArduPilot SITL integration.
+- Validate the optional PX4 telemetry bridge against PX4 SITL.
+- Add a guarded PX4 command bridge for return-to-home and land actions after telemetry validation.
 - Convert the Gazebo extension from kinematic model-state commands to autopilot-driven simulation.
 - Replace JSON string topics with custom ROS2 messages.
 - Add position-deviation, velocity-limit, GPS-loss, and sensor-fault checks.
