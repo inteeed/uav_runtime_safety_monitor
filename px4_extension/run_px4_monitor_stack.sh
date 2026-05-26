@@ -6,13 +6,28 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 ROS_SETUP="${ROS_SETUP:-/opt/ros/foxy/setup.bash}"
 PX4_ROS2_WS_SETUP="${PX4_ROS2_WS_SETUP:-}"
 
+if [[ "${UAV_MONITOR_CLEAN_ENV_DONE:-}" != "1" ]]; then
+  if env | grep -E '^(ROS_PACKAGE_PATH|CMAKE_PREFIX_PATH|PYTHONPATH|LD_LIBRARY_PATH|PATH)=' | grep -q '/noetic' || [[ "${ROS_DISTRO:-}" == "noetic" ]]; then
+    echo "Current shell contains ROS Noetic paths. Restarting the monitor stack in a clean ROS2 environment."
+    exec env -i \
+      HOME="${HOME}" \
+      USER="${USER:-}" \
+      LOGNAME="${LOGNAME:-}" \
+      PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+      ROS_SETUP="${ROS_SETUP}" \
+      PX4_ROS2_WS_SETUP="${PX4_ROS2_WS_SETUP}" \
+      UAV_MONITOR_CLEAN_ENV_DONE=1 \
+      bash "${BASH_SOURCE[0]}" "$@"
+  fi
+fi
+
 if env | grep -E '^(ROS_PACKAGE_PATH|CMAKE_PREFIX_PATH|PYTHONPATH|LD_LIBRARY_PATH|PATH)=' | grep -q '/noetic'; then
-  echo "Current shell contains ROS Noetic paths. Open a clean terminal before running PX4/ROS2."
+  echo "Current shell contains ROS Noetic paths after clean restart. Open a clean terminal before running PX4/ROS2."
   exit 2
 fi
 
 if [[ "${ROS_DISTRO:-}" == "noetic" ]]; then
-  echo "ROS_DISTRO is set to noetic. Open a clean terminal before running PX4/ROS2."
+  echo "ROS_DISTRO is set to noetic after clean restart. Open a clean terminal before running PX4/ROS2."
   exit 2
 fi
 
