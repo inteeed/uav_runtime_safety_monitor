@@ -108,6 +108,18 @@ terminals when the dependencies are installed in the default project paths:
 ./px4_extension/run_px4_sih_sitl.sh
 ```
 
+For PX4 Gazebo Classic, use:
+
+```bash
+./px4_extension/run_px4_gazebo_classic.sh
+```
+
+The Gazebo Classic helper starts headless by default. To show the Gazebo GUI:
+
+```bash
+HEADLESS=0 ./px4_extension/run_px4_gazebo_classic.sh
+```
+
 Set `MICRO_XRCE_AGENT_PREFIX`, `PX4_AUTOPILOT_DIR`, or `PX4_TOOLS_DIR` if your
 PX4 workspace uses different paths.
 

@@ -138,6 +138,15 @@ monitor stack:
 ./px4_extension/run_px4_sih_sitl.sh
 ```
 
+To run PX4 Gazebo Classic from a clean environment without manually typing a
+long `PATH`, use:
+
+```bash
+./px4_extension/run_px4_gazebo_classic.sh
+```
+
+It starts headless by default. Use `HEADLESS=0` to open the Gazebo GUI.
+
 Use the live topic check only after PX4 SITL and the Micro XRCE-DDS Agent are running:
 
 ```bash
