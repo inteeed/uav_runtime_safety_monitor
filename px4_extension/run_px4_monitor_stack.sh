@@ -4,7 +4,12 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 ROS_SETUP="${ROS_SETUP:-/opt/ros/foxy/setup.bash}"
+DEFAULT_PX4_ROS2_WS_SETUP="${HOME}/projects/px4_ros2_ws/install/setup.bash"
 PX4_ROS2_WS_SETUP="${PX4_ROS2_WS_SETUP:-}"
+
+if [[ -z "${PX4_ROS2_WS_SETUP}" && -f "${DEFAULT_PX4_ROS2_WS_SETUP}" ]]; then
+  PX4_ROS2_WS_SETUP="${DEFAULT_PX4_ROS2_WS_SETUP}"
+fi
 
 if [[ "${UAV_MONITOR_CLEAN_ENV_DONE:-}" != "1" ]]; then
   if env | grep -E '^(ROS_PACKAGE_PATH|CMAKE_PREFIX_PATH|PYTHONPATH|LD_LIBRARY_PATH|PATH)=' | grep -q '/noetic' || [[ "${ROS_DISTRO:-}" == "noetic" ]]; then

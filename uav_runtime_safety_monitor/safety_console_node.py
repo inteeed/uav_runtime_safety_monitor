@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Optional
 
 import rclpy
@@ -15,6 +16,7 @@ from ros2_json import (
     state_from_json,
     supervisor_decision_from_json,
 )
+from safety_monitor import SafetyLimits
 
 
 class SafetyConsoleNode(Node):
@@ -23,8 +25,13 @@ class SafetyConsoleNode(Node):
     def __init__(self) -> None:
         super().__init__("safety_console_node")
         self.declare_parameter("print_period_s", 1.0)
+        self.declare_parameter(
+            "safety_limits_path", "config/safety_limits.json"
+        )
 
         print_period_s = float(self.get_parameter("print_period_s").value)
+        limits_path = Path(str(self.get_parameter("safety_limits_path").value))
+        self._limits = self._load_limits(limits_path)
         self._latest_state = None
         self._latest_result = None
         self._latest_decision = None
@@ -39,6 +46,15 @@ class SafetyConsoleNode(Node):
         )
         self.create_timer(max(0.2, print_period_s), self._print_snapshot)
         self.get_logger().info("Safety console ready")
+
+    def _load_limits(self, path: Path) -> Optional[SafetyLimits]:
+        try:
+            return SafetyLimits.from_json(path)
+        except (FileNotFoundError, KeyError, ValueError) as error:
+            self.get_logger().warn(
+                "Could not load safety limits for console margins: {}".format(error)
+            )
+            return None
 
     def _on_state(self, message: String) -> None:
         try:
@@ -104,7 +120,7 @@ class SafetyConsoleNode(Node):
         state = self._latest_state
         return (
             "t={:.1f}s pos=({:.1f},{:.1f},{:.1f}) "
-            "vel=({:.1f},{:.1f},{:.1f}) batt={:.1f}%"
+            "vel=({:.1f},{:.1f},{:.1f}) batt={:.1f}% {}"
         ).format(
             state.time_s,
             state.x_m,
@@ -114,6 +130,25 @@ class SafetyConsoleNode(Node):
             state.vy_mps,
             state.vz_mps,
             state.battery_percent,
+            self._format_margins(),
+        )
+
+    def _format_margins(self) -> str:
+        if self._latest_state is None or self._limits is None:
+            return "margins=(unknown)"
+
+        state = self._latest_state
+        limits = self._limits
+        altitude_margin_m = limits.max_altitude_m - state.z_m
+        geofence_margin_m = min(
+            state.x_m - limits.x_min_m,
+            limits.x_max_m - state.x_m,
+            state.y_m - limits.y_min_m,
+            limits.y_max_m - state.y_m,
+        )
+        return "alt_margin={:.1f}m geofence_margin={:.1f}m".format(
+            altitude_margin_m,
+            geofence_margin_m,
         )
 
     def _format_decision(self) -> str:

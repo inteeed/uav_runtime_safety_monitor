@@ -3,6 +3,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -12,11 +13,19 @@ PACKAGE_NAME = "uav_runtime_safety_monitor"
 
 def generate_launch_description() -> LaunchDescription:
     package_share = get_package_share_directory(PACKAGE_NAME)
-    safety_limits_path = os.path.join(package_share, "config", "safety_limits.json")
+    safety_limits_path = os.path.join(
+        package_share, "config", "px4_live_safety_limits.json"
+    )
     local_position_topic = LaunchConfiguration("local_position_topic")
     battery_status_topic = LaunchConfiguration("battery_status_topic")
     publish_period_s = LaunchConfiguration("publish_period_s")
     safety_limits_path_arg = LaunchConfiguration("safety_limits_path")
+    raw_state_topic = LaunchConfiguration("raw_state_topic")
+    monitor_state_topic = LaunchConfiguration("monitor_state_topic")
+    fault_command_topic = LaunchConfiguration("fault_command_topic")
+    enable_live_logger = LaunchConfiguration("enable_live_logger")
+    live_log_path = LaunchConfiguration("live_log_path")
+    live_event_log_path = LaunchConfiguration("live_event_log_path")
 
     return LaunchDescription(
         [
@@ -36,9 +45,39 @@ def generate_launch_description() -> LaunchDescription:
                 description="Minimum interval between published /uav/state samples.",
             ),
             DeclareLaunchArgument(
+                "raw_state_topic",
+                default_value="/uav/raw_state",
+                description="Raw PX4-derived UAV state topic before fault injection.",
+            ),
+            DeclareLaunchArgument(
+                "monitor_state_topic",
+                default_value="/uav/state",
+                description="Safety-monitor UAV state input topic.",
+            ),
+            DeclareLaunchArgument(
+                "fault_command_topic",
+                default_value="/uav/fault_injection",
+                description="Topic for short live-demo fault injection commands.",
+            ),
+            DeclareLaunchArgument(
                 "safety_limits_path",
                 default_value=safety_limits_path,
-                description="Safety limits JSON used by the monitor.",
+                description="PX4 live-demo safety limits JSON used by the monitor.",
+            ),
+            DeclareLaunchArgument(
+                "enable_live_logger",
+                default_value="true",
+                description="Write live PX4 monitor output to CSV logs.",
+            ),
+            DeclareLaunchArgument(
+                "live_log_path",
+                default_value="data/px4_live_mission.csv",
+                description="CSV file for live state/status/supervisor samples.",
+            ),
+            DeclareLaunchArgument(
+                "live_event_log_path",
+                default_value="data/px4_live_events.csv",
+                description="CSV file for live safety event transitions.",
             ),
             SetEnvironmentVariable("UAV_RUNTIME_MONITOR_ROOT", package_share),
             Node(
@@ -50,7 +89,21 @@ def generate_launch_description() -> LaunchDescription:
                     {
                         "local_position_topic": local_position_topic,
                         "battery_status_topic": battery_status_topic,
+                        "publish_topic": raw_state_topic,
                         "publish_period_s": publish_period_s,
+                    }
+                ],
+            ),
+            Node(
+                package=PACKAGE_NAME,
+                executable="fault_injection",
+                name="fault_injection_node",
+                output="screen",
+                parameters=[
+                    {
+                        "input_topic": raw_state_topic,
+                        "output_topic": monitor_state_topic,
+                        "command_topic": fault_command_topic,
                     }
                 ],
             ),
@@ -72,7 +125,25 @@ def generate_launch_description() -> LaunchDescription:
                 executable="safety_console",
                 name="safety_console_node",
                 output="screen",
-                parameters=[{"print_period_s": 1.0}],
+                parameters=[
+                    {
+                        "print_period_s": 1.0,
+                        "safety_limits_path": safety_limits_path_arg,
+                    }
+                ],
+            ),
+            Node(
+                package=PACKAGE_NAME,
+                executable="live_log",
+                name="live_log_node",
+                output="screen",
+                condition=IfCondition(enable_live_logger),
+                parameters=[
+                    {
+                        "mission_log_path": live_log_path,
+                        "event_log_path": live_event_log_path,
+                    }
+                ],
             ),
         ]
     )

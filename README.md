@@ -83,6 +83,7 @@ Core Python components:
 - [uav_runtime_safety_monitor](uav_runtime_safety_monitor): `ament_python` ROS2 package entry points used by the launch files.
 - [launch](launch): ROS2 launch files for visible and headless Gazebo safety demos.
 - [px4_extension](px4_extension): experimental PX4 SITL integration plan, readiness checks, and telemetry bridge notes.
+- [docs/px4_live_demo.md](docs/px4_live_demo.md): tested PX4 Gazebo terminal workflow with readable safety console output and live CSV logging.
 
 More detail is available in [docs/simulation_components.md](docs/simulation_components.md).
 The ROS2 package workflow is described in [docs/ros2_package.md](docs/ros2_package.md).
@@ -122,6 +123,44 @@ Generated figures:
 
 ![Geofence violation supervisor response plot](results/geofence_violation_supervisor_response_plot.png)
 
+### PX4/Gazebo Live Telemetry Demo
+
+PX4 Gazebo Classic was also connected to the same safety-monitoring stack through
+ROS2 telemetry. The bridge converts `/fmu/out/vehicle_local_position` into
+`/uav/raw_state`, a short fault-injection node creates a repeatable live geofence
+test, and the safety monitor evaluates the resulting `/uav/state` stream.
+
+Observed live event log:
+
+```text
+31.44,ENTERED_VIOLATION,...,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,...,"Position (60.0, 0.0) outside geofence"
+37.90,CLEARED_EVENT,...,SAFE,INFO,CONTINUE,...,All monitored constraints satisfied
+```
+
+Live run summary:
+
+```text
+samples: 1859
+non-safe samples: 62
+first non-safe status: GEOFENCE_VIOLATION at t=31.4 s
+recommended action: RETURN_TO_HOME
+first supervisor response: RETURNING_HOME
+event transitions: 2
+```
+
+The live evidence is stored in:
+
+```text
+data/px4_live_mission.csv
+data/px4_live_events.csv
+```
+
+![PX4 live trajectory plot](results/px4_live_trajectory_plot.png)
+
+![PX4 live safety events plot](results/px4_live_safety_events_plot.png)
+
+![PX4 live supervisor response plot](results/px4_live_supervisor_response_plot.png)
+
 ## How to Run
 
 Build and launch the ROS2/Gazebo package:
@@ -152,6 +191,39 @@ The PX4 helper refuses to run from a mixed Noetic/Foxy shell and checks that `px
 export PX4_ROS2_WS_SETUP=/path/to/px4_ros2_ws/install/setup.bash
 ./px4_extension/run_px4_monitor_stack.sh
 ```
+
+For the tested local PX4 Gazebo Classic workflow, use three terminals for PX4,
+the Micro XRCE-DDS Agent, and the monitor stack:
+
+```bash
+HEADLESS=0 ./px4_extension/run_px4_gazebo_classic.sh
+./px4_extension/run_micro_xrce_agent.sh
+export PX4_ROS2_WS_SETUP=/home/inteed/projects/px4_ros2_ws/install/setup.bash
+./px4_extension/run_px4_monitor_stack.sh
+```
+
+The monitor stack prints readable safety lines and writes:
+
+```text
+data/px4_live_mission.csv
+data/px4_live_events.csv
+```
+
+To force a repeatable live monitor event without relying on PX4 pose correction,
+request a short fault injection on the PX4 telemetry stream:
+
+```bash
+./px4_extension/inject_monitor_violation.sh geofence
+```
+
+Then analyze and plot the live run:
+
+```bash
+python3 analysis/analyze_logs.py data/px4_live_mission.csv
+python3 analysis/plot_mission.py --input data/px4_live_mission.csv --prefix px4_live
+```
+
+Full PX4 live demo steps are in [docs/px4_live_demo.md](docs/px4_live_demo.md).
 
 From the repository root:
 
@@ -232,11 +304,13 @@ This project is designed as a small onboard autonomy component, not as a full dr
 - Gazebo Classic integration using Gazebo model state as UAV state input,
 - optional PX4 telemetry bridge design that preserves the same `/uav/state` monitor interface,
 - PX4 readiness checks for ROS2 environment, `px4_msgs`, DDS tools, and telemetry topics,
+- PX4 Gazebo Classic telemetry bridge from `/fmu/out/vehicle_local_position` into the same monitor used by the Python and Gazebo demos,
+- fault-injection node for repeatable PX4 live-demo violations without mixing separate monitor input streams,
+- readable live safety console and CSV logging for PX4-connected runs,
 - a path toward ROS2/PX4/Gazebo integration.
 
 ## Future Work
 
-- Install/build a compatible PX4 SITL workspace and validate live PX4 telemetry through `px4_state_bridge`.
 - Add a guarded PX4 command bridge for return-to-home and land actions after telemetry validation.
 - Convert the Gazebo extension from kinematic model-state commands to autopilot-driven simulation.
 - Replace JSON string topics with custom ROS2 messages.

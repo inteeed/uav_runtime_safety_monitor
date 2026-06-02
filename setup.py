@@ -50,6 +50,9 @@ setup(
             "px4_state_bridge = uav_runtime_safety_monitor.px4_state_bridge_node:main",
             "px4_environment_check = uav_runtime_safety_monitor.px4_environment_check:main",
             "safety_console = uav_runtime_safety_monitor.safety_console_node:main",
+            "live_log = uav_runtime_safety_monitor.live_log_node:main",
+            "fault_injection = uav_runtime_safety_monitor.fault_injection_node:main",
+            "manual_violation_publisher = uav_runtime_safety_monitor.manual_violation_publisher_node:main",
         ],
     },
 )

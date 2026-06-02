@@ -44,6 +44,10 @@ Implemented in the ROS2 package:
 
 - `px4_state_bridge` console entry point,
 - `px4_environment_check` console entry point,
+- `safety_console` readable live status output,
+- `live_log` live CSV recorder for `/uav/state`, `/uav/safety_status`, and `/uav/supervisor_mode`,
+- `fault_injection` telemetry-stream fault injector for repeatable live tests,
+- `manual_violation_publisher` command publisher for requesting short test faults,
 - `px4_safety_monitor.launch.py`,
 - PX4 local-position to monitor-state conversion helpers,
 - PX4 readiness checks for mixed ROS environments and required ROS2 packages,
@@ -147,6 +151,45 @@ long `PATH`, use:
 
 It starts headless by default. Use `HEADLESS=0` to open the Gazebo GUI.
 
+The tested PX4 Gazebo live demo workflow is documented in:
+
+```text
+docs/px4_live_demo.md
+```
+
+The monitor stack now writes live CSV logs by default:
+
+```text
+data/px4_live_mission.csv
+data/px4_live_events.csv
+```
+
+To trigger a reliable geofence violation on the PX4-derived monitor stream while
+the monitor stack is running, use:
+
+```bash
+./px4_extension/inject_monitor_violation.sh geofence
+```
+
+For visual Gazebo disturbances, use:
+
+```bash
+./px4_extension/trigger_gazebo_geofence_violation.sh
+./px4_extension/trigger_gazebo_altitude_violation.sh
+```
+
+The Gazebo disturbance scripts move the model pose directly. PX4 may reject or
+correct that disturbance, so use the telemetry fault injection when the goal is
+to prove the safety monitor response deterministically.
+
+The PX4 live monitor launch routes state through:
+
+```text
+/uav/raw_state -> fault_injection -> /uav/state
+```
+
+so the safety monitor receives one consistent time base.
+
 Use the live topic check only after PX4 SITL and the Micro XRCE-DDS Agent are running:
 
 ```bash
@@ -163,7 +206,8 @@ Before claiming PX4 integration is working, verify:
 - `ros2 topic list` shows `/fmu/out/vehicle_local_position`,
 - `/fmu/out/battery_status` is visible or the bridge fallback battery value is acceptable,
 - `ros2 topic echo /uav/state` shows JSON state messages,
-- `ros2 topic echo /uav/safety_status` shows monitor output,
+- the safety console prints readable `SAFE`, `WARNING`, or `CRITICAL` lines,
+- `data/px4_live_mission.csv` and `data/px4_live_events.csv` are created,
 - a controlled geofence or altitude violation produces the expected supervisor response.
 
 ## Why This Is Experimental

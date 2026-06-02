@@ -98,7 +98,9 @@ The helper script:
 3. optionally sources the PX4 ROS2 workspace,
 4. checks for `px4_msgs`,
 5. builds this ROS2 package,
-6. launches `px4_safety_monitor.launch.py`.
+6. launches `px4_safety_monitor.launch.py`,
+7. prints readable safety-console output,
+8. writes live CSV logs to `data/px4_live_mission.csv` and `data/px4_live_events.csv`.
 
 The local helper scripts can start the two external PX4 processes in separate
 terminals when the dependencies are installed in the default project paths:
@@ -123,6 +125,9 @@ HEADLESS=0 ./px4_extension/run_px4_gazebo_classic.sh
 Set `MICRO_XRCE_AGENT_PREFIX`, `PX4_AUTOPILOT_DIR`, or `PX4_TOOLS_DIR` if your
 PX4 workspace uses different paths.
 
+For the complete live Gazebo workflow, including violation injection and plotting
+the PX4-connected monitor log, see [px4_live_demo.md](px4_live_demo.md).
+
 ## PX4 Telemetry Acceptance Criteria
 
 Before claiming live PX4 integration, verify:
@@ -142,6 +147,8 @@ The minimum successful result is:
 - `px4_state_bridge` republishes that telemetry as `/uav/state`.
 - `safety_monitor` publishes `/uav/safety_status`.
 - `mission_supervisor` publishes `/uav/supervisor_mode`.
+- `safety_console` prints readable status lines.
+- `live_log` records `data/px4_live_mission.csv` and `data/px4_live_events.csv`.
 
 Command output back into PX4 should stay disabled until read-only telemetry has
 been validated.
