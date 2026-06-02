@@ -8,6 +8,8 @@ Each UAV state log sample contains:
 - frame ID, currently `local_enu`
 - position `x`, `y`, `z` in meters
 - velocity `vx`, `vy`, `vz` in meters per second
+- optional planned position `planned_x`, `planned_y`, `planned_z` in meters
+- optional path deviation in meters
 - battery percentage
 - mission state
 - safety status, severity, and recommended action
@@ -24,6 +26,9 @@ Each UAV state log sample contains:
 | SR-005 | UAV shall maintain sufficient battery reserve. | `battery >= 20%` | `LOW_BATTERY` | `CRITICAL` | `LAND` |
 | SR-006 | UAV mission shall finish within the configured mission time. | `time <= 120 s` | `MISSION_TIMEOUT` | `CRITICAL` | `RETURN_TO_HOME` |
 | SR-007 | UAV state updates shall arrive within the configured interval. | update gap `<= 2 s` | `STATE_TIMEOUT` | `CRITICAL` | `RETURN_TO_HOME` |
+| SR-008 | UAV shall remain below the configured speed limit. | velocity magnitude `<= 10 m/s` | `VELOCITY_LIMIT_VIOLATION` | `CRITICAL` | `RETURN_TO_HOME` |
+| SR-009 | UAV shall warn when it drifts away from the planned path. | path deviation `>= 5 m` and `<= 10 m` | `PATH_DEVIATION_WARNING` | `WARNING` | `WARNING` |
+| SR-010 | UAV shall stay close to the planned path. | path deviation `<= 10 m` | `PATH_DEVIATION_VIOLATION` | `CRITICAL` | `RETURN_TO_HOME` |
 
 ## Validation Scenarios
 
@@ -32,10 +37,13 @@ Each UAV state log sample contains:
 | Normal mission | None | `SAFE` | `CONTINUE` | `CONTINUE_MISSION` |
 | Geofence warning | UAV approaches geofence boundary | `GEOFENCE_WARNING` | `WARNING` | `WARNING_ACTIVE` |
 | Geofence violation | UAV crosses `x = 50 m` boundary | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| Unsafe geofence alias | Same geofence violation saved as `unsafe_mission.csv` | `GEOFENCE_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
 | Altitude violation | UAV climbs above `30 m` | `ALTITUDE_LIMIT_VIOLATION` | `LAND` | `LANDING` |
 | Low battery | Battery drops below `20%` | `LOW_BATTERY` | `LAND` | `LANDING` |
 | Mission timeout | Mission lasts longer than `120 s` | `MISSION_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
 | State timeout | Simulated state-update gap exceeds `2 s` | `STATE_TIMEOUT` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| Velocity violation | UAV speed exceeds `10 m/s` | `VELOCITY_LIMIT_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
+| Path deviation | UAV drifts `12 m` away from planned waypoint path | `PATH_DEVIATION_VIOLATION` | `RETURN_TO_HOME` | `RETURNING_HOME` |
 
 The expected result for each scenario is encoded in `src/scenario_catalog.py` and checked by `analysis/validate_scenarios.py`.
 
@@ -45,4 +53,4 @@ The monitor writes continuous state logs and separate event logs. Event logs rec
 
 ## Notes
 
-The first version is a deterministic simulation. Future versions can extend this with ROS2 state messages, PX4 SITL data, Gazebo simulation, sensor dropouts, and trajectory deviation checks.
+The first version is a deterministic simulation. Later versions can make the path-deviation check more realistic by computing cross-track and along-track error against mission segments rather than using the simulated reference point stored in each state sample. Sensor dropouts, GPS quality, and obstacle proximity remain useful extensions.

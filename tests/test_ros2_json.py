@@ -33,6 +33,10 @@ class Ros2JsonTest(unittest.TestCase):
             battery_percent=88.0,
             mission_state="WAYPOINT_1",
             frame_id="local_enu",
+            planned_x_m=9.5,
+            planned_y_m=5.0,
+            planned_z_m=20.0,
+            path_deviation_m=0.5,
         )
 
         decoded = state_from_json(state_to_json(state))
@@ -41,6 +45,8 @@ class Ros2JsonTest(unittest.TestCase):
         self.assertEqual(decoded.x_m, state.x_m)
         self.assertEqual(decoded.mission_state, state.mission_state)
         self.assertEqual(decoded.frame_id, state.frame_id)
+        self.assertEqual(decoded.planned_x_m, state.planned_x_m)
+        self.assertEqual(decoded.path_deviation_m, state.path_deviation_m)
 
     def test_safety_result_round_trip(self) -> None:
         result = SafetyResult(

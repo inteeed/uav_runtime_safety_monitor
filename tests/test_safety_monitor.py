@@ -17,6 +17,9 @@ def make_limits() -> SafetyLimits:
         min_battery_percent=20.0,
         max_mission_time_s=120.0,
         max_state_update_gap_s=2.0,
+        max_velocity_mps=10.0,
+        path_deviation_warning_m=5.0,
+        path_deviation_violation_m=10.0,
         geofence_warning_margin_m=5.0,
         x_min_m=-50.0,
         x_max_m=50.0,
@@ -31,17 +34,22 @@ def make_state(
     y_m=0.0,
     z_m=20.0,
     battery_percent=80.0,
+    vx_mps=0.0,
+    vy_mps=0.0,
+    vz_mps=0.0,
+    path_deviation_m=None,
 ) -> UAVState:
     return UAVState(
         time_s=time_s,
         x_m=x_m,
         y_m=y_m,
         z_m=z_m,
-        vx_mps=0.0,
-        vy_mps=0.0,
-        vz_mps=0.0,
+        vx_mps=vx_mps,
+        vy_mps=vy_mps,
+        vz_mps=vz_mps,
         battery_percent=battery_percent,
         mission_state="TEST",
+        path_deviation_m=path_deviation_m,
     )
 
 
@@ -93,6 +101,24 @@ class RuntimeSafetyMonitorTest(unittest.TestCase):
         self.assertEqual(result.recommended_action, "RETURN_TO_HOME")
         self.assertEqual(result.severity, "CRITICAL")
 
+    def test_velocity_limit_violation(self) -> None:
+        result = self.monitor.evaluate(make_state(vx_mps=11.0))
+        self.assertEqual(result.safety_status, "VELOCITY_LIMIT_VIOLATION")
+        self.assertEqual(result.recommended_action, "RETURN_TO_HOME")
+        self.assertEqual(result.severity, "CRITICAL")
+
+    def test_path_deviation_warning(self) -> None:
+        result = self.monitor.evaluate(make_state(path_deviation_m=6.0))
+        self.assertEqual(result.safety_status, "PATH_DEVIATION_WARNING")
+        self.assertEqual(result.recommended_action, "WARNING")
+        self.assertEqual(result.severity, "WARNING")
+
+    def test_path_deviation_violation(self) -> None:
+        result = self.monitor.evaluate(make_state(path_deviation_m=12.0))
+        self.assertEqual(result.safety_status, "PATH_DEVIATION_VIOLATION")
+        self.assertEqual(result.recommended_action, "RETURN_TO_HOME")
+        self.assertEqual(result.severity, "CRITICAL")
+
     def test_priority_prefers_altitude_violation_over_geofence_violation(self) -> None:
         result = self.monitor.evaluate(make_state(x_m=60.0, z_m=35.0))
         self.assertEqual(result.safety_status, "ALTITUDE_LIMIT_VIOLATION")
@@ -101,4 +127,3 @@ class RuntimeSafetyMonitorTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

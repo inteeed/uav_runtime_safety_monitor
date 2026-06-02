@@ -31,6 +31,19 @@ def values(rows: Iterable[Dict[str, str]], key: str) -> List[float]:
     return [float(row[key]) for row in rows]
 
 
+def optional_values(rows: Iterable[Dict[str, str]], key: str) -> List[float]:
+    output: List[float] = []
+    for row in rows:
+        value = row.get(key, "")
+        if value not in ("", "None", None):
+            output.append(float(value))
+    return output
+
+
+def rows_with_value(rows: Iterable[Dict[str, str]], key: str) -> List[Dict[str, str]]:
+    return [row for row in rows if row.get(key, "") not in ("", "None", None)]
+
+
 def rows_by_severity(
     rows: Iterable[Dict[str, str]], severity: str
 ) -> List[Dict[str, str]]:
@@ -50,6 +63,7 @@ def plot_trajectory(
     y = values(rows, "y_m")
     warnings = rows_by_severity(rows, "WARNING")
     critical = rows_by_severity(rows, "CRITICAL")
+    planned_rows = rows_with_value(rows, "planned_x_m")
 
     fig, ax = plt.subplots(figsize=(7.5, 6.0))
     ax.add_patch(
@@ -63,6 +77,15 @@ def plot_trajectory(
             label="Geofence",
         )
     )
+    if planned_rows:
+        ax.plot(
+            optional_values(planned_rows, "planned_x_m"),
+            optional_values(planned_rows, "planned_y_m"),
+            color="#111827",
+            linestyle="--",
+            linewidth=1.6,
+            label="Planned path",
+        )
     ax.plot(x, y, color="#2563eb", linewidth=2.0, label="UAV trajectory")
     ax.scatter([0.0], [0.0], marker="s", color="#111827", s=60, label="Home")
     ax.scatter([x[0]], [y[0]], marker="o", color="#0f766e", s=50, label="Start")
@@ -160,8 +183,11 @@ def plot_safety_status(rows: List[Dict[str, str]], output_path: Path) -> None:
         "SAFE",
         "GEOFENCE_WARNING",
         "ALTITUDE_WARNING",
+        "PATH_DEVIATION_WARNING",
         "GEOFENCE_VIOLATION",
         "ALTITUDE_LIMIT_VIOLATION",
+        "VELOCITY_LIMIT_VIOLATION",
+        "PATH_DEVIATION_VIOLATION",
         "LOW_BATTERY",
         "MISSION_TIMEOUT",
         "STATE_TIMEOUT",

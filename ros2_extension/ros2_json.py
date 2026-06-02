@@ -26,6 +26,10 @@ def state_to_json(state: UAVState) -> str:
             "vz_mps": state.vz_mps,
             "battery_percent": state.battery_percent,
             "mission_state": state.mission_state,
+            "planned_x_m": state.planned_x_m,
+            "planned_y_m": state.planned_y_m,
+            "planned_z_m": state.planned_z_m,
+            "path_deviation_m": state.path_deviation_m,
         },
         sort_keys=True,
     )
@@ -44,6 +48,10 @@ def state_from_json(payload: str) -> UAVState:
         battery_percent=float(data["battery_percent"]),
         mission_state=str(data["mission_state"]),
         frame_id=str(data.get("frame_id", "local_enu")),
+        planned_x_m=_optional_float(data.get("planned_x_m")),
+        planned_y_m=_optional_float(data.get("planned_y_m")),
+        planned_z_m=_optional_float(data.get("planned_z_m")),
+        path_deviation_m=_optional_float(data.get("path_deviation_m")),
     )
 
 
@@ -89,3 +97,9 @@ def supervisor_decision_from_json(payload: str) -> SupervisorDecision:
         response_reason=str(data["response_reason"]),
         response_started=bool(data.get("response_started", False)),
     )
+
+
+def _optional_float(value):
+    if value is None or value == "":
+        return None
+    return float(value)

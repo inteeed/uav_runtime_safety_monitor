@@ -37,12 +37,25 @@ class SimulationComponentsTest(unittest.TestCase):
         self.assertIn("normal", scenario_names)
         self.assertIn("geofence_violation", scenario_names)
         self.assertIn("state_timeout", scenario_names)
+        self.assertIn("velocity_violation", scenario_names)
+        self.assertIn("path_deviation", scenario_names)
         for scenario in SCENARIO_RUNS:
             self.assertTrue(scenario.expected_status)
             self.assertTrue(scenario.expected_action)
             self.assertTrue(scenario.expected_severity)
 
+    def test_path_deviation_scenario_contains_planned_reference(self) -> None:
+        states = MissionSimulator().generate("path_deviation")
+        deviated = [
+            state
+            for state in states
+            if state.path_deviation_m is not None and state.path_deviation_m > 10.0
+        ]
+
+        self.assertTrue(deviated)
+        self.assertNotEqual(deviated[0].y_m, deviated[0].planned_y_m)
+        self.assertEqual(deviated[0].mission_state, "WAYPOINT_2")
+
 
 if __name__ == "__main__":
     unittest.main()
-

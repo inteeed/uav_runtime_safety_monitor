@@ -1,35 +1,35 @@
-time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
-0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-14.0,local_enu,18.0,4.0,20.0,3.0,4.0,0.0,98.76,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-15.0,local_enu,21.0,8.0,20.0,3.0,4.0,0.0,98.64,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-20.0,local_enu,24.0,12.0,20.0,3.0,4.0,0.0,98.53,WAYPOINT_2,STATE_TIMEOUT,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,State update gap 5.0 s exceeds 2.0 s
-20.89,local_enu,20.0,10.0,20.0,-4.47,-2.24,0.0,98.43,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-21.79,local_enu,16.0,8.0,20.0,-4.47,-2.24,0.0,98.32,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-22.68,local_enu,12.0,6.0,20.0,-4.47,-2.24,0.0,98.22,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-23.58,local_enu,8.0,4.0,20.0,-4.47,-2.24,0.0,98.12,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-24.47,local_enu,4.0,2.0,20.0,-4.47,-2.24,0.0,98.02,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-25.37,local_enu,0.0,0.0,20.0,-4.47,-2.24,0.0,97.91,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-26.37,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,97.83,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-27.37,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,97.75,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-28.37,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,97.67,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-29.37,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,97.59,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-30.37,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,97.52,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-31.37,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,97.44,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-32.37,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,97.36,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-33.37,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,97.28,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-34.37,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,97.2,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-35.37,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,97.12,RESPONSE_LANDING,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
-36.37,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,97.12,RESPONSE_COMPLETE,SAFE,INFO,CONTINUE,RESPONSE_COMPLETE,NONE,Supervisor response completed,All monitored constraints satisfied
+time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,0.0,0.0,0.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,0.0,0.0,2.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,0.0,0.0,4.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,0.0,0.0,6.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,0.0,0.0,8.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,0.0,0.0,10.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,0.0,0.0,12.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,0.0,0.0,14.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,0.0,0.0,16.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,0.0,0.0,18.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,0.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,5.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,10.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,15.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+14.0,local_enu,18.0,4.0,20.0,3.0,4.0,0.0,98.76,WAYPOINT_2,18.0,4.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+15.0,local_enu,21.0,8.0,20.0,3.0,4.0,0.0,98.64,WAYPOINT_2,21.0,8.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+20.0,local_enu,24.0,12.0,20.0,3.0,4.0,0.0,98.53,WAYPOINT_2,24.0,12.0,20.0,0.0,STATE_TIMEOUT,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,State update gap 5.0 s exceeds 2.0 s
+20.89,local_enu,20.0,10.0,20.0,-4.47,-2.24,0.0,98.43,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+21.79,local_enu,16.0,8.0,20.0,-4.47,-2.24,0.0,98.32,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+22.68,local_enu,12.0,6.0,20.0,-4.47,-2.24,0.0,98.22,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+23.58,local_enu,8.0,4.0,20.0,-4.47,-2.24,0.0,98.12,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+24.47,local_enu,4.0,2.0,20.0,-4.47,-2.24,0.0,98.02,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+25.37,local_enu,0.0,0.0,20.0,-4.47,-2.24,0.0,97.91,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+26.37,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,97.83,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+27.37,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,97.75,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+28.37,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,97.67,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+29.37,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,97.59,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+30.37,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,97.52,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+31.37,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,97.44,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+32.37,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,97.36,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+33.37,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,97.28,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+34.37,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,97.2,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+35.37,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,97.12,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,STATE_TIMEOUT,All monitored constraints satisfied
+36.37,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,97.12,RESPONSE_COMPLETE,,,,,SAFE,INFO,CONTINUE,RESPONSE_COMPLETE,NONE,Supervisor response completed,All monitored constraints satisfied

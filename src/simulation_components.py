@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import List
 
 from scenario_catalog import MissionScenario, Waypoint
@@ -64,19 +64,7 @@ class StateGapInjector:
 
             time_offset = gap_s if gap_inserted else 0.0
             updated_states.append(
-                state.__class__(
-                    round(state.time_s + time_offset, 2),
-                    state.x_m,
-                    state.y_m,
-                    state.z_m,
-                    state.vx_mps,
-                    state.vy_mps,
-                    state.vz_mps,
-                    state.battery_percent,
-                    state.mission_state,
-                    state.frame_id,
-                )
+                replace(state, time_s=round(state.time_s + time_offset, 2))
             )
 
         return updated_states
-

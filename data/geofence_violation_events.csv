@@ -1,5 +1,5 @@
-time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
-19.5,ENTERED_WARNING,local_enu,46.67,6.67,20.0,98.12,WAYPOINT_2,GEOFENCE_WARNING,WARNING,WARNING,WARNING_ACTIVE,MONITOR,GEOFENCE_WARNING,"Position (46.7, 6.7) is within 5.0 m of geofence"
-20.41,CHANGED_STATUS,local_enu,51.11,7.78,20.0,98.01,WAYPOINT_2,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (51.1, 7.8) outside geofence"
-21.35,CHANGED_STATUS,local_enu,46.46,7.07,20.0,97.9,RESPONSE_RETURN_HOME,GEOFENCE_WARNING,WARNING,WARNING,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (46.5, 7.1) is within 5.0 m of geofence"
-22.29,CLEARED_EVENT,local_enu,41.82,6.37,20.0,97.79,RESPONSE_RETURN_HOME,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+19.5,ENTERED_WARNING,local_enu,46.67,6.67,20.0,98.12,WAYPOINT_2,46.67,6.67,20.0,0.0,GEOFENCE_WARNING,WARNING,WARNING,WARNING_ACTIVE,MONITOR,GEOFENCE_WARNING,"Position (46.7, 6.7) is within 5.0 m of geofence"
+20.41,CHANGED_STATUS,local_enu,51.11,7.78,20.0,98.01,WAYPOINT_2,51.11,7.78,20.0,0.0,GEOFENCE_VIOLATION,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (51.1, 7.8) outside geofence"
+21.35,CHANGED_STATUS,local_enu,46.46,7.07,20.0,97.9,RESPONSE_RETURN_HOME,,,,,GEOFENCE_WARNING,WARNING,WARNING,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,"Position (46.5, 7.1) is within 5.0 m of geofence"
+22.29,CLEARED_EVENT,local_enu,41.82,6.37,20.0,97.79,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,GEOFENCE_VIOLATION,All monitored constraints satisfied

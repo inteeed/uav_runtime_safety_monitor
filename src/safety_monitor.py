@@ -1,5 +1,6 @@
 import json
 from dataclasses import dataclass
+from math import sqrt
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -13,6 +14,9 @@ class SafetyLimits:
     min_battery_percent: float
     max_mission_time_s: float
     max_state_update_gap_s: float
+    max_velocity_mps: float
+    path_deviation_warning_m: float
+    path_deviation_violation_m: float
     geofence_warning_margin_m: float
     x_min_m: float
     x_max_m: float
@@ -31,6 +35,9 @@ class SafetyLimits:
             min_battery_percent=float(data["min_battery_percent"]),
             max_mission_time_s=float(data["max_mission_time_s"]),
             max_state_update_gap_s=float(data["max_state_update_gap_s"]),
+            max_velocity_mps=float(data["max_velocity_mps"]),
+            path_deviation_warning_m=float(data["path_deviation_warning_m"]),
+            path_deviation_violation_m=float(data["path_deviation_violation_m"]),
             geofence_warning_margin_m=float(data["geofence_warning_margin_m"]),
             x_min_m=float(geofence["x_min_m"]),
             x_max_m=float(geofence["x_max_m"]),
@@ -111,6 +118,22 @@ class RuntimeSafetyMonitor:
                 )
             )
 
+        speed_mps = self._speed(state)
+        if speed_mps > self.limits.max_velocity_mps:
+            candidates.append(
+                _CandidateResult(
+                    SafetyResult(
+                        "VELOCITY_LIMIT_VIOLATION",
+                        "RETURN_TO_HOME",
+                        "CRITICAL",
+                        "Velocity {:.1f} m/s exceeds {:.1f} m/s".format(
+                            speed_mps, self.limits.max_velocity_mps
+                        ),
+                    ),
+                    88,
+                )
+            )
+
         if state.battery_percent < self.limits.min_battery_percent:
             candidates.append(
                 _CandidateResult(
@@ -138,6 +161,25 @@ class RuntimeSafetyMonitor:
                         ),
                     ),
                     80,
+                )
+            )
+
+        if (
+            state.path_deviation_m is not None
+            and state.path_deviation_m > self.limits.path_deviation_violation_m
+        ):
+            candidates.append(
+                _CandidateResult(
+                    SafetyResult(
+                        "PATH_DEVIATION_VIOLATION",
+                        "RETURN_TO_HOME",
+                        "CRITICAL",
+                        "Path deviation {:.1f} m exceeds {:.1f} m".format(
+                            state.path_deviation_m,
+                            self.limits.path_deviation_violation_m,
+                        ),
+                    ),
+                    70,
                 )
             )
 
@@ -176,6 +218,27 @@ class RuntimeSafetyMonitor:
                 )
             )
 
+        if (
+            state.path_deviation_m is not None
+            and self.limits.path_deviation_warning_m
+            <= state.path_deviation_m
+            <= self.limits.path_deviation_violation_m
+        ):
+            candidates.append(
+                _CandidateResult(
+                    SafetyResult(
+                        "PATH_DEVIATION_WARNING",
+                        "WARNING",
+                        "WARNING",
+                        "Path deviation {:.1f} m is above {:.1f} m warning threshold".format(
+                            state.path_deviation_m,
+                            self.limits.path_deviation_warning_m,
+                        ),
+                    ),
+                    35,
+                )
+            )
+
         if not candidates:
             return SafetyResult(
                 "SAFE", "CONTINUE", "INFO", "All monitored constraints satisfied"
@@ -203,3 +266,9 @@ class RuntimeSafetyMonitor:
         )
         return distance_to_boundary_m <= self.limits.geofence_warning_margin_m
 
+    def _speed(self, state: UAVState) -> float:
+        return sqrt(
+            state.vx_mps * state.vx_mps
+            + state.vy_mps * state.vy_mps
+            + state.vz_mps * state.vz_mps
+        )

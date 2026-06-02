@@ -4,6 +4,9 @@
   "min_battery_percent": 20.0,
   "max_mission_time_s": 120.0,
   "max_state_update_gap_s": 2.0,
+  "max_velocity_mps": 10.0,
+  "path_deviation_warning_m": 5.0,
+  "path_deviation_violation_m": 10.0,
   "geofence_warning_margin_m": 5.0,
   "geofence": {
     "x_min_m": -50.0,

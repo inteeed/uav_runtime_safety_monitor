@@ -1,44 +1,44 @@
-time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
-0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,23.0,IDLE,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,22.92,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,22.84,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,22.76,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,22.68,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,22.6,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,22.53,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,22.45,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,22.37,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,22.29,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,22.21,TAKEOFF,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,22.1,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,21.98,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,21.87,WAYPOINT_1,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-14.0,local_enu,18.0,4.0,20.0,3.0,4.0,0.0,21.76,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-15.0,local_enu,21.0,8.0,20.0,3.0,4.0,0.0,21.64,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-16.0,local_enu,24.0,12.0,20.0,3.0,4.0,0.0,21.53,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-17.0,local_enu,27.0,16.0,20.0,3.0,4.0,0.0,21.41,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-18.0,local_enu,30.0,20.0,20.0,3.0,4.0,0.0,21.3,WAYPOINT_2,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-18.97,local_enu,25.83,22.5,19.67,-4.28,2.57,-0.34,21.19,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-19.95,local_enu,21.67,25.0,19.33,-4.28,2.57,-0.34,21.08,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-20.92,local_enu,17.5,27.5,19.0,-4.28,2.57,-0.34,20.96,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-21.9,local_enu,13.33,30.0,18.67,-4.28,2.57,-0.34,20.85,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-22.87,local_enu,9.17,32.5,18.33,-4.28,2.57,-0.34,20.74,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-23.84,local_enu,5.0,35.0,18.0,-4.28,2.57,-0.34,20.63,WAYPOINT_3,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-24.73,local_enu,4.38,30.62,18.25,-0.71,-4.94,0.28,20.53,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-25.61,local_enu,3.75,26.25,18.5,-0.71,-4.94,0.28,20.43,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-26.5,local_enu,3.12,21.88,18.75,-0.71,-4.94,0.28,20.32,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-27.38,local_enu,2.5,17.5,19.0,-0.71,-4.94,0.28,20.22,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-28.27,local_enu,1.88,13.12,19.25,-0.71,-4.94,0.28,20.12,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-29.15,local_enu,1.25,8.75,19.5,-0.71,-4.94,0.28,20.02,RETURN_HOME,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
-30.04,local_enu,0.62,4.38,19.75,-0.71,-4.94,0.28,19.92,RETURN_HOME,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.9% below 20.0%
-31.03,local_enu,0.62,4.38,17.77,0.0,0.0,-2.0,19.84,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.8% below 20.0%
-32.02,local_enu,0.62,4.38,15.8,0.0,0.0,-2.0,19.76,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.8% below 20.0%
-33.0,local_enu,0.62,4.38,13.82,0.0,0.0,-2.0,19.69,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.7% below 20.0%
-33.99,local_enu,0.62,4.38,11.85,0.0,0.0,-2.0,19.61,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.6% below 20.0%
-34.98,local_enu,0.62,4.38,9.88,0.0,0.0,-2.0,19.53,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.5% below 20.0%
-35.97,local_enu,0.62,4.38,7.9,0.0,0.0,-2.0,19.45,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.4% below 20.0%
-36.95,local_enu,0.62,4.38,5.93,0.0,0.0,-2.0,19.37,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.4% below 20.0%
-37.94,local_enu,0.62,4.38,3.95,0.0,0.0,-2.0,19.3,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.3% below 20.0%
-38.93,local_enu,0.62,4.38,1.97,0.0,0.0,-2.0,19.22,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.2% below 20.0%
-39.91,local_enu,0.62,4.38,0.0,0.0,0.0,-2.0,19.14,RESPONSE_LANDING,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.1% below 20.0%
-40.91,local_enu,0.62,4.38,0.0,0.0,0.0,0.0,19.14,RESPONSE_COMPLETE,LOW_BATTERY,CRITICAL,LAND,RESPONSE_COMPLETE,NONE,Supervisor response completed,Battery 19.1% below 20.0%
+time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,23.0,IDLE,0.0,0.0,0.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,22.92,TAKEOFF,0.0,0.0,2.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,22.84,TAKEOFF,0.0,0.0,4.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,22.76,TAKEOFF,0.0,0.0,6.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,22.68,TAKEOFF,0.0,0.0,8.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,22.6,TAKEOFF,0.0,0.0,10.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,22.53,TAKEOFF,0.0,0.0,12.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,22.45,TAKEOFF,0.0,0.0,14.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,22.37,TAKEOFF,0.0,0.0,16.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,22.29,TAKEOFF,0.0,0.0,18.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,22.21,TAKEOFF,0.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,22.1,WAYPOINT_1,5.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,21.98,WAYPOINT_1,10.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,21.87,WAYPOINT_1,15.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+14.0,local_enu,18.0,4.0,20.0,3.0,4.0,0.0,21.76,WAYPOINT_2,18.0,4.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+15.0,local_enu,21.0,8.0,20.0,3.0,4.0,0.0,21.64,WAYPOINT_2,21.0,8.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+16.0,local_enu,24.0,12.0,20.0,3.0,4.0,0.0,21.53,WAYPOINT_2,24.0,12.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+17.0,local_enu,27.0,16.0,20.0,3.0,4.0,0.0,21.41,WAYPOINT_2,27.0,16.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+18.0,local_enu,30.0,20.0,20.0,3.0,4.0,0.0,21.3,WAYPOINT_2,30.0,20.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+18.97,local_enu,25.83,22.5,19.67,-4.28,2.57,-0.34,21.19,WAYPOINT_3,25.83,22.5,19.67,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+19.95,local_enu,21.67,25.0,19.33,-4.28,2.57,-0.34,21.08,WAYPOINT_3,21.67,25.0,19.33,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+20.92,local_enu,17.5,27.5,19.0,-4.28,2.57,-0.34,20.96,WAYPOINT_3,17.5,27.5,19.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+21.9,local_enu,13.33,30.0,18.67,-4.28,2.57,-0.34,20.85,WAYPOINT_3,13.33,30.0,18.67,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+22.87,local_enu,9.17,32.5,18.33,-4.28,2.57,-0.34,20.74,WAYPOINT_3,9.17,32.5,18.33,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+23.84,local_enu,5.0,35.0,18.0,-4.28,2.57,-0.34,20.63,WAYPOINT_3,5.0,35.0,18.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+24.73,local_enu,4.38,30.62,18.25,-0.71,-4.94,0.28,20.53,RETURN_HOME,4.38,30.62,18.25,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+25.61,local_enu,3.75,26.25,18.5,-0.71,-4.94,0.28,20.43,RETURN_HOME,3.75,26.25,18.5,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+26.5,local_enu,3.12,21.88,18.75,-0.71,-4.94,0.28,20.32,RETURN_HOME,3.12,21.88,18.75,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+27.38,local_enu,2.5,17.5,19.0,-0.71,-4.94,0.28,20.22,RETURN_HOME,2.5,17.5,19.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+28.27,local_enu,1.88,13.12,19.25,-0.71,-4.94,0.28,20.12,RETURN_HOME,1.88,13.12,19.25,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+29.15,local_enu,1.25,8.75,19.5,-0.71,-4.94,0.28,20.02,RETURN_HOME,1.25,8.75,19.5,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+30.04,local_enu,0.62,4.38,19.75,-0.71,-4.94,0.28,19.92,RETURN_HOME,0.62,4.38,19.75,0.0,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.9% below 20.0%
+31.03,local_enu,0.62,4.38,17.77,0.0,0.0,-2.0,19.84,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.8% below 20.0%
+32.02,local_enu,0.62,4.38,15.8,0.0,0.0,-2.0,19.76,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.8% below 20.0%
+33.0,local_enu,0.62,4.38,13.82,0.0,0.0,-2.0,19.69,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.7% below 20.0%
+33.99,local_enu,0.62,4.38,11.85,0.0,0.0,-2.0,19.61,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.6% below 20.0%
+34.98,local_enu,0.62,4.38,9.88,0.0,0.0,-2.0,19.53,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.5% below 20.0%
+35.97,local_enu,0.62,4.38,7.9,0.0,0.0,-2.0,19.45,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.4% below 20.0%
+36.95,local_enu,0.62,4.38,5.93,0.0,0.0,-2.0,19.37,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.4% below 20.0%
+37.94,local_enu,0.62,4.38,3.95,0.0,0.0,-2.0,19.3,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.3% below 20.0%
+38.93,local_enu,0.62,4.38,1.97,0.0,0.0,-2.0,19.22,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.2% below 20.0%
+39.91,local_enu,0.62,4.38,0.0,0.0,0.0,-2.0,19.14,RESPONSE_LANDING,,,,,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.1% below 20.0%
+40.91,local_enu,0.62,4.38,0.0,0.0,0.0,0.0,19.14,RESPONSE_COMPLETE,,,,,LOW_BATTERY,CRITICAL,LAND,RESPONSE_COMPLETE,NONE,Supervisor response completed,Battery 19.1% below 20.0%

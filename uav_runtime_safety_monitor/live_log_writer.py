@@ -116,6 +116,10 @@ class LiveLogWriter:
             "vz_mps": state.vz_mps,
             "battery_percent": state.battery_percent,
             "mission_state": state.mission_state,
+            "planned_x_m": _optional_value(state.planned_x_m),
+            "planned_y_m": _optional_value(state.planned_y_m),
+            "planned_z_m": _optional_value(state.planned_z_m),
+            "path_deviation_m": _optional_value(state.path_deviation_m),
             "safety_status": result.safety_status,
             "severity": result.severity,
             "recommended_action": result.recommended_action,
@@ -124,3 +128,7 @@ class LiveLogWriter:
             "response_reason": decision.response_reason,
             "detail": result.detail,
         }
+
+
+def _optional_value(value):
+    return "" if value is None else value

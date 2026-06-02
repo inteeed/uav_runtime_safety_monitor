@@ -14,6 +14,10 @@ class MissionScenario:
     climb_rate_mps: float = 2.0
     time_gap_after_s: float = 0.0
     inserted_time_gap_s: float = 0.0
+    path_deviation_y_m: float = 0.0
+    path_deviation_start_s: float = 0.0
+    path_deviation_end_s: float = 0.0
+    path_deviation_states: Tuple[str, ...] = ("WAYPOINT_2",)
 
 
 @dataclass(frozen=True)
@@ -94,6 +98,25 @@ SCENARIOS: Dict[str, MissionScenario] = {
         time_gap_after_s=15.0,
         inserted_time_gap_s=4.0,
     ),
+    "velocity_violation": MissionScenario(
+        waypoints=[
+            (15.0, 0.0, 20.0),
+            (30.0, 20.0, 20.0),
+            (5.0, 35.0, 18.0),
+        ],
+        cruise_speed_mps=12.0,
+    ),
+    "path_deviation": MissionScenario(
+        waypoints=[
+            (15.0, 0.0, 20.0),
+            (30.0, 20.0, 20.0),
+            (5.0, 35.0, 18.0),
+        ],
+        path_deviation_y_m=12.0,
+        path_deviation_start_s=13.0,
+        path_deviation_end_s=22.0,
+        path_deviation_states=("WAYPOINT_2",),
+    ),
 }
 
 
@@ -166,6 +189,24 @@ SCENARIO_RUNS = [
         "state_timeout",
         "state_timeout_mission.csv",
         "STATE_TIMEOUT",
+        "RETURN_TO_HOME",
+        "CRITICAL",
+        "RETURNING_HOME",
+    ),
+    ScenarioRun(
+        "Velocity violation",
+        "velocity_violation",
+        "velocity_violation_mission.csv",
+        "VELOCITY_LIMIT_VIOLATION",
+        "RETURN_TO_HOME",
+        "CRITICAL",
+        "RETURNING_HOME",
+    ),
+    ScenarioRun(
+        "Path deviation",
+        "path_deviation",
+        "path_deviation_mission.csv",
+        "PATH_DEVIATION_VIOLATION",
         "RETURN_TO_HOME",
         "CRITICAL",
         "RETURNING_HOME",

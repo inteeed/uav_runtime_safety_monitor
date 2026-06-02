@@ -1,0 +1,32 @@
+time_s,frame_id,x_m,y_m,z_m,vx_mps,vy_mps,vz_mps,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+0.0,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,100.0,IDLE,0.0,0.0,0.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+1.0,local_enu,0.0,0.0,2.0,0.0,0.0,2.0,99.92,TAKEOFF,0.0,0.0,2.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+2.0,local_enu,0.0,0.0,4.0,0.0,0.0,2.0,99.84,TAKEOFF,0.0,0.0,4.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+3.0,local_enu,0.0,0.0,6.0,0.0,0.0,2.0,99.76,TAKEOFF,0.0,0.0,6.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+4.0,local_enu,0.0,0.0,8.0,0.0,0.0,2.0,99.68,TAKEOFF,0.0,0.0,8.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+5.0,local_enu,0.0,0.0,10.0,0.0,0.0,2.0,99.61,TAKEOFF,0.0,0.0,10.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+6.0,local_enu,0.0,0.0,12.0,0.0,0.0,2.0,99.53,TAKEOFF,0.0,0.0,12.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+7.0,local_enu,0.0,0.0,14.0,0.0,0.0,2.0,99.45,TAKEOFF,0.0,0.0,14.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+8.0,local_enu,0.0,0.0,16.0,0.0,0.0,2.0,99.37,TAKEOFF,0.0,0.0,16.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+9.0,local_enu,0.0,0.0,18.0,0.0,0.0,2.0,99.29,TAKEOFF,0.0,0.0,18.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+10.0,local_enu,0.0,0.0,20.0,0.0,0.0,2.0,99.21,TAKEOFF,0.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+11.0,local_enu,5.0,0.0,20.0,5.0,0.0,0.0,99.09,WAYPOINT_1,5.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+12.0,local_enu,10.0,0.0,20.0,5.0,0.0,0.0,98.98,WAYPOINT_1,10.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+13.0,local_enu,15.0,0.0,20.0,5.0,0.0,0.0,98.87,WAYPOINT_1,15.0,0.0,20.0,0.0,SAFE,INFO,CONTINUE,CONTINUE_MISSION,NONE,No supervisor action active,All monitored constraints satisfied
+14.0,local_enu,18.0,16.0,20.0,3.0,4.0,0.0,98.76,WAYPOINT_2,18.0,4.0,20.0,12.0,PATH_DEVIATION_VIOLATION,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,Path deviation 12.0 m exceeds 10.0 m
+14.96,local_enu,14.4,12.8,20.0,-3.74,-3.32,0.0,98.65,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+15.93,local_enu,10.8,9.6,20.0,-3.74,-3.32,0.0,98.54,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+16.89,local_enu,7.2,6.4,20.0,-3.74,-3.32,0.0,98.43,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+17.85,local_enu,3.6,3.2,20.0,-3.74,-3.32,0.0,98.32,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+18.82,local_enu,0.0,0.0,20.0,-3.74,-3.32,0.0,98.21,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+19.82,local_enu,0.0,0.0,18.0,0.0,0.0,-2.0,98.13,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+20.82,local_enu,0.0,0.0,16.0,0.0,0.0,-2.0,98.05,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+21.82,local_enu,0.0,0.0,14.0,0.0,0.0,-2.0,97.97,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+22.82,local_enu,0.0,0.0,12.0,0.0,0.0,-2.0,97.89,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+23.82,local_enu,0.0,0.0,10.0,0.0,0.0,-2.0,97.82,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+24.82,local_enu,0.0,0.0,8.0,0.0,0.0,-2.0,97.74,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+25.82,local_enu,0.0,0.0,6.0,0.0,0.0,-2.0,97.66,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+26.82,local_enu,0.0,0.0,4.0,0.0,0.0,-2.0,97.58,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+27.82,local_enu,0.0,0.0,2.0,0.0,0.0,-2.0,97.5,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+28.82,local_enu,0.0,0.0,0.0,0.0,0.0,-2.0,97.42,RESPONSE_LANDING,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,PATH_DEVIATION_VIOLATION,All monitored constraints satisfied
+29.82,local_enu,0.0,0.0,0.0,0.0,0.0,0.0,97.42,RESPONSE_COMPLETE,,,,,SAFE,INFO,CONTINUE,RESPONSE_COMPLETE,NONE,Supervisor response completed,All monitored constraints satisfied

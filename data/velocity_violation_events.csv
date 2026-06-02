@@ -1,0 +1,3 @@
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+10.62,ENTERED_VIOLATION,local_enu,7.5,0.0,20.0,99.09,WAYPOINT_1,7.5,0.0,20.0,0.0,VELOCITY_LIMIT_VIOLATION,CRITICAL,RETURN_TO_HOME,RETURNING_HOME,RETURN_TO_HOME,VELOCITY_LIMIT_VIOLATION,Velocity 12.0 m/s exceeds 10.0 m/s
+11.37,CLEARED_EVENT,local_enu,3.75,0.0,20.0,99.0,RESPONSE_RETURN_HOME,,,,,SAFE,INFO,CONTINUE,RETURNING_HOME,RETURN_TO_HOME,VELOCITY_LIMIT_VIOLATION,All monitored constraints satisfied

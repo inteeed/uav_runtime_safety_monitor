@@ -21,6 +21,8 @@ Deliverables:
 
 - altitude-limit check
 - geofence check
+- velocity-limit check
+- planned-path deviation check
 - low-battery check
 - mission-timeout check
 - warning margins
@@ -119,12 +121,12 @@ Deliverables:
 
 - PX4 integration plan
 - state-bridge design from PX4 telemetry to `/uav/state`
-- optional `px4_state_bridge` ROS2 node
+- `px4_state_bridge` ROS2 node
 - `px4_safety_monitor.launch.py`
 - tests for PX4 NED-to-monitor-state mapping
-- optional PX4 SITL smoke test if the local setup is available
+- PX4 Gazebo Classic SITL telemetry smoke test
 
-Status: integration plan and bridge scaffold complete; live PX4 SITL validation still planned.
+Status: complete for bridge scaffold and live telemetry smoke validation.
 
 ## Phase 10: PX4 Readiness Workflow
 
@@ -137,5 +139,19 @@ Deliverables:
 - optional live PX4 telemetry topic check
 - helper script for launching the monitor stack after PX4 workspace setup
 - PX4 SITL setup notes and acceptance criteria
+- live fault-injection workflow for readable monitor validation
+- PX4 live telemetry CSV logs and plots
 
-Status: complete for project-side readiness checks; live PX4 SITL installation and telemetry validation still planned.
+Status: complete for project-side readiness checks and one live PX4/Gazebo telemetry validation run.
+
+## Phase 11: Expanded Safety Scenarios
+
+Deliverables:
+
+- velocity-limit scenario
+- planned-path deviation scenario
+- planned reference fields in mission logs
+- plots that overlay actual trajectory and planned reference trajectory
+- validation cases for the new monitor outcomes
+
+Status: complete for deterministic Python simulation; richer cross-track/along-track trajectory checks remain future work.

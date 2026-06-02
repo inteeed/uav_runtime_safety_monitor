@@ -1,2 +1,2 @@
-time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
-30.04,ENTERED_VIOLATION,local_enu,0.62,4.38,19.75,19.92,RETURN_HOME,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.9% below 20.0%
+time_s,event_type,frame_id,x_m,y_m,z_m,battery_percent,mission_state,planned_x_m,planned_y_m,planned_z_m,path_deviation_m,safety_status,severity,recommended_action,supervisor_mode,active_response,response_reason,detail
+30.04,ENTERED_VIOLATION,local_enu,0.62,4.38,19.75,19.92,RETURN_HOME,0.62,4.38,19.75,0.0,LOW_BATTERY,CRITICAL,LAND,LANDING,LAND,LOW_BATTERY,Battery 19.9% below 20.0%

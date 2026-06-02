@@ -19,6 +19,10 @@ STATE_FIELDNAMES = [
     "vz_mps",
     "battery_percent",
     "mission_state",
+    "planned_x_m",
+    "planned_y_m",
+    "planned_z_m",
+    "path_deviation_m",
     "safety_status",
     "severity",
     "recommended_action",
@@ -37,6 +41,10 @@ EVENT_FIELDNAMES = [
     "z_m",
     "battery_percent",
     "mission_state",
+    "planned_x_m",
+    "planned_y_m",
+    "planned_z_m",
+    "path_deviation_m",
     "safety_status",
     "severity",
     "recommended_action",
@@ -86,6 +94,10 @@ def write_mission_log(
                     "vz_mps": state.vz_mps,
                     "battery_percent": state.battery_percent,
                     "mission_state": state.mission_state,
+                    "planned_x_m": _optional_value(state.planned_x_m),
+                    "planned_y_m": _optional_value(state.planned_y_m),
+                    "planned_z_m": _optional_value(state.planned_z_m),
+                    "path_deviation_m": _optional_value(state.path_deviation_m),
                     "safety_status": result.safety_status,
                     "severity": result.severity,
                     "recommended_action": result.recommended_action,
@@ -159,6 +171,10 @@ def write_event_log(path: Path, events: Iterable[SafetyEvent]) -> None:
                     "z_m": state.z_m,
                     "battery_percent": state.battery_percent,
                     "mission_state": state.mission_state,
+                    "planned_x_m": _optional_value(state.planned_x_m),
+                    "planned_y_m": _optional_value(state.planned_y_m),
+                    "planned_z_m": _optional_value(state.planned_z_m),
+                    "path_deviation_m": _optional_value(state.path_deviation_m),
                     "safety_status": result.safety_status,
                     "severity": result.severity,
                     "recommended_action": result.recommended_action,
@@ -168,3 +184,7 @@ def write_event_log(path: Path, events: Iterable[SafetyEvent]) -> None:
                     "detail": result.detail,
                 }
             )
+
+
+def _optional_value(value):
+    return "" if value is None else value
