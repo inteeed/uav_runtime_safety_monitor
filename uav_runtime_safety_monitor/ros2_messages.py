@@ -18,7 +18,7 @@ try:
 except ImportError:
     _USING_GENERATED_MESSAGES = False
 
-    class UAVStateMsg:  # type: ignore[no-redef]
+    class UAVStateMsg:  # type: ignore
         def __init__(self) -> None:
             self.stamp = None
             self.time_s = 0.0
@@ -38,7 +38,7 @@ except ImportError:
             self.has_path_deviation = False
             self.path_deviation_m = 0.0
 
-    class SafetyStatusMsg:  # type: ignore[no-redef]
+    class SafetyStatusMsg:  # type: ignore
         def __init__(self) -> None:
             self.stamp = None
             self.time_s = 0.0
@@ -47,7 +47,7 @@ except ImportError:
             self.recommended_action = ""
             self.detail = ""
 
-    class SupervisorResponseMsg:  # type: ignore[no-redef]
+    class SupervisorResponseMsg:  # type: ignore
         def __init__(self) -> None:
             self.stamp = None
             self.time_s = 0.0

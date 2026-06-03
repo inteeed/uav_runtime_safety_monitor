@@ -9,7 +9,7 @@ from rclpy.qos import (
     ReliabilityPolicy,
 )
 
-from uav_safety_core.px4_commands import command_for_response
+from uav_safety_core.px4_commands import append_command_record, command_for_response
 from uav_runtime_safety_monitor.ros2_messages import (
     SupervisorResponseMsg,
     ensure_typed_messages_available,
@@ -45,12 +45,14 @@ class PX4CommandBridgeNode(Node):
         self.declare_parameter("supervisor_topic", "/uav/supervisor_mode")
         self.declare_parameter("target_system", 1)
         self.declare_parameter("target_component", 1)
+        self.declare_parameter("command_log_path", "")
 
         self._enabled = bool(self.get_parameter("enable_commands").value)
         command_topic = str(self.get_parameter("command_topic").value)
         supervisor_topic = str(self.get_parameter("supervisor_topic").value)
         self._target_system = int(self.get_parameter("target_system").value)
         self._target_component = int(self.get_parameter("target_component").value)
+        self._command_log_path = str(self.get_parameter("command_log_path").value)
         self._last_sent_response = None
 
         self._vehicle_command_cls = None
@@ -105,9 +107,11 @@ class PX4CommandBridgeNode(Node):
             )
             return
 
-        self._publish_vehicle_command(command, response)
+        self._publish_vehicle_command(command, response, float(message.time_s))
 
-    def _publish_vehicle_command(self, command: int, response: str) -> None:
+    def _publish_vehicle_command(
+        self, command: int, response: str, time_s: float
+    ) -> None:
         message = self._vehicle_command_cls()
         message.timestamp = int(self.get_clock().now().nanoseconds / 1000)
         message.command = command
@@ -122,6 +126,10 @@ class PX4CommandBridgeNode(Node):
                 command, response
             )
         )
+        if self._command_log_path:
+            append_command_record(
+                self._command_log_path, time_s, response, command
+            )
 
 
 def main() -> int:

@@ -70,4 +70,6 @@ python3 px4_extension/check_px4_environment.py "${CHECK_ARGS[@]}"
 colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
 source_setup install/setup.bash
 
-ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
+# Extra arguments are forwarded to the launch file, e.g.
+#   ./px4_extension/run_px4_monitor_stack.sh enable_command_bridge:=true
+ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py "$@"

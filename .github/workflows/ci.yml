@@ -18,7 +18,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt pytest
+          python -m pip install -r requirements.txt pytest pyflakes
+      - name: Lint (pyflakes — catches undefined names / unreachable code)
+        run: |
+          python -m pyflakes uav_runtime_safety_monitor uav_safety_core \
+            analysis px4_extension launch tests conftest.py
       - name: Run unit tests
         run: python -m pytest -q
       - name: Run scenario validation

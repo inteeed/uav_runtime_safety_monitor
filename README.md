@@ -282,6 +282,10 @@ ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py \
   enable_command_bridge:=true
 ```
 
+The full end-to-end procedure (real flown breach → monitor → supervisor → PX4
+RTL) and how to validate the evidence is in
+[docs/px4_closed_loop_validation.md](docs/px4_closed_loop_validation.md).
+
 Analyze the live run:
 
 ```bash
@@ -293,27 +297,37 @@ More detail is in [docs/px4_live_demo.md](docs/px4_live_demo.md).
 
 ## Project Status
 
-Working:
+Working and validated:
 
 - Python scenario simulation and validation.
 - Runtime monitor and mission supervisor.
-- Velocity-limit and planned-path deviation monitoring.
+- Velocity-limit and planned-path deviation monitoring (the monitor computes the
+  deviation itself from the planned path).
 - CSV logging and plotting.
 - ROS2 package launch workflow with custom message interfaces.
 - Gazebo Classic demo.
 - PX4 Gazebo Classic telemetry bridge.
 - Live PX4 telemetry safety-console output.
 - Repeatable live fault injection for validation evidence.
+
+Implemented, not yet validated on a running PX4 SITL:
+
 - Guarded PX4 command bridge that forwards `RETURN_TO_HOME` / `LAND` back into
-  PX4 (disabled by default; SITL only).
+  PX4 (disabled by default; SITL only) and logs each sent command.
 - Real-flight geofence trigger that commands PX4 past the boundary so the
-  monitor detects a genuine telemetry violation.
+  monitor detects a genuine telemetry violation, with a supervisor handoff that
+  releases offboard control for PX4 to execute the response.
+- Closed-loop evidence check ([analysis/validate_closed_loop.py](analysis/validate_closed_loop.py)).
+
+  These have unit-tested logic and pass lint/build, but the end-to-end SITL run
+  in [docs/px4_closed_loop_validation.md](docs/px4_closed_loop_validation.md)
+  has not been executed yet, so the current PX4 evidence below is still the
+  injected fault.
 
 Not implemented yet:
 
-- live-validated closed loop and real-flight trigger (code is in place but has
-  only been exercised in simulation logic, not yet on a running PX4 SITL),
-- richer checks such as GPS loss, obstacle proximity, or sensor fault detection.
+- richer checks such as GPS loss, obstacle proximity, or sensor fault detection,
+- ROS2 bag record/replay and PX4 `.ulg` log cross-checking.
 
 ## Why This Is Relevant To UAV Autonomy
 
@@ -346,10 +360,9 @@ if a later PX4/Gazebo task becomes fragile.
 
 ### Medium Term
 
-- Add an autopilot-driven unsafe waypoint test where PX4 is commanded toward a
-  geofence boundary and the monitor detects the violation from real telemetry.
-- Add a guarded PX4 command bridge for `RETURN_TO_HOME` and `LAND`, disabled by
-  default and enabled only in SITL.
+- Run the closed-loop SITL validation end to end (the bridge, real-flight
+  trigger and evidence check are in place; this confirms them on a live PX4) and
+  replace the injected-fault evidence with the flown result.
 - Process PX4 `.ulg` logs alongside the project CSV logs to compare monitor
   events with PX4 internal state.
 - Add simulated GPS/state dropout and delayed-state checks for stale telemetry

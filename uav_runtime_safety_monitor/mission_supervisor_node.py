@@ -8,6 +8,7 @@ from uav_safety_core.mission_simulator import UAVState
 from uav_safety_core.mission_supervisor import MissionSupervisor
 from uav_runtime_safety_monitor.ros2_messages import (
     SafetyStatusMsg,
+    SupervisorResponseMsg,
     UAVStateMsg,
     ensure_typed_messages_available,
     safety_result_from_msg,

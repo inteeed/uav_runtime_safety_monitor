@@ -38,6 +38,9 @@ def _px4_qos() -> QoSProfile:
 
 
 class FlyBeyondGeofenceNode(Node):
+    # Supervisor responses that mean "stop flying out, hand control back to PX4".
+    _RELEASE_RESPONSES = ("RETURN_TO_HOME", "LAND")
+
     def __init__(self, target_x_m: float, target_y_m: float, altitude_m: float,
                  hold_s: float) -> None:
         super().__init__("fly_beyond_geofence_node")
@@ -54,6 +57,7 @@ class FlyBeyondGeofenceNode(Node):
         self._target = (target_x_m, target_y_m, -abs(altitude_m))  # PX4 NED: down<0
         self._hold_s = hold_s
         self._tick = 0
+        self._released = False
 
         qos = _px4_qos()
         self._offboard_pub = self.create_publisher(
@@ -66,12 +70,42 @@ class FlyBeyondGeofenceNode(Node):
             VehicleCommand, "/fmu/in/vehicle_command", qos
         )
 
+        # Watch the supervisor so we can release offboard control the moment a
+        # safety response fires, letting PX4 execute RTL/Land instead of us
+        # fighting it with more outbound setpoints. The typed message is only
+        # available once the monitor workspace is sourced; if not, the node
+        # still flies out and relies on the --hold timeout.
+        try:
+            from uav_runtime_safety_monitor_msgs.msg import SupervisorResponse
+
+            self.create_subscription(
+                SupervisorResponse,
+                "/uav/supervisor_mode",
+                self._on_supervisor_response,
+                10,
+            )
+        except ImportError:
+            self.get_logger().warn(
+                "uav_runtime_safety_monitor_msgs not available; flying out "
+                "without supervisor handoff (will stop after --hold seconds)."
+            )
+
         self._period_s = 0.1  # 10 Hz
         self.create_timer(self._period_s, self._on_timer)
         self.get_logger().warn(
             "Flying PX4 toward ({:.1f}, {:.1f}, {:.1f}) m to breach the "
             "geofence. SITL only.".format(*self._target)
         )
+
+    def _on_supervisor_response(self, message) -> None:
+        if self._released:
+            return
+        if str(message.active_response) in self._RELEASE_RESPONSES:
+            self._released = True
+            self.get_logger().warn(
+                "Supervisor response {} detected; releasing offboard control "
+                "so PX4 can execute it.".format(message.active_response)
+            )
 
     def _timestamp(self) -> int:
         return int(self.get_clock().now().nanoseconds / 1000)
@@ -91,6 +125,17 @@ class FlyBeyondGeofenceNode(Node):
         self._command_pub.publish(msg)
 
     def _on_timer(self) -> None:
+        # Once the supervisor has responded, stop publishing offboard setpoints.
+        # PX4 drops out of offboard after ~0.5 s without setpoints, letting the
+        # RTL/Land command issued by the command bridge take effect.
+        if self._released:
+            self.get_logger().info(
+                "Offboard control released; PX4 should now execute the safety "
+                "response. Stopping commander."
+            )
+            rclpy.shutdown()
+            return
+
         offboard = self._OffboardControlMode()
         offboard.timestamp = self._timestamp()
         offboard.position = True

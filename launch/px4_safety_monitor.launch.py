@@ -171,6 +171,7 @@ def generate_launch_description() -> LaunchDescription:
                         "enable_commands": True,
                         "command_topic": vehicle_command_topic,
                         "supervisor_topic": "/uav/supervisor_mode",
+                        "command_log_path": "data/px4_command_log.csv",
                     }
                 ],
             ),
