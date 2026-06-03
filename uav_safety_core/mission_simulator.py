@@ -2,8 +2,8 @@ from dataclasses import dataclass
 from math import ceil, sqrt
 from typing import Iterable, List, Optional
 
-from scenario_catalog import SCENARIOS
-from simulation_components import MissionPhasePlanner, StateGapInjector
+from uav_safety_core.scenario_catalog import SCENARIOS
+from uav_safety_core.simulation_components import MissionPhasePlanner, StateGapInjector
 
 
 @dataclass(frozen=True)

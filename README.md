@@ -14,7 +14,7 @@ The current implementation covers:
 - safety status and recommended action generation,
 - a simple mission supervisor for return-home and landing response modes,
 - CSV logging, event extraction, scenario validation, and plots,
-- ROS2/Gazebo Classic integration,
+- ROS2/Gazebo Classic integration with typed UAV safety messages,
 - PX4 Gazebo Classic live telemetry monitoring through ROS2.
 
 The project was built as a compact UAV autonomy subsystem: the kind of component
@@ -81,6 +81,14 @@ fault_injection -> /uav/state
 runtime safety monitor -> safety console + live CSV logs
 ```
 
+The packaged ROS2 stack uses custom message interfaces:
+
+| Topic | Message |
+| --- | --- |
+| `/uav/state` | `uav_runtime_safety_monitor_msgs/UAVState` |
+| `/uav/safety_status` | `uav_runtime_safety_monitor_msgs/SafetyStatus` |
+| `/uav/supervisor_mode` | `uav_runtime_safety_monitor_msgs/SupervisorResponse` |
+
 The fault-injection node is used only for repeatable live validation. It lets the
 monitor see a controlled geofence, altitude, or battery fault while keeping one
 consistent PX4-derived state stream.
@@ -89,13 +97,15 @@ consistent PX4-derived state stream.
 
 Important files:
 
-- [src/safety_monitor.py](src/safety_monitor.py): core runtime safety rules.
-- [src/mission_supervisor.py](src/mission_supervisor.py): converts monitor output into response modes.
-- [src/mission_simulator.py](src/mission_simulator.py): waypoint mission state generation.
-- [src/simulation_runner.py](src/simulation_runner.py): connects simulation, monitor, supervisor, and logs.
+- [uav_safety_core/safety_monitor.py](uav_safety_core/safety_monitor.py): core runtime safety rules.
+- [uav_safety_core/mission_supervisor.py](uav_safety_core/mission_supervisor.py): converts monitor output into response modes.
+- [uav_safety_core/mission_simulator.py](uav_safety_core/mission_simulator.py): waypoint mission state generation.
+- [uav_safety_core/simulation_runner.py](uav_safety_core/simulation_runner.py): connects simulation, monitor, supervisor, and logs.
+- [uav_safety_core/constants.py](uav_safety_core/constants.py): shared status/action/severity/priority vocabulary.
 - [analysis/analyze_logs.py](analysis/analyze_logs.py): summarizes mission logs.
 - [analysis/plot_mission.py](analysis/plot_mission.py): creates trajectory, altitude, battery, safety, and supervisor plots.
 - [uav_runtime_safety_monitor](uav_runtime_safety_monitor): ROS2 package nodes.
+- [interfaces/uav_runtime_safety_monitor_msgs](interfaces/uav_runtime_safety_monitor_msgs): custom ROS2 message package.
 - [launch](launch): ROS2 launch files.
 - [gazebo_extension](gazebo_extension): Gazebo Classic demo world and helper scripts.
 - [px4_extension](px4_extension): PX4 SITL helper scripts and live-demo workflow.
@@ -121,11 +131,11 @@ The Python validation layer generates repeatable missions and expected outcomes.
 Run the core validation:
 
 ```bash
-python3 src/main.py
+python3 -m uav_safety_core.main
 python3 analysis/validate_scenarios.py
 python3 analysis/analyze_logs.py
 python3 analysis/plot_mission.py
-python3 -m unittest discover
+python3 -m pytest
 ```
 
 ## Results
@@ -198,16 +208,17 @@ cd uav_runtime_safety_monitor
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python src/main.py
+python -m uav_safety_core.main
 python3 analysis/validate_scenarios.py
 python3 analysis/plot_mission.py
 ```
 
-For the ROS2/Gazebo Classic demo:
+For the ROS2/Gazebo Classic demo (developed on Foxy; the package is
+distro-agnostic and CI builds it on Humble):
 
 ```bash
-source /opt/ros/foxy/setup.bash
-colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+source /opt/ros/$ROS_DISTRO/setup.bash
+colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
 source install/setup.bash
 ros2 launch uav_runtime_safety_monitor gazebo_safety_demo.launch.py
 ```
@@ -222,7 +233,7 @@ For the PX4 Gazebo Classic live telemetry demo, use separate terminals:
 
 ```bash
 # Terminal 1
-cd /home/inteed/projects/uav-runtime-safety-monitor
+cd /path/to/uav-runtime-safety-monitor
 HEADLESS=0 ./px4_extension/run_px4_gazebo_classic.sh
 ```
 
@@ -234,22 +245,41 @@ commander takeoff
 
 ```bash
 # Terminal 2
-cd /home/inteed/projects/uav-runtime-safety-monitor
+cd /path/to/uav-runtime-safety-monitor
 ./px4_extension/run_micro_xrce_agent.sh
 ```
 
 ```bash
 # Terminal 3
-cd /home/inteed/projects/uav-runtime-safety-monitor
+cd /path/to/uav-runtime-safety-monitor
 ./px4_extension/run_px4_monitor_stack.sh
 ```
 
-After the safety console shows `SAFE`, trigger a controlled geofence fault:
+After the safety console shows `SAFE`, trigger a geofence violation. Either
+inject a controlled fault into the state stream:
 
 ```bash
 # Terminal 4
-cd /home/inteed/projects/uav-runtime-safety-monitor
+cd /path/to/uav-runtime-safety-monitor
 ./px4_extension/inject_monitor_violation.sh geofence
+```
+
+…or fly PX4 *past the real geofence* so the monitor detects the breach from
+genuine telemetry (SITL only):
+
+```bash
+# Terminal 4
+cd /path/to/uav-runtime-safety-monitor
+./px4_extension/trigger_real_geofence_flight.sh
+```
+
+To also close the loop — forwarding the supervisor's `RETURN_TO_HOME` / `LAND`
+response back to PX4 as a `VehicleCommand` — launch the monitor stack with the
+guarded command bridge enabled (disabled by default; SITL / test-stand only):
+
+```bash
+ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py \
+  enable_command_bridge:=true
 ```
 
 Analyze the live run:
@@ -269,17 +299,20 @@ Working:
 - Runtime monitor and mission supervisor.
 - Velocity-limit and planned-path deviation monitoring.
 - CSV logging and plotting.
-- ROS2 package launch workflow.
+- ROS2 package launch workflow with custom message interfaces.
 - Gazebo Classic demo.
 - PX4 Gazebo Classic telemetry bridge.
 - Live PX4 telemetry safety-console output.
 - Repeatable live fault injection for validation evidence.
+- Guarded PX4 command bridge that forwards `RETURN_TO_HOME` / `LAND` back into
+  PX4 (disabled by default; SITL only).
+- Real-flight geofence trigger that commands PX4 past the boundary so the
+  monitor detects a genuine telemetry violation.
 
 Not implemented yet:
 
-- sending `RETURN_TO_HOME` or `LAND` commands back into PX4,
-- custom ROS2 message definitions,
-- autopilot-driven unsafe waypoint mission,
+- live-validated closed loop and real-flight trigger (code is in place but has
+  only been exercised in simulation logic, not yet on a running PX4 SITL),
 - richer checks such as GPS loss, obstacle proximity, or sensor fault detection.
 
 ## Why This Is Relevant To UAV Autonomy
@@ -304,8 +337,6 @@ if a later PX4/Gazebo task becomes fragile.
 
 ### Short Term
 
-- Replace JSON string topics with small custom ROS2 messages for UAV state,
-  safety status, and supervisor response.
 - Refine path-deviation monitoring with cross-track error and along-track error
   instead of only point-wise deviation from the reference trajectory.
 - Add ROS2 bag recording and replay so live PX4 telemetry can be validated

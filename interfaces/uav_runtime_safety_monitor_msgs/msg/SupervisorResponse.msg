@@ -1,0 +1,6 @@
+builtin_interfaces/Time stamp
+float64 time_s
+string supervisor_mode
+string active_response
+string response_reason
+bool response_started

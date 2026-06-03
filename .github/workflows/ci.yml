@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python-tests:
+    name: Python core tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Run unit tests
+        run: python -m pytest -q
+      - name: Run scenario validation
+        run: python3 analysis/validate_scenarios.py
+
+  colcon-build:
+    name: colcon build (ROS2 Humble)
+    runs-on: ubuntu-latest
+    container: ros:humble-ros-base
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build typed messages and node package
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build --symlink-install \
+            --base-paths . interfaces/uav_runtime_safety_monitor_msgs \
+            --packages-up-to uav_runtime_safety_monitor
+      - name: Import-check the package nodes
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          source install/setup.bash
+          python3 -c "import uav_runtime_safety_monitor.safety_monitor_node"
+          python3 -c "import uav_runtime_safety_monitor.mission_supervisor_node"
+          python3 -c "import uav_runtime_safety_monitor.px4_command_bridge_node"

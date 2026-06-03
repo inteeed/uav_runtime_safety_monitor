@@ -26,6 +26,8 @@ def generate_launch_description() -> LaunchDescription:
     enable_live_logger = LaunchConfiguration("enable_live_logger")
     live_log_path = LaunchConfiguration("live_log_path")
     live_event_log_path = LaunchConfiguration("live_event_log_path")
+    enable_command_bridge = LaunchConfiguration("enable_command_bridge")
+    vehicle_command_topic = LaunchConfiguration("vehicle_command_topic")
 
     return LaunchDescription(
         [
@@ -78,6 +80,19 @@ def generate_launch_description() -> LaunchDescription:
                 "live_event_log_path",
                 default_value="data/px4_live_events.csv",
                 description="CSV file for live safety event transitions.",
+            ),
+            DeclareLaunchArgument(
+                "enable_command_bridge",
+                default_value="false",
+                description=(
+                    "Forward supervisor RTL/Land responses to PX4 as "
+                    "VehicleCommands. SITL / test-stand use only."
+                ),
+            ),
+            DeclareLaunchArgument(
+                "vehicle_command_topic",
+                default_value="/fmu/in/vehicle_command",
+                description="PX4 vehicle command input topic.",
             ),
             SetEnvironmentVariable("UAV_RUNTIME_MONITOR_ROOT", package_share),
             Node(
@@ -142,6 +157,20 @@ def generate_launch_description() -> LaunchDescription:
                     {
                         "mission_log_path": live_log_path,
                         "event_log_path": live_event_log_path,
+                    }
+                ],
+            ),
+            Node(
+                package=PACKAGE_NAME,
+                executable="px4_command_bridge",
+                name="px4_command_bridge_node",
+                output="screen",
+                condition=IfCondition(enable_command_bridge),
+                parameters=[
+                    {
+                        "enable_commands": True,
+                        "command_topic": vehicle_command_topic,
+                        "supervisor_topic": "/uav/supervisor_mode",
                     }
                 ],
             ),

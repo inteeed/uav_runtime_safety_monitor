@@ -2,8 +2,17 @@ from dataclasses import dataclass
 from math import ceil, sqrt
 from typing import List
 
-from mission_simulator import UAVState
-from safety_monitor import SafetyResult
+from uav_safety_core.constants import (
+    ActiveResponse,
+    RecommendedAction,
+    Severity,
+    SupervisorMode,
+)
+from uav_safety_core.mission_simulator import UAVState
+from uav_safety_core.safety_monitor import SafetyResult
+
+_RESPONSE_COMPLETE_STATE = "RESPONSE_COMPLETE"
+_NO_ACTION_REASON = "No supervisor action active"
 
 
 @dataclass(frozen=True)
@@ -16,9 +25,9 @@ class SupervisorDecision:
 
 def default_supervisor_decision() -> SupervisorDecision:
     return SupervisorDecision(
-        supervisor_mode="CONTINUE_MISSION",
-        active_response="NONE",
-        response_reason="No supervisor action active",
+        supervisor_mode=SupervisorMode.CONTINUE_MISSION,
+        active_response=ActiveResponse.NONE,
+        response_reason=_NO_ACTION_REASON,
         response_started=False,
     )
 
@@ -39,27 +48,31 @@ class MissionSupervisor:
         self.landing_rate_mps = landing_rate_mps
         self.battery_base_drain_percent_per_s = battery_base_drain_percent_per_s
         self.battery_motion_drain_percent_per_s = battery_motion_drain_percent_per_s
-        self._mode = "CONTINUE_MISSION"
-        self._active_response = "NONE"
-        self._response_reason = "No supervisor action active"
+        self._mode = SupervisorMode.CONTINUE_MISSION
+        self._active_response = ActiveResponse.NONE
+        self._response_reason = _NO_ACTION_REASON
 
     def update(self, state: UAVState, result: SafetyResult) -> SupervisorDecision:
-        if state.mission_state == "RESPONSE_COMPLETE":
-            self._mode = "RESPONSE_COMPLETE"
-            self._active_response = "NONE"
+        if state.mission_state == _RESPONSE_COMPLETE_STATE:
+            self._mode = SupervisorMode.RESPONSE_COMPLETE
+            self._active_response = ActiveResponse.NONE
             self._response_reason = "Supervisor response completed"
             return SupervisorDecision(
                 self._mode, self._active_response, self._response_reason
             )
 
-        if self._mode in ("RETURNING_HOME", "LANDING", "MISSION_ABORTED"):
+        if self._mode in (
+            SupervisorMode.RETURNING_HOME,
+            SupervisorMode.LANDING,
+            SupervisorMode.MISSION_ABORTED,
+        ):
             return SupervisorDecision(
                 self._mode, self._active_response, self._response_reason
             )
 
-        if result.recommended_action == "RETURN_TO_HOME":
-            self._mode = "RETURNING_HOME"
-            self._active_response = "RETURN_TO_HOME"
+        if result.recommended_action == RecommendedAction.RETURN_TO_HOME:
+            self._mode = SupervisorMode.RETURNING_HOME
+            self._active_response = ActiveResponse.RETURN_TO_HOME
             self._response_reason = result.safety_status
             return SupervisorDecision(
                 self._mode,
@@ -68,9 +81,9 @@ class MissionSupervisor:
                 response_started=True,
             )
 
-        if result.recommended_action == "LAND":
-            self._mode = "LANDING"
-            self._active_response = "LAND"
+        if result.recommended_action == RecommendedAction.LAND:
+            self._mode = SupervisorMode.LANDING
+            self._active_response = ActiveResponse.LAND
             self._response_reason = result.safety_status
             return SupervisorDecision(
                 self._mode,
@@ -79,9 +92,9 @@ class MissionSupervisor:
                 response_started=True,
             )
 
-        if result.recommended_action == "ABORT_MISSION":
-            self._mode = "MISSION_ABORTED"
-            self._active_response = "ABORT_MISSION"
+        if result.recommended_action == RecommendedAction.ABORT_MISSION:
+            self._mode = SupervisorMode.MISSION_ABORTED
+            self._active_response = ActiveResponse.ABORT_MISSION
             self._response_reason = result.safety_status
             return SupervisorDecision(
                 self._mode,
@@ -90,17 +103,17 @@ class MissionSupervisor:
                 response_started=True,
             )
 
-        if result.severity == "WARNING":
-            self._mode = "WARNING_ACTIVE"
-            self._active_response = "MONITOR"
+        if result.severity == Severity.WARNING:
+            self._mode = SupervisorMode.WARNING_ACTIVE
+            self._active_response = ActiveResponse.MONITOR
             self._response_reason = result.safety_status
             return SupervisorDecision(
                 self._mode, self._active_response, self._response_reason
             )
 
-        self._mode = "CONTINUE_MISSION"
-        self._active_response = "NONE"
-        self._response_reason = "No supervisor action active"
+        self._mode = SupervisorMode.CONTINUE_MISSION
+        self._active_response = ActiveResponse.NONE
+        self._response_reason = _NO_ACTION_REASON
         return SupervisorDecision(
             self._mode, self._active_response, self._response_reason
         )
@@ -108,9 +121,9 @@ class MissionSupervisor:
     def generate_response_states(
         self, start: UAVState, decision: SupervisorDecision
     ) -> List[UAVState]:
-        if decision.active_response == "RETURN_TO_HOME":
+        if decision.active_response == ActiveResponse.RETURN_TO_HOME:
             return self._return_home_response(start)
-        if decision.active_response == "LAND":
+        if decision.active_response == ActiveResponse.LAND:
             return self._landing_response(start)
         return []
 

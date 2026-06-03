@@ -54,7 +54,7 @@ python3 px4_extension/check_px4_environment.py
 
 Expected before PX4 is installed:
 
-- ROS2 Foxy should be found if `/opt/ros/foxy/setup.bash` exists.
+- ROS2 Foxy should be found if `/opt/ros/$ROS_DISTRO/setup.bash` exists.
 - `px4_msgs` may be missing until a PX4 ROS2 workspace is built and sourced.
 - `MicroXRCEAgent` may be missing until the PX4 ROS2/DDS bridge tools are
   installed.

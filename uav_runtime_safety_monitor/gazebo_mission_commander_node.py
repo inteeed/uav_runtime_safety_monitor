@@ -2,16 +2,15 @@ import rclpy
 from rclpy.node import Node
 from gazebo_msgs.msg import EntityState
 from gazebo_msgs.srv import SetEntityState
-from std_msgs.msg import String
-
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
 
-add_runtime_paths()
-
-from mission_simulator import MissionSimulator, UAVState
-from mission_supervisor import MissionSupervisor
-from ros2_json import supervisor_decision_from_json
+from uav_safety_core.mission_simulator import MissionSimulator, UAVState
+from uav_safety_core.mission_supervisor import MissionSupervisor
+from uav_runtime_safety_monitor.ros2_messages import (
+    SupervisorResponseMsg,
+    ensure_typed_messages_available,
+    supervisor_decision_from_msg,
+)
 
 
 class GazeboMissionCommanderNode(Node):
@@ -19,6 +18,7 @@ class GazeboMissionCommanderNode(Node):
 
     def __init__(self) -> None:
         super().__init__("gazebo_mission_commander_node")
+        ensure_typed_messages_available(self.get_logger())
         self.declare_parameter("model_name", "safety_uav")
         self.declare_parameter("scenario", "geofence_violation")
         self.declare_parameter("command_period_s", 0.5)
@@ -35,7 +35,7 @@ class GazeboMissionCommanderNode(Node):
 
         self._client = self.create_client(SetEntityState, "/set_entity_state")
         self._subscription = self.create_subscription(
-            String, "/uav/supervisor_mode", self._on_supervisor_mode, 10
+            SupervisorResponseMsg, "/uav/supervisor_mode", self._on_supervisor_mode, 10
         )
         self._timer = self.create_timer(command_period_s, self._send_next_state)
         self.get_logger().info(
@@ -44,11 +44,11 @@ class GazeboMissionCommanderNode(Node):
             )
         )
 
-    def _on_supervisor_mode(self, message: String) -> None:
+    def _on_supervisor_mode(self, message: SupervisorResponseMsg) -> None:
         if self._response_inserted:
             return
 
-        decision = supervisor_decision_from_json(message.data)
+        decision = supervisor_decision_from_msg(message)
         if decision.active_response not in ("RETURN_TO_HOME", "LAND"):
             return
 

@@ -1,0 +1,17 @@
+builtin_interfaces/Time stamp
+float64 time_s
+string frame_id
+float64 x_m
+float64 y_m
+float64 z_m
+float64 vx_mps
+float64 vy_mps
+float64 vz_mps
+float64 battery_percent
+string mission_state
+bool has_planned_position
+float64 planned_x_m
+float64 planned_y_m
+float64 planned_z_m
+bool has_path_deviation
+float64 path_deviation_m

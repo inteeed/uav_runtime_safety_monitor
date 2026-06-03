@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-ROS_SETUP="${ROS_SETUP:-/opt/ros/foxy/setup.bash}"
+ROS_SETUP="${ROS_SETUP:-/opt/ros/${ROS_DISTRO:-foxy}/setup.bash}"
 DEFAULT_PX4_ROS2_WS_SETUP="${HOME}/projects/px4_ros2_ws/install/setup.bash"
 PX4_ROS2_WS_SETUP="${PX4_ROS2_WS_SETUP:-}"
 
@@ -67,7 +67,7 @@ fi
 
 python3 px4_extension/check_px4_environment.py "${CHECK_ARGS[@]}"
 
-colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
 source_setup install/setup.bash
 
 ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py

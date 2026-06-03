@@ -4,7 +4,13 @@ from math import sqrt
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from mission_simulator import UAVState
+from uav_safety_core.constants import (
+    CheckPriority,
+    RecommendedAction,
+    SafetyStatus,
+    Severity,
+)
+from uav_safety_core.mission_simulator import UAVState
 
 
 @dataclass(frozen=True)
@@ -77,14 +83,14 @@ class RuntimeSafetyMonitor:
                 candidates.append(
                     _CandidateResult(
                         SafetyResult(
-                            "STATE_TIMEOUT",
-                            "RETURN_TO_HOME",
-                            "CRITICAL",
+                            SafetyStatus.STATE_TIMEOUT,
+                            RecommendedAction.RETURN_TO_HOME,
+                            Severity.CRITICAL,
                             "State update gap {:.1f} s exceeds {:.1f} s".format(
                                 update_gap_s, self.limits.max_state_update_gap_s
                             ),
                         ),
-                        95,
+                        CheckPriority.STATE_TIMEOUT,
                     )
                 )
 
@@ -92,14 +98,14 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "ALTITUDE_LIMIT_VIOLATION",
-                        "LAND",
-                        "CRITICAL",
+                        SafetyStatus.ALTITUDE_LIMIT_VIOLATION,
+                        RecommendedAction.LAND,
+                        Severity.CRITICAL,
                         "Altitude {:.1f} m exceeds {:.1f} m".format(
                             state.z_m, self.limits.max_altitude_m
                         ),
                     ),
-                    100,
+                    CheckPriority.ALTITUDE_LIMIT,
                 )
             )
 
@@ -107,14 +113,14 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "GEOFENCE_VIOLATION",
-                        "RETURN_TO_HOME",
-                        "CRITICAL",
+                        SafetyStatus.GEOFENCE_VIOLATION,
+                        RecommendedAction.RETURN_TO_HOME,
+                        Severity.CRITICAL,
                         "Position ({:.1f}, {:.1f}) outside geofence".format(
                             state.x_m, state.y_m
                         ),
                     ),
-                    90,
+                    CheckPriority.GEOFENCE_VIOLATION,
                 )
             )
 
@@ -123,14 +129,14 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "VELOCITY_LIMIT_VIOLATION",
-                        "RETURN_TO_HOME",
-                        "CRITICAL",
+                        SafetyStatus.VELOCITY_LIMIT_VIOLATION,
+                        RecommendedAction.RETURN_TO_HOME,
+                        Severity.CRITICAL,
                         "Velocity {:.1f} m/s exceeds {:.1f} m/s".format(
                             speed_mps, self.limits.max_velocity_mps
                         ),
                     ),
-                    88,
+                    CheckPriority.VELOCITY_LIMIT,
                 )
             )
 
@@ -138,14 +144,14 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "LOW_BATTERY",
-                        "LAND",
-                        "CRITICAL",
+                        SafetyStatus.LOW_BATTERY,
+                        RecommendedAction.LAND,
+                        Severity.CRITICAL,
                         "Battery {:.1f}% below {:.1f}%".format(
                             state.battery_percent, self.limits.min_battery_percent
                         ),
                     ),
-                    85,
+                    CheckPriority.LOW_BATTERY,
                 )
             )
 
@@ -153,33 +159,34 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "MISSION_TIMEOUT",
-                        "RETURN_TO_HOME",
-                        "CRITICAL",
+                        SafetyStatus.MISSION_TIMEOUT,
+                        RecommendedAction.RETURN_TO_HOME,
+                        Severity.CRITICAL,
                         "Mission time {:.1f} s exceeds {:.1f} s".format(
                             state.time_s, self.limits.max_mission_time_s
                         ),
                     ),
-                    80,
+                    CheckPriority.MISSION_TIMEOUT,
                 )
             )
 
+        path_deviation_m = self._path_deviation(state)
         if (
-            state.path_deviation_m is not None
-            and state.path_deviation_m > self.limits.path_deviation_violation_m
+            path_deviation_m is not None
+            and path_deviation_m > self.limits.path_deviation_violation_m
         ):
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "PATH_DEVIATION_VIOLATION",
-                        "RETURN_TO_HOME",
-                        "CRITICAL",
+                        SafetyStatus.PATH_DEVIATION_VIOLATION,
+                        RecommendedAction.RETURN_TO_HOME,
+                        Severity.CRITICAL,
                         "Path deviation {:.1f} m exceeds {:.1f} m".format(
-                            state.path_deviation_m,
+                            path_deviation_m,
                             self.limits.path_deviation_violation_m,
                         ),
                     ),
-                    70,
+                    CheckPriority.PATH_DEVIATION_VIOLATION,
                 )
             )
 
@@ -190,14 +197,14 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "ALTITUDE_WARNING",
-                        "WARNING",
-                        "WARNING",
+                        SafetyStatus.ALTITUDE_WARNING,
+                        RecommendedAction.WARNING,
+                        Severity.WARNING,
                         "Altitude {:.1f} m is within {:.1f} m of limit".format(
                             state.z_m, self.limits.altitude_warning_margin_m
                         ),
                     ),
-                    45,
+                    CheckPriority.ALTITUDE_WARNING,
                 )
             )
 
@@ -205,43 +212,46 @@ class RuntimeSafetyMonitor:
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "GEOFENCE_WARNING",
-                        "WARNING",
-                        "WARNING",
+                        SafetyStatus.GEOFENCE_WARNING,
+                        RecommendedAction.WARNING,
+                        Severity.WARNING,
                         "Position ({:.1f}, {:.1f}) is within {:.1f} m of geofence".format(
                             state.x_m,
                             state.y_m,
                             self.limits.geofence_warning_margin_m,
                         ),
                     ),
-                    40,
+                    CheckPriority.GEOFENCE_WARNING,
                 )
             )
 
         if (
-            state.path_deviation_m is not None
+            path_deviation_m is not None
             and self.limits.path_deviation_warning_m
-            <= state.path_deviation_m
+            <= path_deviation_m
             <= self.limits.path_deviation_violation_m
         ):
             candidates.append(
                 _CandidateResult(
                     SafetyResult(
-                        "PATH_DEVIATION_WARNING",
-                        "WARNING",
-                        "WARNING",
+                        SafetyStatus.PATH_DEVIATION_WARNING,
+                        RecommendedAction.WARNING,
+                        Severity.WARNING,
                         "Path deviation {:.1f} m is above {:.1f} m warning threshold".format(
-                            state.path_deviation_m,
+                            path_deviation_m,
                             self.limits.path_deviation_warning_m,
                         ),
                     ),
-                    35,
+                    CheckPriority.PATH_DEVIATION_WARNING,
                 )
             )
 
         if not candidates:
             return SafetyResult(
-                "SAFE", "CONTINUE", "INFO", "All monitored constraints satisfied"
+                SafetyStatus.SAFE,
+                RecommendedAction.CONTINUE,
+                Severity.INFO,
+                "All monitored constraints satisfied",
             )
 
         return max(candidates, key=lambda candidate: candidate.priority).result
@@ -272,3 +282,23 @@ class RuntimeSafetyMonitor:
             + state.vy_mps * state.vy_mps
             + state.vz_mps * state.vz_mps
         )
+
+    def _path_deviation(self, state: UAVState) -> Optional[float]:
+        """Distance between the actual and planned position.
+
+        The monitor computes the deviation itself whenever a planned position
+        is available, so it does not have to trust a value pre-computed by the
+        state source. A pre-supplied ``path_deviation_m`` is only used as a
+        fallback when no planned position is present.
+        """
+        if (
+            state.planned_x_m is not None
+            and state.planned_y_m is not None
+            and state.planned_z_m is not None
+        ):
+            dx = state.x_m - state.planned_x_m
+            dy = state.y_m - state.planned_y_m
+            dz = state.z_m - state.planned_z_m
+            return sqrt(dx * dx + dy * dy + dz * dz)
+
+        return state.path_deviation_m

@@ -155,3 +155,16 @@ Deliverables:
 - validation cases for the new monitor outcomes
 
 Status: complete for deterministic Python simulation; richer cross-track/along-track trajectory checks remain future work.
+
+## Phase 12: Typed ROS2 Message Interfaces
+
+Deliverables:
+
+- `uav_runtime_safety_monitor_msgs` ROS2 interface package
+- `UAVState`, `SafetyStatus`, and `SupervisorResponse` message definitions
+- typed `/uav/state`, `/uav/safety_status`, and `/uav/supervisor_mode` topics in the packaged ROS2 stack
+- conversion helpers between project dataclasses and ROS2 messages
+- tests for typed message conversion
+- updated build/run documentation using `colcon build --packages-up-to`
+
+Status: complete for the packaged ROS2/Gazebo/PX4 monitor path. The legacy `ros2_extension/` `std_msgs/String` JSON fallback has been removed; the typed message interfaces are now the single ROS2 interface.

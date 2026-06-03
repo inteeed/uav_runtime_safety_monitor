@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-ROS_SETUP="${ROS_SETUP:-/opt/ros/foxy/setup.bash}"
+ROS_SETUP="${ROS_SETUP:-/opt/ros/${ROS_DISTRO:-foxy}/setup.bash}"
 PX4_ROS2_WS_SETUP="${PX4_ROS2_WS_SETUP:-}"
 SCENARIO="${1:-${SCENARIO:-geofence}}"
 DURATION_S="${DURATION_S:-6.0}"
@@ -51,7 +51,7 @@ fi
 
 if [[ ! -f "${REPO_ROOT}/install/setup.bash" ]]; then
   echo "ROS2 package install not found: ${REPO_ROOT}/install/setup.bash"
-  echo "Start the monitor stack once first, or run: colcon build --symlink-install --packages-select uav_runtime_safety_monitor"
+  echo "Start the monitor stack once first, or run: colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor"
   exit 2
 fi
 

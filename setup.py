@@ -11,8 +11,6 @@ def package_data_files():
         ("share/" + PACKAGE_NAME, ["package.xml"]),
         ("share/" + PACKAGE_NAME + "/launch", glob("launch/*.launch.py")),
         ("share/" + PACKAGE_NAME + "/config", glob("config/*.json")),
-        ("share/" + PACKAGE_NAME + "/src", glob("src/*.py")),
-        ("share/" + PACKAGE_NAME + "/ros2_extension", ["ros2_extension/ros2_json.py"]),
         (
             "share/" + PACKAGE_NAME + "/gazebo/worlds",
             glob("gazebo_extension/worlds/*.world"),
@@ -28,12 +26,19 @@ def package_data_files():
 setup(
     name=PACKAGE_NAME,
     version="0.1.0",
-    packages=find_packages(include=[PACKAGE_NAME, PACKAGE_NAME + ".*"]),
+    packages=find_packages(
+        include=[
+            PACKAGE_NAME,
+            PACKAGE_NAME + ".*",
+            "uav_safety_core",
+            "uav_safety_core.*",
+        ]
+    ),
     data_files=package_data_files(),
     install_requires=["setuptools"],
     zip_safe=True,
     maintainer="inteed",
-    maintainer_email="inteed@example.com",
+    maintainer_email="inteed2006@gmail.com",
     description=(
         "Runtime safety monitoring prototype for autonomous UAV missions "
         "with ROS2 and Gazebo integration."
@@ -48,6 +53,7 @@ setup(
             "gazebo_state_bridge = uav_runtime_safety_monitor.gazebo_state_bridge_node:main",
             "gazebo_mission_commander = uav_runtime_safety_monitor.gazebo_mission_commander_node:main",
             "px4_state_bridge = uav_runtime_safety_monitor.px4_state_bridge_node:main",
+            "px4_command_bridge = uav_runtime_safety_monitor.px4_command_bridge_node:main",
             "px4_environment_check = uav_runtime_safety_monitor.px4_environment_check:main",
             "safety_console = uav_runtime_safety_monitor.safety_console_node:main",
             "live_log = uav_runtime_safety_monitor.live_log_node:main",

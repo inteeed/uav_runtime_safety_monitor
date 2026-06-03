@@ -1,7 +1,7 @@
 from dataclasses import dataclass, replace
 from typing import List
 
-from scenario_catalog import MissionScenario, Waypoint
+from uav_safety_core.scenario_catalog import MissionScenario, Waypoint
 
 
 @dataclass(frozen=True)

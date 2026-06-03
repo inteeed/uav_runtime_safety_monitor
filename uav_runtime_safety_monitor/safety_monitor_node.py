@@ -4,13 +4,17 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths, runtime_file
+from uav_runtime_safety_monitor.runtime_paths import runtime_file
 
 
-add_runtime_paths()
-
-from safety_monitor import RuntimeSafetyMonitor, SafetyLimits
-from ros2_json import safety_result_to_json, state_from_json
+from uav_safety_core.safety_monitor import RuntimeSafetyMonitor, SafetyLimits
+from uav_runtime_safety_monitor.ros2_messages import (
+    SafetyStatusMsg,
+    UAVStateMsg,
+    ensure_typed_messages_available,
+    safety_result_to_msg,
+    state_from_msg,
+)
 
 
 class SafetyMonitorNode(Node):
@@ -18,6 +22,7 @@ class SafetyMonitorNode(Node):
 
     def __init__(self) -> None:
         super().__init__("safety_monitor_node")
+        ensure_typed_messages_available(self.get_logger())
         default_limits_path = str(runtime_file("config", "safety_limits.json"))
         self.declare_parameter("safety_limits_path", default_limits_path)
 
@@ -26,27 +31,30 @@ class SafetyMonitorNode(Node):
         self._previous_state = None
         self._last_logged_result_key = None
         self._status_publisher = self.create_publisher(
-            String, "/uav/safety_status", 10
+            SafetyStatusMsg, "/uav/safety_status", 10
         )
         self._action_publisher = self.create_publisher(
             String, "/uav/recommended_action", 10
         )
         self._subscription = self.create_subscription(
-            String, "/uav/state", self._on_state, 10
+            UAVStateMsg, "/uav/state", self._on_state, 10
         )
         self.get_logger().info(
             "Safety monitor node ready with limits from {}".format(limits_path)
         )
 
-    def _on_state(self, message: String) -> None:
-        state = state_from_json(message.data)
+    def _on_state(self, message: UAVStateMsg) -> None:
+        state = state_from_msg(message)
         result = self._monitor.evaluate(
             state, previous_state=self._previous_state
         )
         self._previous_state = state
 
-        status_message = String()
-        status_message.data = safety_result_to_json(result)
+        status_message = safety_result_to_msg(
+            result,
+            time_s=state.time_s,
+            stamp=self.get_clock().now().to_msg(),
+        )
         self._status_publisher.publish(status_message)
 
         action_message = String()

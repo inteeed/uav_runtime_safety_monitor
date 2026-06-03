@@ -3,12 +3,12 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "src"))
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from mission_simulator import MissionSimulator
-from safety_monitor import RuntimeSafetyMonitor, SafetyLimits
-from scenario_catalog import SCENARIO_RUNS, ScenarioRun
-from simulation_runner import SimulationRunResult, SimulationRunner
+from uav_safety_core.mission_simulator import MissionSimulator
+from uav_safety_core.safety_monitor import RuntimeSafetyMonitor, SafetyLimits
+from uav_safety_core.scenario_catalog import SCENARIO_RUNS, ScenarioRun
+from uav_safety_core.simulation_runner import SimulationRunResult, SimulationRunner
 
 
 CONFIG_PATH = PROJECT_ROOT / "config" / "safety_limits.json"

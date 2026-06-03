@@ -2,15 +2,11 @@ import csv
 from pathlib import Path
 from typing import Optional, TextIO
 
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
-
-add_runtime_paths()
-
-from logger import EVENT_FIELDNAMES, STATE_FIELDNAMES
-from mission_simulator import UAVState
-from mission_supervisor import SupervisorDecision, default_supervisor_decision
-from safety_monitor import SafetyResult
+from uav_safety_core.logger import EVENT_FIELDNAMES, STATE_FIELDNAMES
+from uav_safety_core.mission_simulator import UAVState
+from uav_safety_core.mission_supervisor import SupervisorDecision, default_supervisor_decision
+from uav_safety_core.safety_monitor import SafetyResult
 
 
 class LiveLogWriter:

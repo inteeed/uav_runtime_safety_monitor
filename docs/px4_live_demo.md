@@ -49,9 +49,9 @@ Live event log: .../data/px4_live_events.csv
 [INFO] status=SAFE action=CONTINUE ...
 ```
 
-The readable safety output is printed in this terminal. The raw JSON topic
-`/uav/state` is useful for debugging, but the safety console is the better view
-for a demo.
+The readable safety output is printed in this terminal. The typed `/uav/state`
+topic is useful for debugging, but the safety console is the better view for a
+demo.
 
 ## Terminal 4: Trigger A Monitor Violation
 

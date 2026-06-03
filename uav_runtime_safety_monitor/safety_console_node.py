@@ -1,22 +1,20 @@
-import json
 from pathlib import Path
 from typing import Optional
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
-
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
 
-add_runtime_paths()
-
-from ros2_json import (
-    safety_result_from_json,
-    state_from_json,
-    supervisor_decision_from_json,
+from uav_runtime_safety_monitor.ros2_messages import (
+    SafetyStatusMsg,
+    SupervisorResponseMsg,
+    UAVStateMsg,
+    ensure_typed_messages_available,
+    safety_result_from_msg,
+    state_from_msg,
+    supervisor_decision_from_msg,
 )
-from safety_monitor import SafetyLimits
+from uav_safety_core.safety_monitor import SafetyLimits
 
 
 class SafetyConsoleNode(Node):
@@ -24,6 +22,7 @@ class SafetyConsoleNode(Node):
 
     def __init__(self) -> None:
         super().__init__("safety_console_node")
+        ensure_typed_messages_available(self.get_logger())
         self.declare_parameter("print_period_s", 1.0)
         self.declare_parameter(
             "safety_limits_path", "config/safety_limits.json"
@@ -37,12 +36,12 @@ class SafetyConsoleNode(Node):
         self._latest_decision = None
         self._last_status_key = None
 
-        self.create_subscription(String, "/uav/state", self._on_state, 10)
+        self.create_subscription(UAVStateMsg, "/uav/state", self._on_state, 10)
         self.create_subscription(
-            String, "/uav/safety_status", self._on_safety_status, 10
+            SafetyStatusMsg, "/uav/safety_status", self._on_safety_status, 10
         )
         self.create_subscription(
-            String, "/uav/supervisor_mode", self._on_supervisor_mode, 10
+            SupervisorResponseMsg, "/uav/supervisor_mode", self._on_supervisor_mode, 10
         )
         self.create_timer(max(0.2, print_period_s), self._print_snapshot)
         self.get_logger().info("Safety console ready")
@@ -56,20 +55,11 @@ class SafetyConsoleNode(Node):
             )
             return None
 
-    def _on_state(self, message: String) -> None:
-        try:
-            self._latest_state = state_from_json(message.data)
-        except (json.JSONDecodeError, KeyError, ValueError) as error:
-            self.get_logger().warn("Could not parse /uav/state: {}".format(error))
+    def _on_state(self, message: UAVStateMsg) -> None:
+        self._latest_state = state_from_msg(message)
 
-    def _on_safety_status(self, message: String) -> None:
-        try:
-            self._latest_result = safety_result_from_json(message.data)
-        except (json.JSONDecodeError, KeyError, ValueError) as error:
-            self.get_logger().warn(
-                "Could not parse /uav/safety_status: {}".format(error)
-            )
-            return
+    def _on_safety_status(self, message: SafetyStatusMsg) -> None:
+        self._latest_result = safety_result_from_msg(message)
 
         status_key = (
             self._latest_result.safety_status,
@@ -80,13 +70,8 @@ class SafetyConsoleNode(Node):
             self._last_status_key = status_key
             self._print_snapshot(force=True)
 
-    def _on_supervisor_mode(self, message: String) -> None:
-        try:
-            self._latest_decision = supervisor_decision_from_json(message.data)
-        except (json.JSONDecodeError, KeyError, ValueError) as error:
-            self.get_logger().warn(
-                "Could not parse /uav/supervisor_mode: {}".format(error)
-            )
+    def _on_supervisor_mode(self, message: SupervisorResponseMsg) -> None:
+        self._latest_decision = supervisor_decision_from_msg(message)
 
     def _print_snapshot(self, force: bool = False) -> None:
         if self._latest_result is None:

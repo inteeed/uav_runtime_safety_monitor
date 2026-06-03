@@ -5,9 +5,9 @@ from pathlib import Path
 
 from uav_runtime_safety_monitor.live_log_writer import LiveLogWriter
 
-from mission_simulator import UAVState
-from mission_supervisor import SupervisorDecision, default_supervisor_decision
-from safety_monitor import SafetyResult
+from uav_safety_core.mission_simulator import UAVState
+from uav_safety_core.mission_supervisor import SupervisorDecision, default_supervisor_decision
+from uav_safety_core.safety_monitor import SafetyResult
 
 
 class LiveLogWriterTest(unittest.TestCase):

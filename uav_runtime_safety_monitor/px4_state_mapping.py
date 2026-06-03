@@ -1,12 +1,8 @@
 from math import isfinite
 from typing import Any
 
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
-
-add_runtime_paths()
-
-from mission_simulator import UAVState
+from uav_safety_core.mission_simulator import UAVState
 
 
 def finite_float(value: Any, default: float = 0.0) -> float:

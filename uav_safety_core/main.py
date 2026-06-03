@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from mission_simulator import MissionSimulator
-from safety_monitor import RuntimeSafetyMonitor, SafetyLimits
-from scenario_catalog import SCENARIO_RUNS
-from simulation_runner import SimulationRunResult, SimulationRunner
+from uav_safety_core.mission_simulator import MissionSimulator
+from uav_safety_core.safety_monitor import RuntimeSafetyMonitor, SafetyLimits
+from uav_safety_core.scenario_catalog import SCENARIO_RUNS
+from uav_safety_core.simulation_runner import SimulationRunResult, SimulationRunner
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

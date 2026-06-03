@@ -77,7 +77,7 @@ The bridge publishes:
 
 | Project topic | Message | Purpose |
 | --- | --- | --- |
-| `/uav/state` | `std_msgs/String` JSON payload | Existing safety-monitor input |
+| `/uav/state` | `uav_runtime_safety_monitor_msgs/msg/UAVState` | Typed safety-monitor input |
 
 ## Coordinate Mapping
 
@@ -118,11 +118,11 @@ https://docs.px4.io/main/en/sim_gazebo_gz/
 ```
 
 ```bash
-source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 source <px4_ros2_ws>/install/setup.bash
 cd /home/inteed/projects/uav-runtime-safety-monitor
 python3 px4_extension/check_px4_environment.py --extra-setup <px4_ros2_ws>/install/setup.bash --strict
-colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
 source install/setup.bash
 ros2 launch uav_runtime_safety_monitor px4_safety_monitor.launch.py
 ```
@@ -205,7 +205,7 @@ Before claiming PX4 integration is working, verify:
 
 - `ros2 topic list` shows `/fmu/out/vehicle_local_position`,
 - `/fmu/out/battery_status` is visible or the bridge fallback battery value is acceptable,
-- `ros2 topic echo /uav/state` shows JSON state messages,
+- `ros2 topic echo /uav/state` shows typed UAV state messages,
 - the safety console prints readable `SAFE`, `WARNING`, or `CRITICAL` lines,
 - `data/px4_live_mission.csv` and `data/px4_live_events.csv` are created,
 - a controlled geofence or altitude violation produces the expected supervisor response.

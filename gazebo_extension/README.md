@@ -1,6 +1,9 @@
 # Gazebo Simulation Extension
 
-This extension runs the runtime safety monitor against a Gazebo Classic simulation. It uses a simple kinematic UAV marker model in Gazebo and bridges Gazebo model state into the existing `/uav/state` ROS2 topic.
+This extension runs the runtime safety monitor against a Gazebo Classic
+simulation. The recommended package launch bridges Gazebo model state into the
+typed `/uav/state` ROS2 topic. The script fallback in this folder still uses the
+older JSON-over-`std_msgs/String` path for simple log-validation runs.
 
 This is not PX4 SITL yet. It is a Gazebo-based integration step that demonstrates:
 
@@ -25,8 +28,8 @@ This is not PX4 SITL yet. It is a Gazebo-based integration step that demonstrate
 Recommended ROS2 package launch:
 
 ```bash
-source /opt/ros/foxy/setup.bash
-colcon build --symlink-install --packages-select uav_runtime_safety_monitor
+source /opt/ros/$ROS_DISTRO/setup.bash
+colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
 source install/setup.bash
 ros2 launch uav_runtime_safety_monitor gazebo_safety_demo.launch.py
 ```
@@ -74,7 +77,7 @@ Use clean terminals with ROS2 Foxy sourced. Do not source Noetic and Foxy in the
 In every terminal:
 
 ```bash
-source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 cd /home/inteed/projects/uav-runtime-safety-monitor
 export GAZEBO_MODEL_PATH=$PWD/gazebo_extension/models:$GAZEBO_MODEL_PATH
 ```
@@ -91,29 +94,39 @@ If Gazebo GUI is not available, use the headless server instead:
 gzserver --verbose gazebo_extension/worlds/uav_safety_demo.world
 ```
 
+Build and source the workspace once (the typed messages require a colcon
+build), then run the packaged nodes:
+
+```bash
+colcon build --symlink-install --base-paths . interfaces/uav_runtime_safety_monitor_msgs --packages-up-to uav_runtime_safety_monitor
+source install/setup.bash
+```
+
 Terminal 2, bridge Gazebo model state to `/uav/state`:
 
 ```bash
-python3 gazebo_extension/gazebo_state_bridge_node.py
+ros2 run uav_runtime_safety_monitor gazebo_state_bridge
 ```
 
 Terminal 3, run the safety monitor:
 
 ```bash
-python3 ros2_extension/safety_monitor_node.py
+ros2 run uav_runtime_safety_monitor safety_monitor
 ```
 
 Terminal 4, run the mission supervisor:
 
 ```bash
-python3 ros2_extension/mission_supervisor_node.py
+ros2 run uav_runtime_safety_monitor mission_supervisor
 ```
 
 Terminal 5, command the Gazebo UAV through an unsafe mission:
 
 ```bash
-python3 gazebo_extension/gazebo_mission_commander_node.py
+ros2 run uav_runtime_safety_monitor gazebo_mission_commander
 ```
+
+The `run_headless_demo.sh` / `run_gui_demo.sh` scripts automate exactly this.
 
 Expected behavior:
 

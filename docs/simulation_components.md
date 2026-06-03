@@ -6,14 +6,14 @@ The Python simulation is organized as a small test harness rather than one monol
 
 | Component | File | Responsibility |
 | --- | --- | --- |
-| Scenario catalog | `src/scenario_catalog.py` | Defines mission scenarios, expected outcomes, and output log names. |
-| Mission phase planner | `src/simulation_components.py` | Converts waypoints into takeoff, waypoint tracking, return-home, and landing segments. |
-| Mission simulator | `src/mission_simulator.py` | Generates timestamped UAV state samples from mission segments, including planned reference positions. |
-| Fault injector | `src/simulation_components.py` | Injects a state-update gap to emulate missing UAV state data. |
-| Path-deviation injector | `src/mission_simulator.py` | Offsets the simulated UAV from its planned reference path for deviation-monitoring tests. |
-| Runtime safety monitor | `src/safety_monitor.py` | Checks state samples against safety limits. |
-| Mission supervisor | `src/mission_supervisor.py` | Converts monitor outputs into response modes such as warning, return-home, and landing. |
-| Simulation runner | `src/simulation_runner.py` | Connects simulator, monitor, supervisor, state logging, and event logging. |
+| Scenario catalog | `uav_safety_core/scenario_catalog.py` | Defines mission scenarios, expected outcomes, and output log names. |
+| Mission phase planner | `uav_safety_core/simulation_components.py` | Converts waypoints into takeoff, waypoint tracking, return-home, and landing segments. |
+| Mission simulator | `uav_safety_core/mission_simulator.py` | Generates timestamped UAV state samples from mission segments, including planned reference positions. |
+| Fault injector | `uav_safety_core/simulation_components.py` | Injects a state-update gap to emulate missing UAV state data. |
+| Path-deviation injector | `uav_safety_core/mission_simulator.py` | Offsets the simulated UAV from its planned reference path for deviation-monitoring tests. |
+| Runtime safety monitor | `uav_safety_core/safety_monitor.py` | Checks state samples against safety limits. |
+| Mission supervisor | `uav_safety_core/mission_supervisor.py` | Converts monitor outputs into response modes such as warning, return-home, and landing. |
+| Simulation runner | `uav_safety_core/simulation_runner.py` | Connects simulator, monitor, supervisor, state logging, and event logging. |
 | Scenario validator | `analysis/validate_scenarios.py` | Runs every scenario and checks observed monitor output against expected results. |
 
 ## Why This Matters

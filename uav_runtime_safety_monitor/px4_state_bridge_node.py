@@ -7,18 +7,18 @@ from rclpy.qos import (
     QoSProfile,
     ReliabilityPolicy,
 )
-from std_msgs.msg import String
 
 from uav_runtime_safety_monitor.px4_state_mapping import (
     battery_percent_from_px4_remaining,
     local_position_to_uav_state,
 )
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
 
-add_runtime_paths()
-
-from ros2_json import state_to_json
+from uav_runtime_safety_monitor.ros2_messages import (
+    UAVStateMsg,
+    ensure_typed_messages_available,
+    state_to_msg,
+)
 
 
 def _px4_qos_profile() -> QoSProfile:
@@ -35,6 +35,7 @@ class PX4StateBridgeNode(Node):
 
     def __init__(self) -> None:
         super().__init__("px4_state_bridge_node")
+        ensure_typed_messages_available(self.get_logger())
         try:
             from px4_msgs.msg import BatteryStatus, VehicleLocalPosition
         except ImportError as error:
@@ -67,7 +68,7 @@ class PX4StateBridgeNode(Node):
         self._last_publish_elapsed_s = None
 
         qos_profile = _px4_qos_profile()
-        self._state_publisher = self.create_publisher(String, publish_topic, 10)
+        self._state_publisher = self.create_publisher(UAVStateMsg, publish_topic, 10)
         self._local_position_subscription = self.create_subscription(
             VehicleLocalPosition,
             local_position_topic,
@@ -107,8 +108,7 @@ class PX4StateBridgeNode(Node):
             mission_state=self._mission_state,
         )
 
-        output = String()
-        output.data = state_to_json(state)
+        output = state_to_msg(state, stamp=self.get_clock().now().to_msg())
         self._state_publisher.publish(output)
 
     def _should_publish(self, elapsed_s: float) -> bool:

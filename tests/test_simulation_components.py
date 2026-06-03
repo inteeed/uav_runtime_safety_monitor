@@ -4,11 +4,11 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "src"))
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from mission_simulator import MissionSimulator
-from scenario_catalog import SCENARIOS, SCENARIO_RUNS
-from simulation_components import MissionPhasePlanner, StateGapInjector
+from uav_safety_core.mission_simulator import MissionSimulator
+from uav_safety_core.scenario_catalog import SCENARIOS, SCENARIO_RUNS
+from uav_safety_core.simulation_components import MissionPhasePlanner, StateGapInjector
 
 
 class SimulationComponentsTest(unittest.TestCase):

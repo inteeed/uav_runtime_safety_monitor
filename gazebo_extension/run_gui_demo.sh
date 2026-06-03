@@ -4,7 +4,8 @@ set -eo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT_PATH="$PROJECT_ROOT/gazebo_extension/run_gui_demo.sh"
-ROS_SETUP="${ROS_SETUP:-/opt/ros/foxy/setup.bash}"
+EXPECTED_DISTRO="${EXPECTED_ROS_DISTRO:-foxy}"
+ROS_SETUP="${ROS_SETUP:-/opt/ros/$EXPECTED_DISTRO/setup.bash}"
 SCENARIO="${1:-geofence_violation}"
 COMMANDER_RUNTIME_S="${COMMANDER_RUNTIME_S:-45}"
 LOG_ROOT="${LOG_ROOT:-$PROJECT_ROOT/results/gazebo_gui_logs}"
@@ -18,7 +19,7 @@ fi
 
 dirty_environment=false
 
-if [[ -n "${ROS_DISTRO:-}" && "${ROS_DISTRO}" != "foxy" ]]; then
+if [[ -n "${ROS_DISTRO:-}" && "${ROS_DISTRO}" != "$EXPECTED_DISTRO" ]]; then
   dirty_environment=true
 fi
 
@@ -37,6 +38,7 @@ if [[ "$dirty_environment" == "true" && "${UAV_DEMO_CLEAN_ENV:-0}" != "1" ]]; th
     "LOGNAME=${LOGNAME:-${USER:-inteed}}"
     "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     "ROS_SETUP=$ROS_SETUP"
+    "EXPECTED_ROS_DISTRO=$EXPECTED_DISTRO"
     "COMMANDER_RUNTIME_S=$COMMANDER_RUNTIME_S"
     "LOG_ROOT=$LOG_ROOT"
   )
@@ -68,8 +70,18 @@ set -u
 mkdir -p "$LOG_DIR"
 cd "$PROJECT_ROOT"
 
+# Build the typed-message interfaces and the node package, then source the
+# overlay so the demo runs the same packaged nodes as the launch files.
+echo "Building colcon workspace (typed messages + nodes)..."
+colcon build --symlink-install \
+  --base-paths . interfaces/uav_runtime_safety_monitor_msgs \
+  --packages-up-to uav_runtime_safety_monitor \
+  >"$LOG_DIR/colcon_build.log" 2>&1
+source install/setup.bash
+
 export GAZEBO_MODEL_PATH="$PROJECT_ROOT/gazebo_extension/models:${GAZEBO_MODEL_PATH:-}"
 export GAZEBO_MASTER_URI="${GAZEBO_MASTER_URI:-http://127.0.0.1:$((12000 + RANDOM % 1000))}"
+export UAV_RUNTIME_MONITOR_ROOT="$PROJECT_ROOT"
 export PYTHONUNBUFFERED=1
 
 pids=()
@@ -101,22 +113,23 @@ if ! kill -0 "$gazebo_pid" 2>/dev/null; then
   exit 3
 fi
 
-python3 gazebo_extension/gazebo_state_bridge_node.py \
+ros2 run uav_runtime_safety_monitor gazebo_state_bridge \
   >"$LOG_DIR/bridge.log" 2>&1 &
 pids+=("$!")
 
-python3 ros2_extension/safety_monitor_node.py \
+ros2 run uav_runtime_safety_monitor safety_monitor \
+  --ros-args -p safety_limits_path:="$PROJECT_ROOT/config/safety_limits.json" \
   >"$LOG_DIR/safety_monitor.log" 2>&1 &
 pids+=("$!")
 
-python3 ros2_extension/mission_supervisor_node.py \
+ros2 run uav_runtime_safety_monitor mission_supervisor \
   >"$LOG_DIR/mission_supervisor.log" 2>&1 &
 pids+=("$!")
 
 sleep 3
 
-timeout "${COMMANDER_RUNTIME_S}s" python3 \
-  gazebo_extension/gazebo_mission_commander_node.py \
+timeout "${COMMANDER_RUNTIME_S}s" ros2 run \
+  uav_runtime_safety_monitor gazebo_mission_commander \
   --ros-args -p scenario:="$SCENARIO" \
   >"$LOG_DIR/mission_commander.log" 2>&1 || true
 

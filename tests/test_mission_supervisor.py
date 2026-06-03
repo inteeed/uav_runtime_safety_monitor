@@ -4,11 +4,11 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "src"))
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from mission_simulator import UAVState
-from mission_supervisor import MissionSupervisor
-from safety_monitor import SafetyResult
+from uav_safety_core.mission_simulator import UAVState
+from uav_safety_core.mission_supervisor import MissionSupervisor
+from uav_safety_core.safety_monitor import SafetyResult
 
 
 def make_state(

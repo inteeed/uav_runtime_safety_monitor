@@ -1,10 +1,14 @@
 from pathlib import Path
 import os
-import sys
 from typing import Iterable, Optional
 
 
 PACKAGE_NAME = "uav_runtime_safety_monitor"
+
+# Marker that exists both in the repository root and in the installed
+# ``share/<package>`` directory, so the same lookup works in source checkouts
+# and in a colcon install.
+ROOT_MARKER = ("config", "safety_limits.json")
 
 try:
     from ament_index_python.packages import get_package_share_directory
@@ -29,23 +33,14 @@ def _candidate_roots() -> Iterable[Path]:
 
 def find_runtime_root() -> Path:
     for root in _candidate_roots():
-        if (root / "src" / "mission_simulator.py").exists():
+        if root.joinpath(*ROOT_MARKER).exists():
             return root
 
     raise RuntimeError(
-        "Could not locate UAV runtime safety monitor source files. "
+        "Could not locate UAV runtime safety monitor data files. "
         "Set UAV_RUNTIME_MONITOR_ROOT to the repository root or install the "
         "ROS2 package data files."
     )
-
-
-def add_runtime_paths() -> Path:
-    root = find_runtime_root()
-    for relative_path in ("src", "ros2_extension"):
-        path = root / relative_path
-        if path.exists() and str(path) not in sys.path:
-            sys.path.insert(0, str(path))
-    return root
 
 
 def runtime_file(*parts: str) -> Path:

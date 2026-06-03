@@ -12,7 +12,11 @@ WARN = "WARN"
 FAIL = "FAIL"
 INFO = "INFO"
 
-DEFAULT_ROS_SETUP = "/opt/ros/foxy/setup.bash"
+# The project was developed on ROS2 Foxy but is distro-agnostic. Override the
+# expected distribution (e.g. for Humble) with the EXPECTED_ROS_DISTRO env var
+# or the --expected-distro flag.
+DEFAULT_EXPECTED_DISTRO = os.environ.get("EXPECTED_ROS_DISTRO", "foxy")
+DEFAULT_ROS_SETUP = "/opt/ros/{}/setup.bash".format(DEFAULT_EXPECTED_DISTRO)
 PX4_ROS2_PACKAGES = ("px4_msgs",)
 PX4_REQUIRED_TELEMETRY_TOPICS = (
     "/fmu/out/vehicle_local_position",
@@ -63,7 +67,10 @@ def noetic_contamination(environ: Mapping[str, str]) -> List[str]:
     return contaminated
 
 
-def evaluate_current_shell(environ: Mapping[str, str]) -> CheckResult:
+def evaluate_current_shell(
+    environ: Mapping[str, str],
+    expected_distro: str = DEFAULT_EXPECTED_DISTRO,
+) -> CheckResult:
     contaminated = noetic_contamination(environ)
     if contaminated:
         return CheckResult(
@@ -74,22 +81,30 @@ def evaluate_current_shell(environ: Mapping[str, str]) -> CheckResult:
         )
 
     ros_distro = environ.get("ROS_DISTRO")
-    if ros_distro and ros_distro != "foxy":
+    if ros_distro and ros_distro != expected_distro:
         return CheckResult(
             "current_shell",
             WARN,
-            "ROS_DISTRO is set to {!r} instead of 'foxy'.".format(ros_distro),
-            "Use a clean ROS2 Foxy shell for this repository.",
+            "ROS_DISTRO is set to {!r} instead of {!r}.".format(
+                ros_distro, expected_distro
+            ),
+            "Use a clean ROS2 {} shell for this repository.".format(expected_distro),
         )
 
-    if ros_distro == "foxy":
-        return CheckResult("current_shell", OK, "ROS2 Foxy environment detected.")
+    if ros_distro == expected_distro:
+        return CheckResult(
+            "current_shell",
+            OK,
+            "ROS2 {} environment detected.".format(expected_distro),
+        )
 
     return CheckResult(
         "current_shell",
         INFO,
         "No ROS distribution is currently sourced.",
-        "Source /opt/ros/foxy/setup.bash before running ROS2 nodes.",
+        "Source /opt/ros/{}/setup.bash before running ROS2 nodes.".format(
+            expected_distro
+        ),
     )
 
 
@@ -127,13 +142,18 @@ def source_and_run(
     return run_shell(shell_command, timeout_s=timeout_s)
 
 
-def evaluate_ros_setup(ros_setup: Path) -> CheckResult:
+def evaluate_ros_setup(
+    ros_setup: Path,
+    expected_distro: str = DEFAULT_EXPECTED_DISTRO,
+) -> CheckResult:
     if not ros_setup.exists():
         return CheckResult(
             "ros_setup",
             FAIL,
             "{} does not exist.".format(ros_setup),
-            "Install ROS2 Foxy or pass --ros-setup to the correct setup.bash.",
+            "Install ROS2 {} or pass --ros-setup to the correct setup.bash.".format(
+                expected_distro
+            ),
         )
 
     result = source_and_run([ros_setup], "printenv ROS_DISTRO", timeout_s=10.0)
@@ -146,15 +166,19 @@ def evaluate_ros_setup(ros_setup: Path) -> CheckResult:
             result.stderr.strip(),
         )
 
-    if distro != "foxy":
+    if distro != expected_distro:
         return CheckResult(
             "ros_setup",
             WARN,
-            "Sourcing {} sets ROS_DISTRO={!r}.".format(ros_setup, distro),
-            "This project has been validated with ROS2 Foxy.",
+            "Sourcing {} sets ROS_DISTRO={!r} (expected {!r}).".format(
+                ros_setup, distro, expected_distro
+            ),
+            "Set EXPECTED_ROS_DISTRO or --expected-distro to match your install.",
         )
 
-    return CheckResult("ros_setup", OK, "{} sources ROS2 Foxy.".format(ros_setup))
+    return CheckResult(
+        "ros_setup", OK, "{} sources ROS2 {}.".format(ros_setup, expected_distro)
+    )
 
 
 def parse_lines(output: str) -> List[str]:
@@ -269,11 +293,12 @@ def collect_checks(
     extra_setups: Sequence[Path] = (),
     check_topics: bool = False,
     require_battery_topic: bool = False,
+    expected_distro: str = DEFAULT_EXPECTED_DISTRO,
 ) -> List[CheckResult]:
     setup_files = [ros_setup, *extra_setups]
     checks = [
-        evaluate_current_shell(environ),
-        evaluate_ros_setup(ros_setup),
+        evaluate_current_shell(environ, expected_distro=expected_distro),
+        evaluate_ros_setup(ros_setup, expected_distro=expected_distro),
         evaluate_command("px4_command", "px4"),
         evaluate_command("micro_xrce_agent", "MicroXRCEAgent"),
         evaluate_ros_packages(setup_files),
@@ -324,6 +349,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to the ROS2 setup.bash file to source for checks.",
     )
     parser.add_argument(
+        "--expected-distro",
+        default=DEFAULT_EXPECTED_DISTRO,
+        help=(
+            "ROS2 distribution this run expects (default from EXPECTED_ROS_DISTRO "
+            "or 'foxy'). Set to 'humble' etc. when running on a newer distro."
+        ),
+    )
+    parser.add_argument(
         "--check-topics",
         action="store_true",
         help="Also require live PX4 telemetry topics to be visible.",
@@ -366,6 +399,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         extra_setups=extra_setups,
         check_topics=args.check_topics,
         require_battery_topic=args.require_battery_topic,
+        expected_distro=args.expected_distro,
     )
     print_results(results)
 

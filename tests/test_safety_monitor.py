@@ -4,10 +4,10 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT / "src"))
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from mission_simulator import UAVState
-from safety_monitor import RuntimeSafetyMonitor, SafetyLimits
+from uav_safety_core.mission_simulator import UAVState
+from uav_safety_core.safety_monitor import RuntimeSafetyMonitor, SafetyLimits
 
 
 def make_limits() -> SafetyLimits:
@@ -123,6 +123,49 @@ class RuntimeSafetyMonitorTest(unittest.TestCase):
         result = self.monitor.evaluate(make_state(x_m=60.0, z_m=35.0))
         self.assertEqual(result.safety_status, "ALTITUDE_LIMIT_VIOLATION")
         self.assertEqual(result.recommended_action, "LAND")
+
+    def test_computes_path_deviation_from_planned_position(self) -> None:
+        # No pre-computed path_deviation_m: the monitor derives it from the
+        # gap between the actual and planned position (12 m on the y axis).
+        state = UAVState(
+            time_s=10.0,
+            x_m=0.0,
+            y_m=12.0,
+            z_m=20.0,
+            vx_mps=0.0,
+            vy_mps=0.0,
+            vz_mps=0.0,
+            battery_percent=80.0,
+            mission_state="TEST",
+            planned_x_m=0.0,
+            planned_y_m=0.0,
+            planned_z_m=20.0,
+            path_deviation_m=None,
+        )
+        result = self.monitor.evaluate(state)
+        self.assertEqual(result.safety_status, "PATH_DEVIATION_VIOLATION")
+        self.assertEqual(result.recommended_action, "RETURN_TO_HOME")
+
+    def test_planned_position_overrides_stale_supplied_deviation(self) -> None:
+        # A state source claims zero deviation, but the planned vs actual gap
+        # is 12 m; the monitor trusts its own computation, not the input.
+        state = UAVState(
+            time_s=10.0,
+            x_m=0.0,
+            y_m=12.0,
+            z_m=20.0,
+            vx_mps=0.0,
+            vy_mps=0.0,
+            vz_mps=0.0,
+            battery_percent=80.0,
+            mission_state="TEST",
+            planned_x_m=0.0,
+            planned_y_m=0.0,
+            planned_z_m=20.0,
+            path_deviation_m=0.0,
+        )
+        result = self.monitor.evaluate(state)
+        self.assertEqual(result.safety_status, "PATH_DEVIATION_VIOLATION")
 
 
 if __name__ == "__main__":

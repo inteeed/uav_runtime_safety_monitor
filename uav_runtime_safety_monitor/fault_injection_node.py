@@ -6,13 +6,14 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from uav_runtime_safety_monitor.runtime_paths import add_runtime_paths
 
-
-add_runtime_paths()
-
-from mission_simulator import UAVState
-from ros2_json import state_from_json, state_to_json
+from uav_safety_core.mission_simulator import UAVState
+from uav_runtime_safety_monitor.ros2_messages import (
+    UAVStateMsg,
+    ensure_typed_messages_available,
+    state_from_msg,
+    state_to_msg,
+)
 
 
 class FaultInjectionNode(Node):
@@ -20,6 +21,7 @@ class FaultInjectionNode(Node):
 
     def __init__(self) -> None:
         super().__init__("fault_injection_node")
+        ensure_typed_messages_available(self.get_logger())
         self.declare_parameter("input_topic", "/uav/raw_state")
         self.declare_parameter("output_topic", "/uav/state")
         self.declare_parameter("command_topic", "/uav/fault_injection")
@@ -30,8 +32,8 @@ class FaultInjectionNode(Node):
 
         self._active_scenario: Optional[str] = None
         self._active_until_ns: Optional[int] = None
-        self._publisher = self.create_publisher(String, output_topic, 10)
-        self.create_subscription(String, input_topic, self._on_state, 10)
+        self._publisher = self.create_publisher(UAVStateMsg, output_topic, 10)
+        self.create_subscription(UAVStateMsg, input_topic, self._on_state, 10)
         self.create_subscription(String, command_topic, self._on_command, 10)
         self.get_logger().info(
             "Fault injector ready: {} -> {}; commands on {}".format(
@@ -70,16 +72,10 @@ class FaultInjectionNode(Node):
             )
         )
 
-    def _on_state(self, message: String) -> None:
-        try:
-            state = state_from_json(message.data)
-        except (json.JSONDecodeError, KeyError, ValueError) as error:
-            self.get_logger().warn("Could not parse raw UAV state: {}".format(error))
-            return
-
+    def _on_state(self, message: UAVStateMsg) -> None:
+        state = state_from_msg(message)
         output_state = self._apply_fault_if_active(state)
-        output = String()
-        output.data = state_to_json(output_state)
+        output = state_to_msg(output_state, stamp=self.get_clock().now().to_msg())
         self._publisher.publish(output)
 
     def _apply_fault_if_active(self, state: UAVState) -> UAVState:
